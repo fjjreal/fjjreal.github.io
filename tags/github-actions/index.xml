@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>github-actions on JunJian Feng</title>
+    <link>https://fjjreal.github.io/tags/github-actions/</link>
+    <description>Recent content in github-actions on JunJian Feng</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Wed, 02 Dec 2020 16:19:08 +0800</lastBuildDate><atom:link href="https://fjjreal.github.io/tags/github-actions/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo github-Pages github-Actions</title>
+      <link>https://fjjreal.github.io/post/hugo-github_pages-github_actions/</link>
+      <pubDate>Wed, 02 Dec 2020 16:19:08 +0800</pubDate>
+      
+      <guid>https://fjjreal.github.io/post/hugo-github_pages-github_actions/</guid>
+      <description>&lt;p&gt;自动更新博客&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
