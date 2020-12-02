@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>gRpc 入门 | JunJian Feng</title>
+
+    
+
+
+
+<meta name="author" content="JunJian Feng" />
+<meta name="description" content="" />
+
+
+
+<meta name="generator" content="Hugo 0.79.0" />
+
+<link rel="canonical" href="https://fjjreal.github.io/post/learn-grpc-go/" />
+
+
+<meta property="og:title" content="gRpc 入门" />
+<meta property="og:description" content="gRpc 入门" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fjjreal.github.io/post/learn-grpc-go/" />
+<meta property="article:published_time" content="2020-11-23T15:40:02+08:00" />
+<meta property="article:modified_time" content="2020-11-23T15:40:02+08:00" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="gRpc 入门"/>
+<meta name="twitter:description" content="gRpc 入门"/>
+
+
+<link rel="stylesheet" href="/css/semantic.min.css" />
+<link rel="stylesheet" href="/css/icomoon.css" />
+<link rel="stylesheet" href="/css/OverlayScrollbars.min.css" />
+<link rel="stylesheet" href="/css/github-markdown.css" />
+<link rel="stylesheet" href="/css/site.css" />
+
+<style>
+  a:hover {
+    text-decoration: underline; 
+  }
+
+  
+  a {
+    color: seagreen !important;
+  }
+  
+
+  
+  .inverted a,
+  .inverted a:hover {
+     color: darkseagreen !important;
+  }
+  
+
+  
+  body.default {
+    
+    background-color: black;
+    
+
+    
+  }
+  
+
+  
+</style>
+
+    
+
+
+
+
+
+
+  </head>
+
+  <body class="default">
+    
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/fjjreal.github.io'"></i>
+  </div>
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+  
+</nav>
+
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          <div class="dream-max-width">
+            
+<div class="ui centered relaxed grid dream-grid">
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single" id="dream-save-post-as-img">
+    
+    <section class="ui top attached segment">
+      <header>
+        <h1 class="ui large header">
+          gRpc 入门
+          <div class="sub header">
+            @
+            
+              JunJian Feng
+            
+
+            | 
+                星期一，十一月 23 日，2020 年
+              
+
+            | 2 分钟阅读
+
+            | 更新于
+              
+                星期一，十一月 23 日，2020 年
+              
+          </div>
+        </h1>
+      </header>
+
+      <article class="main"><h2 id="环境">环境</h2>
+<pre><code>win10
+go 1.15 (mod 关闭) go env -w GO111MODULE=off
+</code></pre><ul>
+<li>protoc</li>
+<li>grpc包</li>
+<li>protoc-gen-go （包版本不对时切换git checkout tags）</li>
+<li>protoc生成go代码 （直接使用 src\google.golang.org\grpc\examples 也行）</li>
+<li>启动server</li>
+<li>启动client 调用 server</li>
+</ul>
+<h2 id="protoc">protoc</h2>
+<pre><code>https://github.com/protocolbuffers/protobuf/releases
+随便下载一个win版本的zip压缩包,解压将bin文件夹的protoc.exe放入GROOT的bin文件夹（或者其他地方，需要配置环境变量）
+打开 cmd 输入 protoc --version正常显示版本信息即可
+</code></pre><p>编译安装 <a href="https://segmentfault.com/a/1190000013339403">《Grpc+Grpc Gateway实践一 介绍与环境安装》</a></p>
+<h2 id="grpc包">grpc包</h2>
+<pre><code>{{GOPATH}} : go env (GOPATH=C:\Users\***\go)
+git clone https://github.com/grpc/grpc-go.git {{GOPATH}}/src/google.golang.org/grpc
+</code></pre><h2 id="protoc-gen-go-font-colorff000--proto3-2020-11-24font">protoc-gen-go <!-- raw HTML omitted --># proto3 2020-11-24<!-- raw HTML omitted --></h2>
+<pre><code>git clone https://github.com/golang/protobuf.git  {{GOPATH}}/src/github.com/golang/protobuf
+go install github.com/golang/protobuf/protoc-gen-go
+如果报 找不到包错误 就 git reset --hard d23c5127
+
+2020-11-24 注：
+如果使用proto3 最好切换 tag v1.3.* 再 go install 生成 {{GOPATH}}/bin/protoc-gen-go.exe
+cd {{GOPATH}}/src/github.com/golang/protobuf 
+git checkout tags/v1.3.0 -b v1.3.0
+cd protoc-gen-go 
+go install
+
+</code></pre><h2 id="protoc生成go代码-font-colorff000--proto3-2020-11-24font">protoc生成go代码 <!-- raw HTML omitted --># proto3 2020-11-24<!-- raw HTML omitted --></h2>
+<p>在{{GOPATH}}/src 下新建grpc-learn项目,在其下新建helloworld文件夹里面放 helloworld.proto（{{GOPATH}}\src\google.golang.org\grpc\examples\helloworld\helloworld）</p>
+<pre><code>protoc --go_out=plubins=grpc:. helloworld.proto
+helloworld 文件夹下生成 helloworld.pb.go
+</code></pre><ul>
+<li>生成 proto4 代码 <!-- raw HTML omitted --># 2020-11-24<!-- raw HTML omitted --></li>
+</ul>
+<p><img src="/images/protobuf_error.png" alt="protobuf"></p>
+<p>protobuf.git 说明文档说该模块已被 google.golang.org/protobuf 代替</p>
+<ul>
+<li><a href="https://github.com/protocolbuffers/protobuf-go">https://github.com/protocolbuffers/protobuf-go</a></li>
+<li><a href="https://e.coding.net/robinqiwei/googleprotobuf.git">https://e.coding.net/robinqiwei/googleprotobuf.git</a></li>
+</ul>
+<pre><code>clone google.golang.org/protobuf 到 {{GOPATH}}/src/google.golang.org/protobuf
+cd cmd/protoc-gen-go
+go install // 重新生成{{GOPATH}}/bin/protoc-gen-go.exe
+
+helloworld.proto 的 proto3 改为 proto4
+再去 protoc --go_out=plubins=grpc:. helloworld.proto 即可
+
+</code></pre><h2 id="启动server">启动server</h2>
+<p>将 {{GOPATH}}\src\google.golang.org\grpc\examples\helloworld中greeter_server\main.go重命名server.go放入grpc-learn（与helloworld文件夹同级）。import 中的pb需要修改为grpc-learn/helloworld</p>
+<pre><code>// 包不存在先下载
+git clone https://github.com/golang/net.git {{GOPATH}}/src/golang.org/x/net
+git clone https://github.com/golang/text.git {{GOPATH}}/src/golang.org/x/text
+git clone https://github.com/google/go-genproto.git {{GOPATH}}/src/google.golang.org/genproto
+
+git run server.go
+</code></pre><ul>
+<li>genproto ProtoPackageIsVersion4 error 2020-11-24 注：</li>
+</ul>
+<p><a href="https://gitee.com/mirrors/go-genproto/commits/master/googleapis/rpc/status/status.pb.go">gitee的genproto日志</a></p>
+<p><img src="/images/genproto_error.png" alt="genproto"></p>
+<pre><code>...google.golang.org\genproto\googleapis\rpc\status\status.pb.go:42:11: undefined: &quot;github.com/golang/protobuf/proto&quot;.ProtoPack
+ageIsVersion4
+
+git reset --hard 3f1135a 
+
+</code></pre><ul>
+<li>grpc ProtoPackageIsVersion4 error 2020-11-24 注：</li>
+</ul>
+<p>查到资料说 ProtoPackageIsVersion4 在 v1.26.x 后面版本才支持，切换分支为 v1.26.x 即可</p>
+<pre><code>...google.golang.org\grpc\binarylog\grpc_binarylog_v1\binarylog.pb.go:46:11: undefined: &quot;github.com/golang/protobuf/proto&quot;.Prot
+   oPackageIsVersion4
+
+</code></pre><h2 id="启动client">启动client</h2>
+<p>将 {{GOPATH}}\src\google.golang.org\grpc\examples\helloworld中greeter_client\main.go重命名client.go放入grpc-learn（与helloworld文件夹同级）。import 中的pb需要修改为grpc-learn/helloworld</p>
+<pre><code>go run client // 正常打印 hello world // server端显示receive world
+go run client &quot;hello_value&quot; // hello hello_value // server端显示receive hello_value
+</code></pre><h2 id="膜拜大佬">膜拜大佬</h2>
+<ul>
+<li><a href="https://eddycjy.com/go-categories/">煎鱼 - GO系列 - GRPC应用</a></li>
+<li><a href="https://segmentfault.com/a/1190000013339403">Grpc+Grpc Gateway实践一 介绍与环境安装</a></li>
+<li><a href="https://blog.csdn.net/u013536232/article/details/105395172/">go gRPC初体验(win10+普通网络)</a></li>
+<li><a href="https://gitee.com/killf/cgit">git 加速</a></li>
+</ul></article>
+    </section>
+
+    <footer class="ui attached segment dream-tags" data-html2canvas-ignore>
+      
+        
+          <a class="ui label" href="/tags/go" title="go">go</a>
+        
+          <a class="ui label" href="/tags/grpc" title="grpc">grpc</a>
+        
+      
+      <div
+        class="ui label"
+        style="float: right; cursor: pointer;"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i>保存为图片
+      </div>
+    </footer>
+
+    
+
+    
+    
+    
+
+    
+
+  </div>
+  <div class="sixteen wide mobile sixteen wide tablet four wide computer column">
+    <article class="dream-header">
+  <section class="ui top attached center aligned segment">
+    <div class="ui small circular image">
+      
+        <img src="/img/avatar.jpeg">
+      
+    </div>
+
+    
+    <h1 class="ui medium header">
+    
+      JunJian Feng 分享站
+      <div class="sub header" style="margin-top: 0.5rem;">voojo</div>
+    
+    </h1>
+    
+
+    <div class="ui horizontal list">
+      
+      <a class="item" href="/tags">
+        <i class="tags icon" title="所有标签"></i>
+      </a>
+      <a class="item" href="/categories">
+        <i class="th list icon" title="所有分类"></i>
+      </a>
+    </div>
+  </section>
+
+  
+  <section class="ui attached center aligned segment dream-tags">
+    
+      
+      
+      <a class="ui label" href="/tags/ca/" title="Ca">
+        Ca
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/command/" title="Command">
+        Command
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/go/" title="Go">
+        Go
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/go1.15&#43;/" title="Go1.15&#43;">
+        Go1.15&#43;
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/grpc/" title="Grpc">
+        Grpc
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/intro/" title="Intro">
+        Intro
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/openssl/" title="Openssl">
+        Openssl
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/test/" title="Test">
+        Test
+      </a>
+    
+  </section>
+  
+
+  
+  <section class="ui attached segment dream-categories">
+    <div class="ui accordion">
+      
+      
+      
+      
+      
+
+      
+        
+
+        
+          <div class="title">
+            <i class="dropdown icon"></i>
+            
+            
+            <a class="item" href="/categories/daily/" title="Daily">
+              Daily
+            </a>
+          </div>
+          <div class="content">
+            <div class="ui list">
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/contact/">Contact</a>
+                </div>
+              </div>
+            
+            </div>
+          </div>
+        
+      
+        
+
+        
+          <div class="title">
+            <i class="dropdown icon"></i>
+            
+            
+            <a class="item" href="/categories/git/" title="Git">
+              Git
+            </a>
+          </div>
+          <div class="content">
+            <div class="ui list">
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/post/git-cmd/">Git Cmd</a>
+                </div>
+              </div>
+            
+            </div>
+          </div>
+        
+      
+        
+
+        
+          <div class="title">
+            <i class="dropdown icon"></i>
+            
+            
+            <a class="item" href="/categories/go/" title="Go">
+              Go
+            </a>
+          </div>
+          <div class="content">
+            <div class="ui list">
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/post/go1.15up-grpc-ca/">go 1.15&#43; GRPC 自签CA</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/post/learn-grpc-go/">gRpc 入门</a>
+                </div>
+              </div>
+            
+            </div>
+          </div>
+        
+      
+        
+
+        
+          <div class="title">
+            <i class="dropdown icon"></i>
+            
+            
+            <a class="item" href="/categories/hugo/" title="Hugo">
+              Hugo
+            </a>
+          </div>
+          <div class="content">
+            <div class="ui list">
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/post/first/">Hugo 使用</a>
+                </div>
+              </div>
+            
+            </div>
+          </div>
+        
+      
+
+      
+    </div>
+  </section>
+  
+
+  <section class="ui attached segment header-socials">
+    <nav class="ui secondary menu dream-menu dream-socials">
+  
+    <div class="item">
+      <a href="/index.xml">
+        <i class=" rss square icon" title="RSS"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://github.com/fjjreal" target="_blank">
+        <i class=" github icon" title="GitHub"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="/contact/" >
+        <i class=" qq icon" title="328957143"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="/contact/" >
+        <i class=" wechat icon" title="code1024996"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="mailto:328957143@qq.com">
+        <i class=" mail icon" title="Email"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+
+  
+
+
+
+</nav>
+
+  </section>
+
+  <section class="ui bottom attached center aligned segment">
+    
+      <p>© 2020 JunJian Feng</p>
+    
+
+    <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+
+    
+  </section>
+</article>
+
+  </div>
+</div>
+
+          </div>
+        </section>
+        <section class="back">
+          <div class="dream-max-width">
+            <div class="ui centered relaxed grid dream-grid dream-back">
+  
+  
+  
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article>
+      <div class="ui top attached segment">
+        <h3 class="ui header">社交链接</h3>
+      </div>
+      <div class="ui bottom attached segment">
+        <nav class="ui secondary menu dream-menu dream-socials">
+  
+    <div class="item">
+      <a href="/index.xml">
+        <i class="large rss square icon" title="RSS"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://github.com/fjjreal" target="_blank">
+        <i class="large github icon" title="GitHub"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="/contact/" >
+        <i class="large qq icon" title="328957143"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="/contact/" >
+        <i class="large wechat icon" title="code1024996"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="mailto:328957143@qq.com">
+        <i class="large mail icon" title="Email"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+
+  
+
+
+
+</nav>
+
+      </div>
+    </article>
+  </section>
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+  </section>
+
+  
+    
+  
+</div>
+
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+  window.backgroundDark =  null 
+  window.backgroundImageDark =  null 
+  window.darkNav =  true 
+  window.hasTwitterEmbed =  null 
+
+  if (window.hasTwitterEmbed) {
+    
+    window.twttr = (function (d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {}
+      if (d.getElementById(id)) return t
+      js = d.createElement(s)
+      js.id = id
+      js.src = 'https://platform.twitter.com/widgets.js'
+      fjs.parentNode.insertBefore(js, fjs)
+
+      t._e = []
+      t.ready = function (f) {
+        t._e.push(f)
+      }
+
+      return t
+    })(document, 'script', 'twitter-wjs')
+  }
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/jquery.overlayScrollbars.min.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/theme.js"></script>
+
+    
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/post.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>

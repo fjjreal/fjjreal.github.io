@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>go1.15&#43; on JunJian Feng</title>
+    <link>https://fjjreal.github.io/tags/go1.15&#43;/</link>
+    <description>Recent content in go1.15&#43; on JunJian Feng</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Thu, 26 Nov 2020 13:45:33 +0800</lastBuildDate><atom:link href="https://fjjreal.github.io/tags/go1.15+/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>go 1.15&#43; GRPC 自签CA</title>
+      <link>https://fjjreal.github.io/post/go1.15up-grpc-ca/</link>
+      <pubDate>Thu, 26 Nov 2020 13:45:33 +0800</pubDate>
+      
+      <guid>https://fjjreal.github.io/post/go1.15up-grpc-ca/</guid>
+      <description>&lt;p&gt;x509: certificate relies on legacy Common Name field, use SANs or&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

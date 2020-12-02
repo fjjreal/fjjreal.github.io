@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on JunJian Feng</title>
+    <link>https://fjjreal.github.io/post/</link>
+    <description>Recent content in Posts on JunJian Feng</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Sun, 29 Nov 2020 16:55:35 +0800</lastBuildDate><atom:link href="https://fjjreal.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git Cmd</title>
+      <link>https://fjjreal.github.io/post/git-cmd/</link>
+      <pubDate>Sun, 29 Nov 2020 16:55:35 +0800</pubDate>
+      
+      <guid>https://fjjreal.github.io/post/git-cmd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go 1.15&#43; GRPC 自签CA</title>
+      <link>https://fjjreal.github.io/post/go1.15up-grpc-ca/</link>
+      <pubDate>Thu, 26 Nov 2020 13:45:33 +0800</pubDate>
+      
+      <guid>https://fjjreal.github.io/post/go1.15up-grpc-ca/</guid>
+      <description>&lt;p&gt;x509: certificate relies on legacy Common Name field, use SANs or&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>gRpc 入门</title>
+      <link>https://fjjreal.github.io/post/learn-grpc-go/</link>
+      <pubDate>Mon, 23 Nov 2020 15:40:02 +0800</pubDate>
+      
+      <guid>https://fjjreal.github.io/post/learn-grpc-go/</guid>
+      <description>&lt;h2 id=&#34;环境&#34;&gt;环境&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;win10
+go 1.15 (mod 关闭) go env -w GO111MODULE=off
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;protoc&lt;/li&gt;
+&lt;li&gt;grpc包&lt;/li&gt;
+&lt;li&gt;protoc-gen-go （包版本不对时切换git checkout tags）&lt;/li&gt;
+&lt;li&gt;protoc生成go代码 （直接使用 src\google.golang.org\grpc\examples 也行）&lt;/li&gt;
+&lt;li&gt;启动server&lt;/li&gt;
+&lt;li&gt;启动client 调用 server&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hugo 使用</title>
+      <link>https://fjjreal.github.io/post/first/</link>
+      <pubDate>Thu, 19 Nov 2020 09:25:02 +0800</pubDate>
+      
+      <guid>https://fjjreal.github.io/post/first/</guid>
+      <description>&lt;h3 id=&#34;hello-hugo&#34;&gt;Hello Hugo&lt;/h3&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
