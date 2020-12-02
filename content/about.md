@@ -14,7 +14,7 @@ cover: /images/default2.jpg
  - 冯俊健/男/1995
  - 本科/宁波大红鹰学院软件工程系 2018
  - 工作年限：2年
- - 技术博客：https://fjjreal.github.io/hugo-blog
+ - 技术博客：https://fjjreal.github.io
  - Github：https://github.com/fjjreal 
  - Gitee：https://gitee.com/voojo
 

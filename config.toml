@@ -1,4 +1,4 @@
-baseurl = "https://fjjreal.github.io/hugo-blog/"
+baseurl = "https://fjjreal.github.io/"
 languageCode = "zh-Hans"
 defaultContentLanguage = "zh"
 title = "JunJian Feng"

@@ -3,7 +3,7 @@ name: Deploy Hugo Blog
 on:
   push:
     branches:
-      - master   # master 更新触发
+      - main   # master 更新触发
 
 jobs:
   build-deploy:
