@@ -67,7 +67,14 @@
       <article class="main">{{ .Content | emojify }}</article>
     </section>
 
-    <footer class="ui attached segment dream-tags" data-html2canvas-ignore>
+    {{ $tmp := "" }}
+    {{ if ne .Site.Params.valine true }}
+      {{ if ne .Site.Params.needCopyright true }}
+        {{ $tmp = "bottom" }}
+      {{ end }}
+    {{ end }}
+
+    <footer class="ui {{ $tmp }} attached segment dream-tags" data-html2canvas-ignore>
       {{ if isset .Params "tags" }}
         {{ range $tag := .Params.tags }}
           <a class="ui label" href="{{ "tags/" | relLangURL }}{{ $tag | urlize }}" title="{{ $tag }}">{{ $tag }}</a>
@@ -82,13 +89,7 @@
         <i class="save icon"></i>{{ i18n "saveAsImage" }}
       </div>
     </footer>
-
-    {{ if .Site.Copyright }}
-      <footer class="ui attached segment" data-html2canvas-ignore>
-        {{ .Site.Copyright | safeHTML }}
-      </footer>
-    {{ end }}
-
+    
     {{ if .Site.DisqusShortname }}
       <footer class="ui bottom attached stacked segment post-disqus-area" data-html2canvas-ignore>
         <div id="disqus_thread"></div>
@@ -127,17 +128,21 @@
     {{ end }}
 
     {{ if .Site.Params.valine }}
-      <div class="ui segment">
+      <div class="ui {{ if ne .Site.Params.needCopyright true }}bottom{{ end }} attached segment">
         <div id="vcomments"></div>
       </div>
       <script>
         new Valine({
           el: '#vcomments',
           appId: {{ .Site.Params.LEANCLOUD_APP_ID }},
-          appKey: {{ .Site.Params.LEANCLOUD_APP_KEY }}
+          appKey: {{ .Site.Params.LEANCLOUD_APP_KEY }},
+          placeholder: '{{ .Site.Params.LEANCLOUD_APP_placeholder }}',
+          visitor: {{ .Site.Params.LEANCLOUD_APP_visitor }}
         })
       </script> 
     {{ end }}
+
+    {{ partial "icp.html" . }}
 
   </div>
   <div class="sixteen wide mobile sixteen wide tablet four wide computer column">

@@ -42,7 +42,7 @@
   <section class="ui attached center aligned segment dream-tags">
     {{ range $name, $_ := .Site.Taxonomies.tags }}
       {{ $link := printf "/tags/%s/" $name | urlize }}
-      {{ $title := $name | humanize | title }}
+      {{ $title := $name }}
       <a class="ui label" href="{{ $link }}" title="{{ $title }}">
         {{ $title }}
       </a>
@@ -98,7 +98,7 @@
     {{ partial "socials.html" (dict "Site" .Site "IconSize" "") }}
   </section>
 
-  <section class="ui bottom attached center aligned segment">
+  <footer class="ui bottom attached center aligned segment" data-html2canvas-ignore>
     {{ if .Site.Params.siteStartYear }}
       <p>© {{ if eq now.Year .Site.Params.siteStartYear }}{{ now.Year }}{{ else }}{{ .Site.Params.siteStartYear }} - {{ now.Year }}{{ end }} {{ .Site.Title }}</p>
     {{ else }}
@@ -107,8 +107,14 @@
 
     <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
 
-    {{ if .Site.Params.headerBottomText }}
-      <p>{{ .Site.Params.headerBottomText | safeHTML }}</p>
+    {{ if .Site.Params.needCopyright }}
+      {{ if .Site.Params.headerBottomText }}
+        {{ .Site.Params.headerBottomText | safeHTML }}
+      {{ else }}
+        {{ .Site.Copyright | safeHTML }}
+      {{ end }}
     {{ end }}
-  </section>
+
+  </footer>
+
 </article>

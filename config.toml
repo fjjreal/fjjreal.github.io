@@ -4,7 +4,7 @@ defaultContentLanguage = "zh"
 title = "JunJian Feng"
 theme = "dream"
 
-# copyright = ""
+
 
 # googleAnalytics = ""
 
@@ -12,7 +12,13 @@ theme = "dream"
 
 # enableRobotsTXT = true
 
+
+# Copyright = "<p>4564</p>" # needCopyright & params.headerBottomText 不需要
+
 [params]
+  # 备案
+  #needCopyright = true
+
   background = "black"
   # backgroundImage = "/me/background.jpg"
   linkColor = "seagreen"
@@ -23,16 +29,18 @@ theme = "dream"
   motto = "voojo"
   # categoriesLimitInHeader = 6
   headerTitle = "JunJian Feng 分享站"
-  # headerBottomText = "<a href='http://www.baidu.com' target='_blank'>ICP</a>"
+  headerBottomText = "<p>4564headerBottomText</p>"
 
   rss = true
 
   # utterancesRepo = ""
 
-  # valine = true
-  # LEANCLOUD_APP_ID = ""
-  # LEANCLOUD_APP_KEY = ""
-  
+  #valine = true
+  LEANCLOUD_APP_ID = "83stadr63Tq81NB9uBkqGOxp-gzGzoHsz"
+  LEANCLOUD_APP_KEY = "L5d68syrmwY3A8GHQRfwNER1"
+  LEANCLOUD_APP_placeholder = "说点什么吧..."
+  LEANCLOUD_APP_visitor = true
+
   github = "fjjreal"
   wechat = "code1024996"
   qq     = "328957143"

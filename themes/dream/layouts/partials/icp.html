@@ -1,0 +1,17 @@
+{{ if .Site.Params.needCopyright }}
+  <footer class="ui bottom attached center aligned segment" data-html2canvas-ignore>
+	{{ if .Site.Params.siteStartYear }}
+	  <p>© {{ if eq now.Year .Site.Params.siteStartYear }}{{ now.Year }}{{ else }}{{ .Site.Params.siteStartYear }} - {{ now.Year }}{{ end }} {{ .Site.Title }}</p>
+	{{ else }}
+	  <p>© {{ now.Year }} {{ .Site.Title }}</p>
+	{{ end }}
+
+	<p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+
+    {{ if .Site.Params.headerBottomText }}
+      {{ .Site.Params.headerBottomText | safeHTML }}
+    {{ else }}
+      {{ .Site.Copyright | safeHTML }}
+    {{ end }}
+  </footer>
+{{ end }}
