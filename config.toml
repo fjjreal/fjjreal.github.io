@@ -17,7 +17,7 @@ theme = "dream"
 
 [params]
   # 备案
-  needCopyright = true
+  #needCopyright = true
 
   background = "black"
   # backgroundImage = "/me/background.jpg"
@@ -29,7 +29,7 @@ theme = "dream"
   motto = "voojo"
   # categoriesLimitInHeader = 6
   headerTitle = "JunJian Feng 分享站"
-  headerBottomText = '<p><a style="text-decoration:none;" href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank"><span style="color:#939393;">浙ICP备17050665号-3</span></a></p><p><a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33042402000233" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="/images/gongan.png" style="float:left;"/><span style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">浙公网安备 33042402000233号</span></a></p>'
+  headerBottomText = ''
 
   rss = true
 
