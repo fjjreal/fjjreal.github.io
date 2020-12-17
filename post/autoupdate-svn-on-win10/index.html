@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Hugo github-Pages github-Actions | JunJian Feng</title>
+    <title>win10下自动更新svn脚本 | JunJian Feng</title>
 
     
 
@@ -17,21 +17,23 @@
 
 <meta name="generator" content="Hugo 0.79.0" />
 
-<link rel="canonical" href="https://fjjreal.github.io/post/hugo-github_pages-github_actions/" />
+<link rel="canonical" href="https://fjjreal.github.io/post/autoupdate-svn-on-win10/" />
 
 
-<meta property="og:title" content="Hugo github-Pages github-Actions" />
-<meta property="og:description" content="自动更新博客" />
+<meta property="og:title" content="win10下自动更新svn脚本" />
+<meta property="og:description" content="os: - win10
+tool: - ApacheSubversion命令行工具" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://fjjreal.github.io/post/hugo-github_pages-github_actions/" />
-<meta property="article:published_time" content="2020-12-02T16:19:08+08:00" />
-<meta property="article:modified_time" content="2020-12-02T16:19:08+08:00" />
+<meta property="og:url" content="https://fjjreal.github.io/post/autoupdate-svn-on-win10/" />
+<meta property="article:published_time" content="2020-12-17T10:10:02+08:00" />
+<meta property="article:modified_time" content="2020-12-17T10:10:02+08:00" />
 
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Hugo github-Pages github-Actions"/>
-<meta name="twitter:description" content="自动更新博客"/>
+<meta name="twitter:title" content="win10下自动更新svn脚本"/>
+<meta name="twitter:description" content="os: - win10
+tool: - ApacheSubversion命令行工具"/>
 
 
 <link rel="stylesheet" href="/css/semantic.min.css" />
@@ -107,7 +109,7 @@
     <section class="ui top attached segment">
       <header>
         <h1 class="ui large header">
-          Hugo github-Pages github-Actions
+          win10下自动更新svn脚本
           <div class="sub header">
             @
             
@@ -115,71 +117,72 @@
             
 
             | 
-                星期三，十二月 2 日，2020 年
+                星期四，十二月 17 日，2020 年
               
 
             | 1 分钟阅读
 
             | 更新于
               
-                星期三，十二月 2 日，2020 年
+                星期四，十二月 17 日，2020 年
               
           </div>
         </h1>
       </header>
 
-      <article class="main"><p>自动更新博客</p>
-<h1 id="新建-action-文件">新建 action 文件</h1>
+      <article class="main"><p>os: - win10</p>
+<p>tool: - ApacheSubversion命令行工具</p>
+<h1 id="获取apachesubversion">获取ApacheSubversion</h1>
+<p><img src="/images/svn-cmd-tool.png" alt="svn cmd tool"></p>
 <ul>
-<li>{{hugo site 目录}}/.github/workflows/aa.yml（文件名随意）</li>
+<li>
+<p><a href="https://www.visualsvn.com/downloads/">visualsvn</a></p>
+</li>
+<li>
+<p><a href="https://pan.baidu.com/s/1wX43nE2hWtx-YyI73tazKQ">百度网盘 code:1024 </a></p>
+<p><img src="/images/svn-cmd-tool-baidu-download.png" alt="百度网盘"></p>
+</li>
 </ul>
-<pre><code>name: Deploy Hugo Blog
+<p>下载完解压到 D:\svn_cmd_tool 下</p>
+<pre><code>|--svn_cmd_tool
+|    |--bin
+|    |    svn.exe
+</code></pre>
+<h1 id="脚本目录-dsvn_hooks">脚本目录 D:\svn_hooks</h1>
+<pre><code>|--svn_hooks
+|    |    svn-update.bat
+|    |    callSVNUpdate.vbs
+|    |    svn.update.log // svn-update.bat 生成
+</code></pre>
+<h1 id="更新脚本-svn-updatebat">更新脚本 svn-update.bat</h1>
+<pre><code>@echo off
+set url=SVN服务器端项目地址
+for /f &quot;tokens=2* delims=:&quot; %%i in ('&quot;D:\svn_cmd_tool\bin\svn.exe info %url% | find &quot;Last Changed Rev:&quot;&quot;') do set online=%%i
+set localurl=本地项目地址
+for /f &quot;tokens=2* delims=:&quot; %%i in ('&quot;D:\svn_cmd_tool\bin\svn.exe info %localurl% | find &quot;Revision:&quot;&quot;') do set local=%%i
+if &quot;%online%&quot; equ &quot;%local%&quot; (echo &quot;not need svn update&quot;) else (echo DATE &gt;&gt; svn.update.log &amp; D:\svn_cmd_tool\bin\svn.exe update 本地项目地址 &gt;&gt; svn.update.log)
+pause
 
-on:
-  push:
-    branches:
-      - master   # master 更新触发 现在初始化是mian也可以重命名master
-
-jobs:
-  build-deploy:
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v1
-
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
-        with:
-          hugo-version: latest
-
-      - name: Build 
-        run: hugo --theme=dream --baseUrl=&quot;https://fjjreal.github.io&quot;
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          personal_token: ${{ secrets.FJJREALBLOG }} # personal_token 这里新建一个 https://github.com/settings/tokens
-          PUBLISH_BRANCH: gh-pages  # 推送到当前 gh-pages 分支
-          PUBLISH_DIR: ./public  # hugo 生成到 public 作为跟目录
-          commit_message: ${{ github.event.head_commit.message }}
-
-</code></pre><ul>
-<li>${{ secrets.FJJREALBLOG }}</li>
-</ul>
-<p><img src="/images/person_token.png" alt="FJJREALBLOG"></p>
-<ul>
-<li>token 值</li>
-</ul>
-<p><img src="/images/get_token.png" alt="get token"></p>
-<p><img src="/images/token_detail.png" alt="token detail"></p>
-<h1 id="配置github-pages">配置GitHub Pages</h1>
-<p><img src="/images/github_pages.png" alt="github pages"></p>
-<p><img src="/images/github_pages_edit.png" alt="github pages edit"></p>
-<h1 id="建议仓库名称-githubnamegithubio">建议仓库名称 {{githubname}}.github.io</h1>
-<h2 id="膜拜大佬">膜拜大佬</h2>
-<ul>
-<li><a href="http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html">GitHub Actions 入门教程</a></li>
-<li><a href="https://immmmm.com/hugo-github-actions/">Hugo + Github Actions 实现自动化部署</a></li>
-</ul></article>
+// 也可以给svn配置环境变量，将D:\svn_cmd_tool\bin\svn.exe替换为svn
+// win7把需要更新时的echo DATE改为echo %date% %time%
+</code></pre><h1 id="循环进程-callsvnupdatevbs">循环进程 callSVNUpdate.vbs</h1>
+<pre><code>'指定时间间隔调用.bat文件
+'停止脚本请在任务管理器结束wscript.exe
+Set ws=wscript.createobject(&quot;wscript.shell&quot;)
+dim bat
+'需运行的文件
+bat=&quot;cmd.exe /c svn-update.bat&quot;
+do
+'0表示不显示窗口，1显示，调试用
+ws.run bat,0
+'每5分钟运行一次
+wscript.sleep 300000
+loop
+</code></pre><h1 id="加入开机自启计划任务">加入开机自启计划任务</h1>
+<p><img src="/images/set-vbs-autostart.png" alt="win10 计划任务"></p>
+<h3 id="触发器-开机时自启">触发器 开机时自启</h3>
+<h3 id="操作-地址callsvnupdatevbs">操作 地址:*****\callSVNUpdate.vbs</h3>
+<p><img src="/images/svn-update-cover.png" alt="win10 计划任务-结果"></p></article>
     </section>
 
     
@@ -192,11 +195,7 @@ jobs:
     <footer class="ui bottom attached segment dream-tags" data-html2canvas-ignore>
       
         
-          <a class="ui label" href="/tags/github-actions" title="github-actions">github-actions</a>
-        
-          <a class="ui label" href="/tags/github-pages" title="github-pages">github-pages</a>
-        
-          <a class="ui label" href="/tags/hugo" title="hugo">hugo</a>
+          <a class="ui label" href="/tags/svn" title="svn">svn</a>
         
       
       <div

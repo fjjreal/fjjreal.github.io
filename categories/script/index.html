@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Hugo github-Pages github-Actions | JunJian Feng</title>
+    <title>script | JunJian Feng</title>
 
     
 
@@ -17,21 +17,20 @@
 
 <meta name="generator" content="Hugo 0.79.0" />
 
-<link rel="canonical" href="https://fjjreal.github.io/post/hugo-github_pages-github_actions/" />
+<link rel="canonical" href="https://fjjreal.github.io/categories/script/" />
 
 
-<meta property="og:title" content="Hugo github-Pages github-Actions" />
-<meta property="og:description" content="自动更新博客" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://fjjreal.github.io/post/hugo-github_pages-github_actions/" />
-<meta property="article:published_time" content="2020-12-02T16:19:08+08:00" />
-<meta property="article:modified_time" content="2020-12-02T16:19:08+08:00" />
+<meta property="og:title" content="script" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://fjjreal.github.io/categories/script/" />
+<meta property="og:updated_time" content="2020-12-17T10:10:02+08:00" />
 
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Hugo github-Pages github-Actions"/>
-<meta name="twitter:description" content="自动更新博客"/>
+<meta name="twitter:title" content="script"/>
+<meta name="twitter:description" content=""/>
 
 
 <link rel="stylesheet" href="/css/semantic.min.css" />
@@ -71,13 +70,7 @@
   
 </style>
 
-    
-
-
-
-
-
-
+     
   </head>
 
   <body class="default">
@@ -102,121 +95,7 @@
           <div class="dream-max-width">
             
 <div class="ui centered relaxed grid dream-grid">
-  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single" id="dream-save-post-as-img">
-    
-    <section class="ui top attached segment">
-      <header>
-        <h1 class="ui large header">
-          Hugo github-Pages github-Actions
-          <div class="sub header">
-            @
-            
-              JunJian Feng
-            
-
-            | 
-                星期三，十二月 2 日，2020 年
-              
-
-            | 1 分钟阅读
-
-            | 更新于
-              
-                星期三，十二月 2 日，2020 年
-              
-          </div>
-        </h1>
-      </header>
-
-      <article class="main"><p>自动更新博客</p>
-<h1 id="新建-action-文件">新建 action 文件</h1>
-<ul>
-<li>{{hugo site 目录}}/.github/workflows/aa.yml（文件名随意）</li>
-</ul>
-<pre><code>name: Deploy Hugo Blog
-
-on:
-  push:
-    branches:
-      - master   # master 更新触发 现在初始化是mian也可以重命名master
-
-jobs:
-  build-deploy:
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v1
-
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
-        with:
-          hugo-version: latest
-
-      - name: Build 
-        run: hugo --theme=dream --baseUrl=&quot;https://fjjreal.github.io&quot;
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          personal_token: ${{ secrets.FJJREALBLOG }} # personal_token 这里新建一个 https://github.com/settings/tokens
-          PUBLISH_BRANCH: gh-pages  # 推送到当前 gh-pages 分支
-          PUBLISH_DIR: ./public  # hugo 生成到 public 作为跟目录
-          commit_message: ${{ github.event.head_commit.message }}
-
-</code></pre><ul>
-<li>${{ secrets.FJJREALBLOG }}</li>
-</ul>
-<p><img src="/images/person_token.png" alt="FJJREALBLOG"></p>
-<ul>
-<li>token 值</li>
-</ul>
-<p><img src="/images/get_token.png" alt="get token"></p>
-<p><img src="/images/token_detail.png" alt="token detail"></p>
-<h1 id="配置github-pages">配置GitHub Pages</h1>
-<p><img src="/images/github_pages.png" alt="github pages"></p>
-<p><img src="/images/github_pages_edit.png" alt="github pages edit"></p>
-<h1 id="建议仓库名称-githubnamegithubio">建议仓库名称 {{githubname}}.github.io</h1>
-<h2 id="膜拜大佬">膜拜大佬</h2>
-<ul>
-<li><a href="http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html">GitHub Actions 入门教程</a></li>
-<li><a href="https://immmmm.com/hugo-github-actions/">Hugo + Github Actions 实现自动化部署</a></li>
-</ul></article>
-    </section>
-
-    
-    
-      
-        
-      
-    
-
-    <footer class="ui bottom attached segment dream-tags" data-html2canvas-ignore>
-      
-        
-          <a class="ui label" href="/tags/github-actions" title="github-actions">github-actions</a>
-        
-          <a class="ui label" href="/tags/github-pages" title="github-pages">github-pages</a>
-        
-          <a class="ui label" href="/tags/hugo" title="hugo">hugo</a>
-        
-      
-      <div
-        class="ui label"
-        style="float: right; cursor: pointer;"
-        onclick="savePostAsImg()">
-        <i class="save icon"></i>保存为图片
-      </div>
-    </footer>
-    
-    
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="sixteen wide mobile sixteen wide tablet four wide computer column">
+  <div class="sixteen wide mobile eight wide tablet eight wide computer four wide large screen four wide widescreen column dream-column">
     <article class="dream-header">
   <section class="ui top attached center aligned segment">
     <div class="ui small circular image">
@@ -226,12 +105,12 @@ jobs:
     </div>
 
     
-    <h1 class="ui medium header">
+    <div class="ui medium header">
     
       JunJian Feng 分享站
       <div class="sub header" style="margin-top: 0.5rem;">voojo</div>
     
-    </h1>
+    </div>
     
 
     <div class="ui horizontal list">
@@ -549,6 +428,57 @@ jobs:
 </article>
 
   </div>
+
+  
+  
+    <div class="sixteen wide mobile eight wide tablet eight wide computer four wide large screen four wide widescreen column dream-column">
+      <article class="ui attached segment card dream-card">
+  <a class="image" href="https://fjjreal.github.io/post/autoupdate-svn-on-win10/">
+    
+      <img src="/images/svn-update-cover.png" alt="win10下自动更新svn脚本" />
+    
+  </a>
+
+  <div class="content">
+    <h2 class="ui medium header">
+      <a href="/post/autoupdate-svn-on-win10/">win10下自动更新svn脚本</a>
+    </h2>
+    <div class="meta">
+      <p class="date">
+        
+          星期四，十二月 17 日，2020 年
+        
+      </p>
+      <p class="author">
+        @
+        
+          JunJian Feng
+        
+      </p>
+    </div>
+    <div class="description">
+      <p>os: - win10</p>
+<p>tool: - ApacheSubversion命令行工具</p>
+    </div>
+  </div>
+
+  <div class="extra content">
+    <a class="reading-time">
+      <i class="clock icon"></i>
+      1 分钟阅读
+    </a>
+  </div>
+</article>
+
+    </div>
+  
+
+  <div class="sixteen wide mobile eight wide tablet eight wide computer four wide large screen four wide widescreen column dream-column">
+    
+
+
+
+  </div>
 </div>
 
           </div>
@@ -680,11 +610,9 @@ jobs:
 <script src="/js/theme.js"></script>
 
     
-<script src="/js/html2canvas.min.js"></script>
-<script src="/js/post.js"></script>
-
-
-
+<script src="/js/imagesloaded.pkgd.min.js"></script>
+<script src="/js/masonry.pkgd.min.js"></script>
+<script src="/js/grid.js"></script>
 
 
     
