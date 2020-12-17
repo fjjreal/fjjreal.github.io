@@ -52,11 +52,11 @@ set url=SVN服务器端项目地址
 for /f "tokens=2* delims=:" %%i in ('"D:\svn_cmd_tool\bin\svn.exe info %url% | find "Last Changed Rev:""') do set online=%%i
 set localurl=本地项目地址
 for /f "tokens=2* delims=:" %%i in ('"D:\svn_cmd_tool\bin\svn.exe info %localurl% | find "Revision:""') do set local=%%i
-if "%online%" equ "%local%" (echo "not need svn update") else (echo DATE >> svn.update.log & D:\svn_cmd_tool\bin\svn.exe update 本地项目地址 >> svn.update.log)
+if "%online%" equ "%local%" (echo "not need svn update") else (DATE >> svn.update.log & D:\svn_cmd_tool\bin\svn.exe update 本地项目地址 >> svn.update.log)
 pause
 
 // 也可以给svn配置环境变量，将D:\svn_cmd_tool\bin\svn.exe替换为svn
-// win7把需要更新时的echo DATE改为echo %date% %time%
+// win7把需要更新时的DATE改为echo %date% %time%
 ```
 
 # 循环进程 callSVNUpdate.vbs
