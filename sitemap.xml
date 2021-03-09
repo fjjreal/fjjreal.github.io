@@ -1,150 +1,98 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://fjjreal.github.io/categories/</loc>
-    <lastmod>2020-12-17T10:10:02+08:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2021-03-09T15:52:54+08:00</lastmod>
+  </url><url>
     <loc>https://fjjreal.github.io/</loc>
-    <lastmod>2020-12-17T10:10:02+08:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2021-03-09T15:52:54+08:00</lastmod>
+  </url><url>
     <loc>https://fjjreal.github.io/post/</loc>
-    <lastmod>2020-12-17T10:10:02+08:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2021-03-09T15:52:54+08:00</lastmod>
+  </url><url>
+    <loc>https://fjjreal.github.io/tags/puppeteer/</loc>
+    <lastmod>2021-03-09T15:52:54+08:00</lastmod>
+  </url><url>
+    <loc>https://fjjreal.github.io/post/puppeteer-simple-use-pdf/</loc>
+    <lastmod>2021-03-09T15:52:54+08:00</lastmod>
+  </url><url>
     <loc>https://fjjreal.github.io/categories/script/</loc>
-    <lastmod>2020-12-17T10:10:02+08:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2021-03-09T15:52:54+08:00</lastmod>
+  </url><url>
+    <loc>https://fjjreal.github.io/tags/</loc>
+    <lastmod>2021-03-09T15:52:54+08:00</lastmod>
+  </url><url>
     <loc>https://fjjreal.github.io/tags/svn/</loc>
     <lastmod>2020-12-17T10:10:02+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fjjreal.github.io/tags/</loc>
-    <lastmod>2020-12-17T10:10:02+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fjjreal.github.io/post/autoupdate-svn-on-win10/</loc>
     <lastmod>2020-12-17T10:10:02+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fjjreal.github.io/tags/github-actions/</loc>
     <lastmod>2020-12-02T16:19:08+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fjjreal.github.io/tags/github-pages/</loc>
     <lastmod>2020-12-02T16:19:08+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fjjreal.github.io/categories/hugo/</loc>
     <lastmod>2020-12-02T16:19:08+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fjjreal.github.io/tags/hugo/</loc>
     <lastmod>2020-12-02T16:19:08+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fjjreal.github.io/post/hugo-github_pages-github_actions/</loc>
     <lastmod>2020-12-02T16:19:08+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fjjreal.github.io/tags/command/</loc>
     <lastmod>2020-11-29T16:55:35+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fjjreal.github.io/categories/git/</loc>
     <lastmod>2020-11-29T16:55:35+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fjjreal.github.io/post/git-cmd/</loc>
     <lastmod>2020-11-29T16:55:35+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fjjreal.github.io/tags/ca/</loc>
     <lastmod>2020-11-26T13:45:33+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fjjreal.github.io/categories/go/</loc>
     <lastmod>2020-11-26T13:45:33+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fjjreal.github.io/post/go1.15up-grpc-ca/</loc>
     <lastmod>2020-11-26T13:45:33+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fjjreal.github.io/tags/go1.15&#43;/</loc>
     <lastmod>2020-11-26T13:45:33+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fjjreal.github.io/tags/grpc/</loc>
     <lastmod>2020-11-26T13:45:33+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fjjreal.github.io/tags/openssl/</loc>
     <lastmod>2020-11-26T13:45:33+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fjjreal.github.io/tags/go/</loc>
     <lastmod>2020-11-23T15:40:02+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fjjreal.github.io/post/learn-grpc-go/</loc>
     <lastmod>2020-11-23T15:40:02+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fjjreal.github.io/post/first/</loc>
     <lastmod>2020-11-19T09:25:02+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fjjreal.github.io/tags/test/</loc>
     <lastmod>2020-11-19T09:25:02+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fjjreal.github.io/about/</loc>
     <lastmod>2020-11-19T09:24:53+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fjjreal.github.io/contact/</loc>
     <lastmod>2020-11-19T00:24:53+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fjjreal.github.io/categories/daily/</loc>
     <lastmod>2020-11-19T00:24:53+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://fjjreal.github.io/tags/intro/</loc>
     <lastmod>2020-11-19T00:24:53+08:00</lastmod>
   </url>
-  
 </urlset>
