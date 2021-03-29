@@ -3,18 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://fjjreal.github.io/categories/</loc>
-    <lastmod>2021-03-22T16:47:53+08:00</lastmod>
+    <lastmod>2021-03-25T16:16:36+08:00</lastmod>
+  </url><url>
+    <loc>https://fjjreal.github.io/categories/cmd/</loc>
+    <lastmod>2021-03-25T16:16:36+08:00</lastmod>
+  </url><url>
+    <loc>https://fjjreal.github.io/tags/command/</loc>
+    <lastmod>2021-03-25T16:16:36+08:00</lastmod>
   </url><url>
     <loc>https://fjjreal.github.io/</loc>
-    <lastmod>2021-03-22T16:47:53+08:00</lastmod>
+    <lastmod>2021-03-25T16:16:36+08:00</lastmod>
   </url><url>
     <loc>https://fjjreal.github.io/post/</loc>
-    <lastmod>2021-03-22T16:47:53+08:00</lastmod>
-  </url><url>
-    <loc>https://fjjreal.github.io/categories/soft/</loc>
-    <lastmod>2021-03-22T16:47:53+08:00</lastmod>
+    <lastmod>2021-03-25T16:16:36+08:00</lastmod>
   </url><url>
     <loc>https://fjjreal.github.io/tags/</loc>
+    <lastmod>2021-03-25T16:16:36+08:00</lastmod>
+  </url><url>
+    <loc>https://fjjreal.github.io/post/ubuntu-cmd/</loc>
+    <lastmod>2021-03-25T16:16:36+08:00</lastmod>
+  </url><url>
+    <loc>https://fjjreal.github.io/categories/soft/</loc>
     <lastmod>2021-03-22T16:47:53+08:00</lastmod>
   </url><url>
     <loc>https://fjjreal.github.io/post/visual-studio-code-multi-env/</loc>
@@ -29,9 +38,6 @@
     <loc>https://fjjreal.github.io/post/puppeteer-simple-use-pdf/</loc>
     <lastmod>2021-03-09T15:52:54+08:00</lastmod>
   </url><url>
-    <loc>https://fjjreal.github.io/categories/script/</loc>
-    <lastmod>2021-03-09T15:52:54+08:00</lastmod>
-  </url><url>
     <loc>https://fjjreal.github.io/tags/svn/</loc>
     <lastmod>2020-12-17T10:10:02+08:00</lastmod>
   </url><url>
@@ -44,20 +50,11 @@
     <loc>https://fjjreal.github.io/tags/github-pages/</loc>
     <lastmod>2020-12-02T16:19:08+08:00</lastmod>
   </url><url>
-    <loc>https://fjjreal.github.io/categories/hugo/</loc>
-    <lastmod>2020-12-02T16:19:08+08:00</lastmod>
-  </url><url>
     <loc>https://fjjreal.github.io/tags/hugo/</loc>
     <lastmod>2020-12-02T16:19:08+08:00</lastmod>
   </url><url>
     <loc>https://fjjreal.github.io/post/hugo-github_pages-github_actions/</loc>
     <lastmod>2020-12-02T16:19:08+08:00</lastmod>
-  </url><url>
-    <loc>https://fjjreal.github.io/tags/command/</loc>
-    <lastmod>2020-11-29T16:55:35+08:00</lastmod>
-  </url><url>
-    <loc>https://fjjreal.github.io/categories/git/</loc>
-    <lastmod>2020-11-29T16:55:35+08:00</lastmod>
   </url><url>
     <loc>https://fjjreal.github.io/post/git-cmd/</loc>
     <lastmod>2020-11-29T16:55:35+08:00</lastmod>
@@ -103,5 +100,17 @@
   </url><url>
     <loc>https://fjjreal.github.io/tags/intro/</loc>
     <lastmod>2020-11-19T00:24:53+08:00</lastmod>
+  </url><url>
+    <loc>https://fjjreal.github.io/post/note/</loc>
+    <lastmod>2020-03-19T09:25:02+08:00</lastmod>
+  </url><url>
+    <loc>https://fjjreal.github.io/categories/notebook/</loc>
+    <lastmod>2020-03-19T09:25:02+08:00</lastmod>
+  </url><url>
+    <loc>https://fjjreal.github.io/tags/notebook/</loc>
+    <lastmod>2020-03-19T09:25:02+08:00</lastmod>
+  </url><url>
+    <loc>https://fjjreal.github.io/post/tips/</loc>
+    <lastmod>2020-03-19T09:25:02+08:00</lastmod>
   </url>
 </urlset>

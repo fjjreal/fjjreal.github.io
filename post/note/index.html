@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>gRpc 入门 | JunJian Feng</title>
+    <title>leetcode-notebook | JunJian Feng</title>
 
     
 
@@ -17,22 +17,22 @@
 
 <meta name="generator" content="Hugo 0.82.0" />
 
-<link rel="canonical" href="https://fjjreal.github.io/post/learn-grpc-go/" />
+<link rel="canonical" href="https://fjjreal.github.io/post/note/" />
 
 
-<meta property="og:title" content="gRpc 入门" />
-<meta property="og:description" content="gRpc 入门" />
+<meta property="og:title" content="leetcode-notebook" />
+<meta property="og:description" content="各种做题笔记" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://fjjreal.github.io/post/learn-grpc-go/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2020-11-23T15:40:02&#43;08:00" />
-<meta property="article:modified_time" content="2020-11-23T15:40:02&#43;08:00" />
+<meta property="og:url" content="https://fjjreal.github.io/post/note/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-03-19T09:25:02&#43;08:00" />
+<meta property="article:modified_time" content="2020-03-19T09:25:02&#43;08:00" />
 
 
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="gRpc 入门"/>
-<meta name="twitter:description" content="gRpc 入门"/>
+<meta name="twitter:title" content="leetcode-notebook"/>
+<meta name="twitter:description" content="各种做题笔记"/>
 
 
 <link rel="stylesheet" href="/css/semantic.min.css" />
@@ -108,7 +108,7 @@
     <section class="ui top attached segment">
       <header>
         <h1 class="ui large header">
-          gRpc 入门
+          leetcode-notebook
           <div class="sub header">
             @
             
@@ -116,106 +116,176 @@
             
 
             | 
-                星期一，十一月 23 日，2020 年
+                星期四，三月 19 日，2020 年
               
 
             | 2 分钟阅读
 
             | 更新于
               
-                星期一，十一月 23 日，2020 年
+                星期四，三月 19 日，2020 年
               
           </div>
         </h1>
       </header>
 
-      <article class="main"><h2 id="环境">环境</h2>
-<pre><code>win10
-go 1.15 (mod 关闭) go env -w GO111MODULE=off
-</code></pre><ul>
-<li>protoc</li>
-<li>grpc包</li>
-<li>protoc-gen-go （包版本不对时切换git checkout tags）</li>
-<li>protoc生成go代码 （直接使用 src\google.golang.org\grpc\examples 也行）</li>
-<li>启动server</li>
-<li>启动client 调用 server</li>
-</ul>
-<h2 id="protoc">protoc</h2>
-<pre><code>https://github.com/protocolbuffers/protobuf/releases
-随便下载一个win版本的zip压缩包,解压将bin文件夹的protoc.exe放入GROOT的bin文件夹（或者其他地方，需要配置环境变量）
-打开 cmd 输入 protoc --version正常显示版本信息即可
-</code></pre><p>编译安装 <a href="https://segmentfault.com/a/1190000013339403">《Grpc+Grpc Gateway实践一 介绍与环境安装》</a></p>
-<h2 id="grpc包">grpc包</h2>
-<pre><code>{{GOPATH}} : go env (GOPATH=C:\Users\***\go)
-git clone https://github.com/grpc/grpc-go.git {{GOPATH}}/src/google.golang.org/grpc
-</code></pre><h2 id="protoc-gen-go-font-colorff000--proto3-2020-11-24font">protoc-gen-go <!-- raw HTML omitted --># proto3 2020-11-24<!-- raw HTML omitted --></h2>
-<pre><code>git clone https://github.com/golang/protobuf.git  {{GOPATH}}/src/github.com/golang/protobuf
-go install github.com/golang/protobuf/protoc-gen-go
-如果报 找不到包错误 就 git reset --hard d23c5127
-
-2020-11-24 注：
-如果使用proto3 最好切换 tag v1.3.* 再 go install 生成 {{GOPATH}}/bin/protoc-gen-go.exe
-cd {{GOPATH}}/src/github.com/golang/protobuf 
-git checkout tags/v1.3.0 -b v1.3.0
-cd protoc-gen-go 
-go install
-
-</code></pre><h2 id="protoc生成go代码-font-colorff000--proto3-2020-11-24font">protoc生成go代码 <!-- raw HTML omitted --># proto3 2020-11-24<!-- raw HTML omitted --></h2>
-<p>在{{GOPATH}}/src 下新建grpc-learn项目,在其下新建helloworld文件夹里面放 helloworld.proto（{{GOPATH}}\src\google.golang.org\grpc\examples\helloworld\helloworld）</p>
-<pre><code>protoc --go_out=plubins=grpc:. helloworld.proto
-helloworld 文件夹下生成 helloworld.pb.go
-</code></pre><ul>
-<li>生成 proto4 代码 <!-- raw HTML omitted --># 2020-11-24<!-- raw HTML omitted --></li>
-</ul>
-<p><img src="/images/protobuf_error.png" alt="protobuf"></p>
-<p>protobuf.git 说明文档说该模块已被 google.golang.org/protobuf 代替</p>
+      <article class="main"><h1 id="位运算">位运算</h1>
 <ul>
-<li><a href="https://github.com/protocolbuffers/protobuf-go">https://github.com/protocolbuffers/protobuf-go</a></li>
-<li><a href="https://e.coding.net/robinqiwei/googleprotobuf.git">https://e.coding.net/robinqiwei/googleprotobuf.git</a></li>
+<li>与 int&amp;1</li>
 </ul>
-<pre><code>clone google.golang.org/protobuf 到 {{GOPATH}}/src/google.golang.org/protobuf
-cd cmd/protoc-gen-go
-go install // 重新生成{{GOPATH}}/bin/protoc-gen-go.exe
-
-helloworld.proto 的 proto3 改为 proto4
-再去 protoc --go_out=plubins=grpc:. helloworld.proto 即可
-
-</code></pre><h2 id="启动server">启动server</h2>
-<p>将 {{GOPATH}}\src\google.golang.org\grpc\examples\helloworld中greeter_server\main.go重命名server.go放入grpc-learn（与helloworld文件夹同级）。import 中的pb需要修改为grpc-learn/helloworld</p>
-<pre><code>// 包不存在先下载
-git clone https://github.com/golang/net.git {{GOPATH}}/src/golang.org/x/net
-git clone https://github.com/golang/text.git {{GOPATH}}/src/golang.org/x/text
-git clone https://github.com/google/go-genproto.git {{GOPATH}}/src/google.golang.org/genproto
-
-git run server.go
+<pre><code>// 4 &amp; 1
+4 ==&gt; 100
+1 ==&gt; 001
+&amp; ==&gt; 000 ==&gt; (int)0
+.......*
+// 3 &amp; 1
+3 ==&gt; 11
+1 ==&gt; 01
+&amp; ==&gt; 01  ==&gt; (int)1
+// 128 &amp; 2
+128 ==&gt; 10000000
+2   ==&gt; 00000010
+&amp;   ==&gt; 00000000  ==&gt; (int)0
 </code></pre><ul>
-<li>genproto ProtoPackageIsVersion4 error 2020-11-24 注：</li>
+<li>&ldquo;10000&rdquo; &amp; &ldquo;1000&rdquo;</li>
 </ul>
-<p><a href="https://gitee.com/mirrors/go-genproto/commits/master/googleapis/rpc/status/status.pb.go">gitee的genproto日志</a></p>
-<p><img src="/images/genproto_error.png" alt="genproto"></p>
-<pre><code>...google.golang.org\genproto\googleapis\rpc\status\status.pb.go:42:11: undefined: &quot;github.com/golang/protobuf/proto&quot;.ProtoPack
-ageIsVersion4
-
-git reset --hard 3f1135a 
-
+<pre><code>&quot;10000&quot; &amp; &quot;01000&quot; ==&gt; &quot;00000&quot;
 </code></pre><ul>
-<li>grpc ProtoPackageIsVersion4 error 2020-11-24 注：</li>
+<li>或 (计算优先级低)</li>
 </ul>
-<p>查到资料说 ProtoPackageIsVersion4 在 v1.26.x 后面版本才支持，切换分支为 v1.26.x 即可</p>
-<pre><code>...google.golang.org\grpc\binarylog\grpc_binarylog_v1\binarylog.pb.go:46:11: undefined: &quot;github.com/golang/protobuf/proto&quot;.Prot
-   oPackageIsVersion4
+<pre><code>&quot;10000&quot; | &quot;01000&quot; ==&gt; &quot;11000&quot;
+</code></pre><ul>
+<li>右移 &raquo;</li>
+</ul>
+<pre><code>26 &gt;&gt; 2 ==&gt; &quot;11010&quot; &gt;&gt; 2 ==&gt; 110 ==&gt; (int)6
+</code></pre><ul>
+<li>左移 &laquo;</li>
+</ul>
+<pre><code>26 &lt;&lt; 2 ==&gt; &quot;11010&quot; &lt;&lt; 2 ==&gt; 1101000 ==&gt; (int)104
+</code></pre><ul>
+<li>取反 ~ (计算优先级高)</li>
+</ul>
+<blockquote>
+<p>负数是用补码表示的，补码是原码取反<!-- raw HTML omitted -->+1<!-- raw HTML omitted --></p>
+</blockquote>
+<pre><code>~26 ==&gt; -27
+26  ==&gt; 0.....0 11010 // 32位或64位
+~26 ==&gt; 1.....1 00101 // 32位或64位 补码
+........*             // 补码 第一位0正1符        -
+        1.....1 00100 // 原码取反
+        0.....0 11011 // 原码 bindec(&quot;11011&quot;) ==&gt; 27
 
-</code></pre><h2 id="启动client">启动client</h2>
-<p>将 {{GOPATH}}\src\google.golang.org\grpc\examples\helloworld中greeter_client\main.go重命名client.go放入grpc-learn（与helloworld文件夹同级）。import 中的pb需要修改为grpc-learn/helloworld</p>
-<pre><code>go run client // 正常打印 hello world // server端显示receive world
-go run client &quot;hello_value&quot; // hello hello_value // server端显示receive hello_value
-</code></pre><h2 id="膜拜大佬">膜拜大佬</h2>
-<ul>
-<li><a href="https://eddycjy.com/go-categories/">煎鱼 - GO系列 - GRPC应用</a></li>
-<li><a href="https://segmentfault.com/a/1190000013339403">Grpc+Grpc Gateway实践一 介绍与环境安装</a></li>
-<li><a href="https://blog.csdn.net/u013536232/article/details/105395172/">go gRPC初体验(win10+普通网络)</a></li>
-<li><a href="https://gitee.com/killf/cgit">git 加速</a></li>
-</ul></article>
+~26 ==&gt;                                          -27
+</code></pre><ul>
+<li>异或 ^</li>
+</ul>
+<blockquote>
+<p>一个为 1 另一个为 0 的位设为 1</p>
+</blockquote>
+<pre><code>26^27
+
+26 ==&gt; 11010            128 ==&gt; 10000000
+27 ==&gt; 11011            127 ==&gt; 01111111
+
+^  ==&gt; 00001            ^   ==&gt; 11111111
+       (int)1                   (int)255
+</code></pre><ul>
+<li>位运算分治</li>
+</ul>
+<blockquote>
+<p>leetcode 190.颠倒给定的32位无符号整数的二进制位</p>
+</blockquote>
+<pre><code>    $m1 = 0x55555555 // 01010101010101010101010101010101 // 一个一组
+n=26         ==&gt;        00000000000000000000000000011010
+    n&gt;&gt;1     ==&gt;        00000000000000000000000000001101
+(n&gt;&gt;1) &amp; $m1 ==&gt;        00000000000000000000000000000101     5
+
+    n&amp;$m1    ==&gt;        00000000000000000000000000010000     16
+(n&amp;$m1) &lt;&lt; 1 ==&gt;        00000000000000000000000000100000     32
+
+step1                   00000000000000000000000000100101  ==&gt; 37
+</code></pre><pre><code>    $m2 = 0x33333333 // 00110011001100110011001100110011 // 两两一组
+n=37         ==&gt;        00000000000000000000000000100101
+    n&gt;&gt;2     ==&gt;        00000000000000000000000000001001      10
+(n&gt;&gt;2) &amp; $m2 ==&gt;        00000000000000000000000000000001      1
+
+    n&amp;$m2    ==&gt;        00000000000000000000000000100001      33
+(n&amp;$m2) &lt;&lt; 2 ==&gt;        00000000000000000000000010000100      132
+
+step2        ==&gt;        00000000000000000000000010000101      133
+</code></pre><pre><code>    $m4 = 0x0f0f0f0f // 00001111000011110000111100001111 // 四个一组
+n=133        ==&gt;        00000000000000000000000010000101
+    n&gt;&gt;4     ==&gt;        00000000000000000000000000001000      8
+(n&gt;&gt;4) &amp; $m4 ==&gt;        00000000000000000000000000001000      8
+
+    n&amp;$m4    ==&gt;        00000000000000000000000000000101      5
+(n&amp;$m4) &lt;&lt; 4 ==&gt;        00000000000000000000000001010000      80
+
+step3        ==&gt;        00000000000000000000000001011000      88
+</code></pre><pre><code>    $m8 = 0x00ff00ff // 00000000111111110000000011111111 // 八个一组
+n=88        ==&gt;         00000000000000000000000001011000
+    n&gt;&gt;8     ==&gt;        00000000000000000000000000000000
+(n&gt;&gt;8) &amp; $m8 ==&gt;        00000000000000000000000000000000
+
+    n&amp;$m8    ==&gt;        00000000000000000000000001011000      88
+(n&amp;$m8) &lt;&lt; 8 ==&gt;        00000000000000000101100000000000
+
+(n &gt;&gt; 8) &amp; $m8 | (n&amp;$m8) &lt;&lt; 8
+step4        ==&gt;        00000000000000000101100000000000      ==&gt; 22528
+</code></pre><pre><code>             ==&gt;        00000000000000000000000000000000
+             ==&gt;        01011000000000000000000000000000
+
+step5        ==&gt;        01011000000000000000000000000000      1476395008
+n=26         ==&gt;        00000000000000000000000000011010
+</code></pre><blockquote>
+<p>原理 1234 5678</p>
+</blockquote>
+<pre><code>1234 5678
+1001 0101
+
+step1
+1234  01            5678 01
+      01                 05
+      20                 60
+      21                 65
+
+        03                 07
+        40                 80
+        43                 87
+
+      2143               6587
+step2
+2143  0011          6587 0011
+      0021               0065
+      4300               8700
+      4321               8765
+step3
+43218765    00001111
+            00004321
+            87650000
+            87654321
+
+8765 4321
+</code></pre><blockquote>
+<p>step1具体:</p>
+</blockquote>
+<pre><code>12345678
+10010101
+
+12345678 &gt;&gt; 1 ==&gt; 01234567 ==&gt; 01001010 ==&gt; 01001010 &amp; 01010101 ==&gt; 01000000
+12345678 ==&gt; 10010101 &amp; 01010101 ==&gt; 00010101 ==&gt; 00010101 &lt;&lt; 1 ==&gt; 00101010
+
+    01000000
+    00101010
+    01101010  // step1实际结果
+    --------
+    12345678
+    10010101
+    --------
+    21436587
+    01101010  // step1预计
+    --------
+</code></pre></article>
     </section>
 
     
@@ -228,9 +298,7 @@ go run client &quot;hello_value&quot; // hello hello_value // server端显示rec
     <footer class="ui bottom attached segment dream-tags" data-html2canvas-ignore>
       
         
-          <a class="ui label" href="/tags/go" title="go">go</a>
-        
-          <a class="ui label" href="/tags/grpc" title="grpc">grpc</a>
+          <a class="ui label" href="/tags/notebook" title="notebook">notebook</a>
         
       
       <div

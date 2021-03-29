@@ -16,5 +16,42 @@
       <description>&lt;p&gt;vs code 配置不同的开发环境 （laravel）&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>Puppeteer Simple Use Pdf</title>
+      <link>https://fjjreal.github.io/post/puppeteer-simple-use-pdf/</link>
+      <pubDate>Tue, 09 Mar 2021 15:52:54 +0800</pubDate>
+      
+      <guid>https://fjjreal.github.io/post/puppeteer-simple-use-pdf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>win10下自动更新svn脚本</title>
+      <link>https://fjjreal.github.io/post/autoupdate-svn-on-win10/</link>
+      <pubDate>Thu, 17 Dec 2020 10:10:02 +0800</pubDate>
+      
+      <guid>https://fjjreal.github.io/post/autoupdate-svn-on-win10/</guid>
+      <description>&lt;p&gt;os: - win10&lt;/p&gt;
+&lt;p&gt;tool: - ApacheSubversion命令行工具&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hugo github-Pages github-Actions</title>
+      <link>https://fjjreal.github.io/post/hugo-github_pages-github_actions/</link>
+      <pubDate>Wed, 02 Dec 2020 16:19:08 +0800</pubDate>
+      
+      <guid>https://fjjreal.github.io/post/hugo-github_pages-github_actions/</guid>
+      <description>&lt;p&gt;自动更新博客&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hugo 使用</title>
+      <link>https://fjjreal.github.io/post/first/</link>
+      <pubDate>Thu, 19 Nov 2020 09:25:02 +0800</pubDate>
+      
+      <guid>https://fjjreal.github.io/post/first/</guid>
+      <description>&lt;h3 id=&#34;hello-hugo&#34;&gt;Hello Hugo&lt;/h3&gt;</description>
+    </item>
+    
   </channel>
 </rss>

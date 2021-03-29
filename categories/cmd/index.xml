@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>command on JunJian Feng</title>
-    <link>https://fjjreal.github.io/tags/command/</link>
-    <description>Recent content in command on JunJian Feng</description>
+    <title>Cmd on JunJian Feng</title>
+    <link>https://fjjreal.github.io/categories/cmd/</link>
+    <description>Recent content in Cmd on JunJian Feng</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Thu, 25 Mar 2021 16:16:36 +0800</lastBuildDate><atom:link href="https://fjjreal.github.io/tags/command/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 25 Mar 2021 16:16:36 +0800</lastBuildDate><atom:link href="https://fjjreal.github.io/categories/cmd/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ubuntu Cmd</title>
       <link>https://fjjreal.github.io/post/ubuntu-cmd/</link>
