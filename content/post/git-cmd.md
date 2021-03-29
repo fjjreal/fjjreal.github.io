@@ -6,16 +6,44 @@ tags: [
     "command",
 ]
 categories: [
-    "Git",
+    "Cmd",
 ]
 ---
 
 <!--more-->
 
-- 切换 ssh 获取
-
-```
-git remote set-url origin git@github.com:githubname/project.git
-```
 
 ![git cmd](/images/git_cmd.png)
+
+# 不重复登录
+
+- 保存账号密码
+
+```
+
+git config --global credential.helper store
+
+```
+
+- ssh
+
+1.获取ssh
+
+```
+
+ssh-keygen -t rsa -C "xxxxx@xx.com"
+
+cat ~/.ssh/id_rsa.pub
+
+```
+
+2.在仓库中添加公钥(id_rsa.pub内容)
+
+
+# 切换 ssh 获取
+
+	```
+
+	git remote set-url origin git@github.com:githubname/project.git
+
+	```

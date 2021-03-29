@@ -7,7 +7,7 @@ tags: [
     "test",
 ]
 categories: [
-    "Hugo",
+    "Soft",
 ]
 ---
 

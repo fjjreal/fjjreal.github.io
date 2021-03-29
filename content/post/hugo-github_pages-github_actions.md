@@ -8,7 +8,7 @@ tags: [
     "hugo",
 ]
 categories: [
-    "Hugo",
+    "Soft",
 ]
 ---
 
