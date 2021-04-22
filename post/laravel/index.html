@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>CA | JunJian Feng</title>
+    <title>laravel use | JunJian Feng</title>
 
     
 
@@ -17,20 +17,22 @@
 
 <meta name="generator" content="Hugo 0.82.1" />
 
-<link rel="canonical" href="https://fjjreal.github.io/tags/ca/" />
+<link rel="canonical" href="https://fjjreal.github.io/post/laravel/" />
 
 
-<meta property="og:title" content="CA" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://fjjreal.github.io/tags/ca/" />
+<meta property="og:title" content="laravel use" />
+<meta property="og:description" content="laravel 使用笔记" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fjjreal.github.io/post/laravel/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-04-22T05:25:02&#43;08:00" />
+<meta property="article:modified_time" content="2021-04-22T05:25:02&#43;08:00" />
 
 
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="CA"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="laravel use"/>
+<meta name="twitter:description" content="laravel 使用笔记"/>
 
 
 <link rel="stylesheet" href="/css/semantic.min.css" />
@@ -70,7 +72,13 @@
   
 </style>
 
-     
+    
+
+
+
+
+
+
   </head>
 
   <body class="default">
@@ -95,7 +103,245 @@
           <div class="dream-max-width">
             
 <div class="ui centered relaxed grid dream-grid">
-  <div class="sixteen wide mobile eight wide tablet eight wide computer four wide large screen four wide widescreen column dream-column">
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single" id="dream-save-post-as-img">
+    
+    <section class="ui top attached segment">
+      <header>
+        <h1 class="ui large header">
+          laravel use
+          <div class="sub header">
+            @
+            
+              JunJian Feng
+            
+
+            | 
+                星期四，四月 22 日，2021 年
+              
+
+            | 2 分钟阅读
+
+            | 更新于
+              
+                星期四，四月 22 日，2021 年
+              
+          </div>
+        </h1>
+      </header>
+
+      <article class="main"><h1 id="常用插件">常用插件</h1>
+<ul>
+<li>
+<p>客户端信息</p>
+<ul>
+<li>composer require jenssegers/agent</li>
+</ul>
+<blockquote>
+<p><a href="https://github.com/jenssegers/agent">jenssegers/agent</a></p>
+</blockquote>
+</li>
+<li>
+<p>sql 日志</p>
+<ul>
+<li>composer require mnabialek/laravel-sql-logger &ndash;dev</li>
+</ul>
+<blockquote>
+<p><a href="https://github.com/mnabialek/laravel-sql-logger">mnabialek/laravel-sql-logger</a></p>
+</blockquote>
+</li>
+<li>
+<p>jwt</p>
+<ul>
+<li>composer require tymon/jwt-auth:dev-develop &ndash;prefer-source</li>
+</ul>
+<blockquote>
+<p><a href="https://github.com/tymondesigns/jwt-auth">tymondesigns/jwt-auth</a></p>
+</blockquote>
+<ul>
+<li>
+<p>php artisan vendor:publish &ndash;provider=&ldquo;Tymon\JWTAuth\Providers\LaravelServiceProvider&rdquo;</p>
+</li>
+<li>
+<p>php artisan jwt:secret</p>
+</li>
+</ul>
+<pre><code>
+    // AppServiceProvide-&gt;register();
+    // 添加一个自定义jwt auth parser
+    $parser = new \Tymon\JWTAuth\Http\Parser\AuthHeaders();
+    $parser-&gt;setHeaderName('token');
+    $parser-&gt;setHeaderPrefix('');
+    $this-&gt;app['tymon.jwt.parser']-&gt;addParser([
+        $parser,
+    ]);
+    $this-&gt;app-&gt;make('auth')-&gt;provider('xauth', function($app, $config) {
+        return new \Work\Auth\AuthUserProvider($app-&gt;get(\Work\Apps\AuthApp::class), $app['hash']);
+    });
+    // config/jwt.php
+    'defaults' =&gt; [
+        'guard' =&gt; 'api',
+        'passwords' =&gt; 'users',
+    ],
+    'guards' =&gt; [
+        'api' =&gt; [
+            'driver' =&gt; 'jwt',
+            'provider' =&gt; 'accounts',
+        ],
+    ],
+    'providers' =&gt; [
+        'accounts' =&gt; [
+            'driver' =&gt; 'xauth',
+        ],
+    ],
+</code></pre><pre><code>
+</code></pre></li>
+<li>
+<p>model</p>
+<ul>
+<li>composer require reliese/laravel &ndash;dev</li>
+</ul>
+<blockquote>
+<p><a href="https://github.com/reliese/laravel">reliese/laravel</a></p>
+</blockquote>
+</li>
+<li>
+<p>图片</p>
+<ul>
+<li>composer require intervention/image</li>
+</ul>
+<blockquote>
+<p><a href="http://image.intervention.io/getting_started/installation">intervention/image</a></p>
+</blockquote>
+</li>
+<li>
+<p>doc</p>
+<ul>
+<li>composer require zircote/swagger-php</li>
+</ul>
+<blockquote>
+<p><a href="https://github.com/zircote/swagger-php">zircote/swagger-php</a></p>
+</blockquote>
+</li>
+</ul>
+<h1 id="laravel">laravel</h1>
+<ul>
+<li>
+<p>appkey: php artisan key:generate</p>
+</li>
+<li>
+<p>seeder:</p>
+<pre><code>  php artisan make:seeder AbcSeeder
+  php artisan db:seed --class=AbcSeeder
+</code></pre></li>
+<li>
+<p>data</p>
+<ul>
+<li>
+<p>数据迁移</p>
+<ul>
+<li>
+<p>php artisan migrate</p>
+</li>
+<li>
+<p>php artisan migrate:refresh &ndash;seed</p>
+</li>
+</ul>
+</li>
+<li>
+<p>seed: php artisan db:seed</p>
+</li>
+</ul>
+</li>
+<li>
+<p>provider</p>
+<ul>
+<li>php artisan make:provider ***Provider
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+    
+<span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">Fjjreal\Weather</span>;
+    
+<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Support\ServiceProvider</span>;
+    
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WeatherManagerProvider</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">ServiceProvider</span>
+{
+    
+    <span style="color:#66d9ef">protected</span> $defer <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>; <span style="color:#75715e">// 延迟加载服务
+</span><span style="color:#75715e"></span>    
+    <span style="color:#e6db74">/**
+</span><span style="color:#e6db74">     * Register services.
+</span><span style="color:#e6db74">     *
+</span><span style="color:#e6db74">     * @return void
+</span><span style="color:#e6db74">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">register</span>()
+    {
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">app</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">singleton</span>(<span style="color:#e6db74">&#39;WeatherManager&#39;</span>, <span style="color:#66d9ef">function</span> ($app) {
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">WeatherManager</span>($app);
+        });
+    }
+    
+    <span style="color:#e6db74">/**
+</span><span style="color:#e6db74">     * Bootstrap services.
+</span><span style="color:#e6db74">     *
+</span><span style="color:#e6db74">     * @return void
+</span><span style="color:#e6db74">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">boot</span>()
+    {
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">loadViewsFrom</span>(<span style="color:#66d9ef">__DIR__</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/views&#39;</span>, <span style="color:#e6db74">&#39;Weather&#39;</span>); <span style="color:#75715e">// 视图目录指定
+</span><span style="color:#75715e"></span>    
+        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">publishes</span>([
+    
+            <span style="color:#66d9ef">__DIR__</span><span style="color:#f92672">.</span><span style="color:#e6db74">&#39;/views&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">base_path</span>(<span style="color:#e6db74">&#39;resources/views/vendor/weather&#39;</span>),  <span style="color:#75715e">// 发布视图目录到resources 下
+</span><span style="color:#75715e"></span>    
+            <span style="color:#66d9ef">__DIR__</span><span style="color:#f92672">.</span><span style="color:#e6db74">&#39;/config/weather.php&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">config_path</span>(<span style="color:#e6db74">&#39;weather.php&#39;</span>), <span style="color:#75715e">// 发布配置文件到 laravel 的config 下
+</span><span style="color:#75715e"></span>    
+        ]);
+    }
+    
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">provides</span>()
+    {
+        <span style="color:#66d9ef">return</span> [<span style="color:#e6db74">&#39;WeatherManager&#39;</span>];
+    }
+    
+}
+    
+</code></pre></div></li>
+<li>php artisan vendor:publish &ndash;provider=&quot;***Provider&quot;</li>
+</ul>
+</li>
+</ul></article>
+    </section>
+
+    
+    
+      
+        
+      
+    
+
+    <footer class="ui bottom attached segment dream-tags" data-html2canvas-ignore>
+      
+        
+          <a class="ui label" href="/tags/notebook" title="notebook">notebook</a>
+        
+      
+      <div
+        class="ui label"
+        style="float: right; cursor: pointer;"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i>保存为图片
+      </div>
+    </footer>
+    
+    
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="sixteen wide mobile sixteen wide tablet four wide computer column">
     <article class="dream-header">
   <section class="ui top attached center aligned segment">
     <div class="ui small circular image">
@@ -105,12 +351,12 @@
     </div>
 
     
-    <div class="ui medium header">
+    <h1 class="ui medium header">
     
       JunJian Feng 分享站
       <div class="sub header" style="margin-top: 0.5rem;">voojo</div>
     
-    </div>
+    </h1>
     
 
     <div class="ui horizontal list">
@@ -482,56 +728,6 @@
 </article>
 
   </div>
-
-  
-  
-    <div class="sixteen wide mobile eight wide tablet eight wide computer four wide large screen four wide widescreen column dream-column">
-      <article class="ui attached segment card dream-card">
-  <a class="image" href="https://fjjreal.github.io/post/go1.15up-grpc-ca/">
-    
-      <img src="/images/default3.jpg" alt="go 1.15&#43; GRPC 自签CA" />
-    
-  </a>
-
-  <div class="content">
-    <h2 class="ui medium header">
-      <a href="/post/go1.15up-grpc-ca/">go 1.15&#43; GRPC 自签CA</a>
-    </h2>
-    <div class="meta">
-      <p class="date">
-        
-          星期四，十一月 26 日，2020 年
-        
-      </p>
-      <p class="author">
-        @
-        
-          JunJian Feng
-        
-      </p>
-    </div>
-    <div class="description">
-      <p>x509: certificate relies on legacy Common Name field, use SANs or&hellip;</p>
-    </div>
-  </div>
-
-  <div class="extra content">
-    <a class="reading-time">
-      <i class="clock icon"></i>
-      2 分钟阅读
-    </a>
-  </div>
-</article>
-
-    </div>
-  
-
-  <div class="sixteen wide mobile eight wide tablet eight wide computer four wide large screen four wide widescreen column dream-column">
-    
-
-
-
-  </div>
 </div>
 
           </div>
@@ -663,9 +859,11 @@
 <script src="/js/theme.js"></script>
 
     
-<script src="/js/imagesloaded.pkgd.min.js"></script>
-<script src="/js/masonry.pkgd.min.js"></script>
-<script src="/js/grid.js"></script>
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/post.js"></script>
+
+
+
 
 
     

@@ -15,7 +15,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.82.0" />
+<meta name="generator" content="Hugo 0.82.1" />
 
 <link rel="canonical" href="https://fjjreal.github.io/post/tips/" />
 
@@ -140,90 +140,6 @@
 </li>
 <li>
 <p>清除缓存的用户名和密码：git credential-manager uninstall</p>
-</li>
-</ul>
-<h1 id="laravel">laravel</h1>
-<ul>
-<li>
-<p>appkey: php artisan key:generate</p>
-</li>
-<li>
-<p>provider</p>
-<ul>
-<li>
-<p>php artisan make:provider ***Provider</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
-    
-<span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">Fjjreal\Weather</span>;
-    
-<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Illuminate\Support\ServiceProvider</span>;
-    
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WeatherManagerProvider</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">ServiceProvider</span>
-{
-    
-    <span style="color:#66d9ef">protected</span> $defer <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>; <span style="color:#75715e">// 延迟加载服务
-</span><span style="color:#75715e"></span>    
-    <span style="color:#e6db74">/**
-</span><span style="color:#e6db74">     * Register services.
-</span><span style="color:#e6db74">     *
-</span><span style="color:#e6db74">     * @return void
-</span><span style="color:#e6db74">     */</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">register</span>()
-    {
-        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">app</span><span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">singleton</span>(<span style="color:#e6db74">&#39;WeatherManager&#39;</span>, <span style="color:#66d9ef">function</span> ($app) {
-            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">WeatherManager</span>($app);
-        });
-    }
-    
-    <span style="color:#e6db74">/**
-</span><span style="color:#e6db74">     * Bootstrap services.
-</span><span style="color:#e6db74">     *
-</span><span style="color:#e6db74">     * @return void
-</span><span style="color:#e6db74">     */</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">boot</span>()
-    {
-        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">loadViewsFrom</span>(<span style="color:#66d9ef">__DIR__</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/views&#39;</span>, <span style="color:#e6db74">&#39;Weather&#39;</span>); <span style="color:#75715e">// 视图目录指定
-</span><span style="color:#75715e"></span>    
-        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">publishes</span>([
-    
-            <span style="color:#66d9ef">__DIR__</span><span style="color:#f92672">.</span><span style="color:#e6db74">&#39;/views&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">base_path</span>(<span style="color:#e6db74">&#39;resources/views/vendor/weather&#39;</span>),  <span style="color:#75715e">// 发布视图目录到resources 下
-</span><span style="color:#75715e"></span>    
-            <span style="color:#66d9ef">__DIR__</span><span style="color:#f92672">.</span><span style="color:#e6db74">&#39;/config/weather.php&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">config_path</span>(<span style="color:#e6db74">&#39;weather.php&#39;</span>), <span style="color:#75715e">// 发布配置文件到 laravel 的config 下
-</span><span style="color:#75715e"></span>    
-        ]);
-    }
-    
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">provides</span>()
-    {
-        <span style="color:#66d9ef">return</span> [<span style="color:#e6db74">&#39;WeatherManager&#39;</span>];
-    }
-    
-}
-    
-</code></pre></div></li>
-<li>
-<p>php artisan vendor:publish &ndash;provider=&quot;***Provider&quot;</p>
-</li>
-</ul>
-</li>
-<li>
-<p>data</p>
-<ul>
-<li>
-<p>数据迁移</p>
-<ul>
-<li>
-<p>php artisan migrate</p>
-</li>
-<li>
-<p>php artisan migrate:refresh &ndash;seed</p>
-</li>
-</ul>
-</li>
-<li>
-<p>seed: php artisan db:seed</p>
-</li>
-</ul>
 </li>
 </ul></article>
     </section>
@@ -490,6 +406,12 @@
           </div>
           <div class="content">
             <div class="ui list">
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/post/laravel/">laravel use</a>
+                </div>
+              </div>
             
               <div class="item">
                 <div class="content">

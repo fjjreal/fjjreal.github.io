@@ -3,21 +3,30 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://fjjreal.github.io/categories/</loc>
-    <lastmod>2021-03-25T16:16:36+08:00</lastmod>
+    <lastmod>2021-04-22T05:25:02+08:00</lastmod>
+  </url><url>
+    <loc>https://fjjreal.github.io/</loc>
+    <lastmod>2021-04-22T05:25:02+08:00</lastmod>
+  </url><url>
+    <loc>https://fjjreal.github.io/post/laravel/</loc>
+    <lastmod>2021-04-22T05:25:02+08:00</lastmod>
+  </url><url>
+    <loc>https://fjjreal.github.io/categories/notebook/</loc>
+    <lastmod>2021-04-22T05:25:02+08:00</lastmod>
+  </url><url>
+    <loc>https://fjjreal.github.io/tags/notebook/</loc>
+    <lastmod>2021-04-22T05:25:02+08:00</lastmod>
+  </url><url>
+    <loc>https://fjjreal.github.io/post/</loc>
+    <lastmod>2021-04-22T05:25:02+08:00</lastmod>
+  </url><url>
+    <loc>https://fjjreal.github.io/tags/</loc>
+    <lastmod>2021-04-22T05:25:02+08:00</lastmod>
   </url><url>
     <loc>https://fjjreal.github.io/categories/cmd/</loc>
     <lastmod>2021-03-25T16:16:36+08:00</lastmod>
   </url><url>
     <loc>https://fjjreal.github.io/tags/command/</loc>
-    <lastmod>2021-03-25T16:16:36+08:00</lastmod>
-  </url><url>
-    <loc>https://fjjreal.github.io/</loc>
-    <lastmod>2021-03-25T16:16:36+08:00</lastmod>
-  </url><url>
-    <loc>https://fjjreal.github.io/post/</loc>
-    <lastmod>2021-03-25T16:16:36+08:00</lastmod>
-  </url><url>
-    <loc>https://fjjreal.github.io/tags/</loc>
     <lastmod>2021-03-25T16:16:36+08:00</lastmod>
   </url><url>
     <loc>https://fjjreal.github.io/post/ubuntu-cmd/</loc>
@@ -102,12 +111,6 @@
     <lastmod>2020-11-19T00:24:53+08:00</lastmod>
   </url><url>
     <loc>https://fjjreal.github.io/post/note/</loc>
-    <lastmod>2020-03-19T09:25:02+08:00</lastmod>
-  </url><url>
-    <loc>https://fjjreal.github.io/categories/notebook/</loc>
-    <lastmod>2020-03-19T09:25:02+08:00</lastmod>
-  </url><url>
-    <loc>https://fjjreal.github.io/tags/notebook/</loc>
     <lastmod>2020-03-19T09:25:02+08:00</lastmod>
   </url><url>
     <loc>https://fjjreal.github.io/post/tips/</loc>
