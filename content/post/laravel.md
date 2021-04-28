@@ -18,92 +18,104 @@ categories: [
 
 - 客户端信息
 
-	- composer require jenssegers/agent
-
 	> [jenssegers/agent](https://github.com/jenssegers/agent)
+
+  ```
+    composer require jenssegers/agent
+  ```
 
 - sql 日志
 
-	- composer require mnabialek/laravel-sql-logger --dev
-
 	> [mnabialek/laravel-sql-logger](https://github.com/mnabialek/laravel-sql-logger)
 
+  ```
+    composer require mnabialek/laravel-sql-logger --dev
+  ```
+
 - jwt
-
-	- composer require tymon/jwt-auth:dev-develop --prefer-source
-
-	> [tymondesigns/jwt-auth](https://github.com/tymondesigns/jwt-auth)
-
-	- php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
-
-	- php artisan jwt:secret
+  
+  > [tymondesigns/jwt-auth](https://github.com/tymondesigns/jwt-auth)
 
 	```
-
+    composer require tymon/jwt-auth:dev-develop
+  	pphp artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
+  	pphp artisan jwt:secret
 		// AppServiceProvide->register();
 		// 添加一个自定义jwt auth parser
-        $parser = new \Tymon\JWTAuth\Http\Parser\AuthHeaders();
-        $parser->setHeaderName('token');
-        $parser->setHeaderPrefix('');
-        $this->app['tymon.jwt.parser']->addParser([
-            $parser,
-        ]);
-        $this->app->make('auth')->provider('xauth', function($app, $config) {
-            return new \Work\Auth\AuthUserProvider($app->get(\Work\Apps\AuthApp::class), $app['hash']);
-        });
-        // config/jwt.php
-	    'defaults' => [
-	        'guard' => 'api',
-	        'passwords' => 'users',
-	    ],
-	    'guards' => [
-	        'api' => [
-	            'driver' => 'jwt',
-	            'provider' => 'accounts',
-	        ],
-	    ],
-	    'providers' => [
-	        'accounts' => [
-	            'driver' => 'xauth',
-	        ],
-	    ],
+    $parser = new \Tymon\JWTAuth\Http\Parser\AuthHeaders();
+    $parser->setHeaderName('token');
+    $parser->setHeaderPrefix('');
+    $this->app['tymon.jwt.parser']->addParser([
+        $parser,
+    ]);
+    $this->app->make('auth')->provider('xauth', function($app, $config) {
+        return new \Work\Auth\AuthUserProvider($app->get(\Work\Apps\AuthApp::class), $app['hash']);
+    });
+    // config/jwt.php
+  'defaults' => [
+      'guard' => 'api',
+      'passwords' => 'users',
+  ],
+  'guards' => [
+      'api' => [
+          'driver' => 'jwt',
+          'provider' => 'accounts',
+      ],
+  ],
+  'providers' => [
+      'accounts' => [
+          'driver' => 'xauth',
+      ],
+  ],
 	```
 
 - model
-	- composer require reliese/laravel --dev	
 
-	> [reliese/laravel](https://github.com/reliese/laravel)
+  > [reliese/laravel](https://github.com/reliese/laravel)
+
+	```
+    composer require reliese/laravel --dev
+    php artisan code:models --table=users
+  ```
+
+
 
 - 图片
 
-	- composer require intervention/image
-
 	> [intervention/image](http://image.intervention.io/getting_started/installation)
+
+  ```
+    composer require intervention/image
+  ```
 
 - doc
 
-	- composer require zircote/swagger-php
-
 	> [zircote/swagger-php](https://github.com/zircote/swagger-php)
+
+  ```
+  composer require zircote/swagger-php
+  ```
 
 # laravel
 
 - appkey: php artisan key:generate
 
-- seeder:
-  ```
-    php artisan make:seeder AbcSeeder
-    php artisan db:seed --class=AbcSeeder
-  ```
-
 - data
+
 	- 数据迁移
-	
-	  - php artisan migrate
-	
-	  - php artisan migrate:refresh --seed
-	
-	- seed: php artisan db:seed
+
+  ```
+  php artisan make:migration create_game_type_table
+  php artisan migrate
+  php artisan migrate:refresh --seed
+  ```
+	- seed
+
+  ```
+  php artisan make:seeder AbcSeeder
+  php artisan db:seed
+  php artisan db:seed --class=AbcSeeder
+  ```
 
 - provider
 
