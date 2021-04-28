@@ -133,95 +133,77 @@
 <ul>
 <li>
 <p>客户端信息</p>
-<ul>
-<li>composer require jenssegers/agent</li>
-</ul>
 <blockquote>
 <p><a href="https://github.com/jenssegers/agent">jenssegers/agent</a></p>
 </blockquote>
-</li>
+<pre><code>  composer require jenssegers/agent
+</code></pre></li>
 <li>
 <p>sql 日志</p>
-<ul>
-<li>composer require mnabialek/laravel-sql-logger &ndash;dev</li>
-</ul>
 <blockquote>
 <p><a href="https://github.com/mnabialek/laravel-sql-logger">mnabialek/laravel-sql-logger</a></p>
 </blockquote>
-</li>
+<pre><code>  composer require mnabialek/laravel-sql-logger --dev
+</code></pre></li>
 <li>
 <p>jwt</p>
-<ul>
-<li>composer require tymon/jwt-auth:dev-develop &ndash;prefer-source</li>
-</ul>
 <blockquote>
 <p><a href="https://github.com/tymondesigns/jwt-auth">tymondesigns/jwt-auth</a></p>
 </blockquote>
-<ul>
-<li>
-<p>php artisan vendor:publish &ndash;provider=&ldquo;Tymon\JWTAuth\Providers\LaravelServiceProvider&rdquo;</p>
-</li>
-<li>
-<p>php artisan jwt:secret</p>
-</li>
-</ul>
-<pre><code>
+<pre><code>composer require tymon/jwt-auth:dev-develop
+php artisan vendor:publish --provider=&quot;Tymon\JWTAuth\Providers\LaravelServiceProvider&quot;
+php artisan jwt:secret
     // AppServiceProvide-&gt;register();
     // 添加一个自定义jwt auth parser
-    $parser = new \Tymon\JWTAuth\Http\Parser\AuthHeaders();
-    $parser-&gt;setHeaderName('token');
-    $parser-&gt;setHeaderPrefix('');
-    $this-&gt;app['tymon.jwt.parser']-&gt;addParser([
-        $parser,
-    ]);
-    $this-&gt;app-&gt;make('auth')-&gt;provider('xauth', function($app, $config) {
-        return new \Work\Auth\AuthUserProvider($app-&gt;get(\Work\Apps\AuthApp::class), $app['hash']);
-    });
-    // config/jwt.php
-    'defaults' =&gt; [
-        'guard' =&gt; 'api',
-        'passwords' =&gt; 'users',
-    ],
-    'guards' =&gt; [
-        'api' =&gt; [
-            'driver' =&gt; 'jwt',
-            'provider' =&gt; 'accounts',
-        ],
-    ],
-    'providers' =&gt; [
-        'accounts' =&gt; [
-            'driver' =&gt; 'xauth',
-        ],
-    ],
+$parser = new \Tymon\JWTAuth\Http\Parser\AuthHeaders();
+$parser-&gt;setHeaderName('token');
+$parser-&gt;setHeaderPrefix('');
+$this-&gt;app['tymon.jwt.parser']-&gt;addParser([
+    $parser,
+]);
+$this-&gt;app-&gt;make('auth')-&gt;provider('xauth', function($app, $config) {
+    return new \Work\Auth\AuthUserProvider($app-&gt;get(\Work\Apps\AuthApp::class), $app['hash']);
+});
+// config/jwt.php
+'defaults' =&gt; [
+  'guard' =&gt; 'api',
+  'passwords' =&gt; 'users',
+],
+'guards' =&gt; [
+  'api' =&gt; [
+      'driver' =&gt; 'jwt',
+      'provider' =&gt; 'accounts',
+  ],
+],
+'providers' =&gt; [
+  'accounts' =&gt; [
+      'driver' =&gt; 'xauth',
+  ],
+],
 </code></pre><pre><code>
 </code></pre></li>
 <li>
 <p>model</p>
-<ul>
-<li>composer require reliese/laravel &ndash;dev</li>
-</ul>
 <blockquote>
 <p><a href="https://github.com/reliese/laravel">reliese/laravel</a></p>
 </blockquote>
-</li>
+<pre><code>composer require reliese/laravel --dev
+php artisan code:models --table=users
+</code></pre></li>
 <li>
 <p>图片</p>
-<ul>
-<li>composer require intervention/image</li>
-</ul>
 <blockquote>
 <p><a href="http://image.intervention.io/getting_started/installation">intervention/image</a></p>
 </blockquote>
-</li>
+<pre><code>  composer require intervention/image
+</code></pre></li>
 <li>
 <p>doc</p>
-<ul>
-<li>composer require zircote/swagger-php</li>
-</ul>
 <blockquote>
 <p><a href="https://github.com/zircote/swagger-php">zircote/swagger-php</a></p>
 </blockquote>
-</li>
+<pre><code>composer require zircote/swagger-php
+</code></pre></li>
 </ul>
 <h1 id="laravel">laravel</h1>
 <ul>
@@ -229,29 +211,20 @@
 <p>appkey: php artisan key:generate</p>
 </li>
 <li>
-<p>seeder:</p>
-<pre><code>  php artisan make:seeder AbcSeeder
-  php artisan db:seed --class=AbcSeeder
-</code></pre></li>
-<li>
 <p>data</p>
 <ul>
-<li>
-<p>数据迁移</p>
-<ul>
-<li>
-<p>php artisan migrate</p>
-</li>
-<li>
-<p>php artisan migrate:refresh &ndash;seed</p>
-</li>
+<li>数据迁移</li>
 </ul>
-</li>
-<li>
-<p>seed: php artisan db:seed</p>
-</li>
+<pre><code>php artisan make:migration create_game_type_table
+php artisan migrate
+php artisan migrate:refresh --seed
+</code></pre><ul>
+<li>seed</li>
 </ul>
-</li>
+<pre><code>php artisan make:seeder AbcSeeder
+php artisan db:seed
+php artisan db:seed --class=AbcSeeder
+</code></pre></li>
 <li>
 <p>provider</p>
 <ul>
