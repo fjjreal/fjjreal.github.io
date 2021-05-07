@@ -52,6 +52,10 @@ ssh-keygen -t rsa -C "xxxxx@xx.com"
 	- sudo apt install php7.4-redis
 	- sudo apt install php7.4-swoole
 
+## composer
+
+- composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+
 ## nginx
 
 - normal

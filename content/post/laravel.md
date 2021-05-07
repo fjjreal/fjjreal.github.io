@@ -40,6 +40,9 @@ categories: [
     composer require tymon/jwt-auth:dev-develop
   	pphp artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
   	pphp artisan jwt:secret
+  ```
+  
+  ```
 		// AppServiceProvide->register();
 		// 添加一个自定义jwt auth parser
     $parser = new \Tymon\JWTAuth\Http\Parser\AuthHeaders();
@@ -52,21 +55,21 @@ categories: [
         return new \Work\Auth\AuthUserProvider($app->get(\Work\Apps\AuthApp::class), $app['hash']);
     });
     // config/jwt.php
-  'defaults' => [
-      'guard' => 'api',
-      'passwords' => 'users',
-  ],
-  'guards' => [
-      'api' => [
-          'driver' => 'jwt',
-          'provider' => 'accounts',
-      ],
-  ],
-  'providers' => [
-      'accounts' => [
-          'driver' => 'xauth',
-      ],
-  ],
+    'defaults' => [
+        'guard' => 'api',
+        'passwords' => 'users',
+    ],
+    'guards' => [
+        'api' => [
+            'driver' => 'jwt',
+            'provider' => 'accounts',
+        ],
+    ],
+    'providers' => [
+        'accounts' => [
+            'driver' => 'xauth',
+        ],
+    ],
 	```
 
 - model
