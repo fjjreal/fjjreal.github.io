@@ -20,31 +20,31 @@ categories: [
 
 	> [jenssegers/agent](https://github.com/jenssegers/agent)
 
-  ```
-    composer require jenssegers/agent
-  ```
+```
+  composer require jenssegers/agent
+```
 
 - sql 日志
 
 	> [mnabialek/laravel-sql-logger](https://github.com/mnabialek/laravel-sql-logger)
 
-  ```
-    composer require mnabialek/laravel-sql-logger --dev
-  ```
+```
+  composer require mnabialek/laravel-sql-logger --dev
+```
 
 - jwt
   
   > [tymondesigns/jwt-auth](https://github.com/tymondesigns/jwt-auth)
 
-	```
+```
     composer require tymon/jwt-auth:dev-develop
-  	pphp artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
-  	pphp artisan jwt:secret
-  ```
+  	php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
+  	php artisan jwt:secret
+```
   
-  ```
-		// AppServiceProvide->register();
-		// 添加一个自定义jwt auth parser
+```
+    // AppServiceProvide->register();
+  	// 添加一个自定义jwt auth parser
     $parser = new \Tymon\JWTAuth\Http\Parser\AuthHeaders();
     $parser->setHeaderName('token');
     $parser->setHeaderPrefix('');
@@ -70,16 +70,16 @@ categories: [
             'driver' => 'xauth',
         ],
     ],
-	```
+```
 
 - model
 
   > [reliese/laravel](https://github.com/reliese/laravel)
 
-	```
-    composer require reliese/laravel --dev
-    php artisan code:models --table=users
-  ```
+```
+  composer require reliese/laravel --dev
+  php artisan code:models --table=users
+```
 
 
 
@@ -87,17 +87,17 @@ categories: [
 
 	> [intervention/image](http://image.intervention.io/getting_started/installation)
 
-  ```
-    composer require intervention/image
-  ```
+```
+  composer require intervention/image
+```
 
 - doc
 
 	> [zircote/swagger-php](https://github.com/zircote/swagger-php)
 
-  ```
-  composer require zircote/swagger-php
-  ```
+```
+composer require zircote/swagger-php
+```
 
 # laravel
 
