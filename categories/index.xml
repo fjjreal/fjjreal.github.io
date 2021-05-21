@@ -6,11 +6,20 @@
     <description>Recent content in Categories on JunJian Feng</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Fri, 07 May 2021 16:35:38 +0800</lastBuildDate><atom:link href="https://fjjreal.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 May 2021 09:03:14 +0800</lastBuildDate><atom:link href="https://fjjreal.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go</title>
+      <link>https://fjjreal.github.io/categories/go/</link>
+      <pubDate>Mon, 10 May 2021 09:03:14 +0800</pubDate>
+      
+      <guid>https://fjjreal.github.io/categories/go/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>notebook</title>
       <link>https://fjjreal.github.io/categories/notebook/</link>
-      <pubDate>Fri, 07 May 2021 16:35:38 +0800</pubDate>
+      <pubDate>Mon, 10 May 2021 09:03:14 +0800</pubDate>
       
       <guid>https://fjjreal.github.io/categories/notebook/</guid>
       <description></description>
@@ -31,15 +40,6 @@
       <pubDate>Mon, 22 Mar 2021 16:47:53 +0800</pubDate>
       
       <guid>https://fjjreal.github.io/categories/soft/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Go</title>
-      <link>https://fjjreal.github.io/categories/go/</link>
-      <pubDate>Thu, 26 Nov 2020 13:45:33 +0800</pubDate>
-      
-      <guid>https://fjjreal.github.io/categories/go/</guid>
       <description></description>
     </item>
     
