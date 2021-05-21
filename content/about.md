@@ -13,7 +13,7 @@ cover: /images/default2.jpg
 
  - 冯俊健/男/1995
  - 本科/宁波大红鹰学院软件工程系 2018
- - 工作年限：2年
+ - 工作年限：3年
  - 技术博客：https://fjjreal.github.io
  - Github：https://github.com/fjjreal 
  - Gitee：https://gitee.com/voojo
@@ -34,8 +34,20 @@ cover: /images/default2.jpg
 
 ## 宁波珍学网教育科技有限公司 （ 2019年4月 ~ 至今 ）
 
+### IT学员作品项目
+
+
+
 ### 网校平台项目 
 我在此项目负责了前端(PC、APP)接口，部分管理端（机构资讯、考务管理、优惠券管理、打包课程管理）。由于这个项目使用的是CI3的框架，而且项目代码比较冗余，无法像现代化框架使用composer进行包管理，并且响应缓慢，维护起来很麻烦。虽然和同事尝试过加入shell脚本等方式实现事件、监听器等，但还是没什么大的改进。所以去年我们尝试使用微服务（框架采用hyperf框架）的方式给这项目提供服务接口，最近的优惠券等功能都是已这种方式实现，以前的接口也开始转移，效果非常不错，维护也相对容易。
+
+- APP
+
+  - 春华网校
+
+  - 掌上教务通
+
+
 
 ### 刷题APP项目 
 这个项目是 网校平台项目 的衍生项目，管理端、APP接口都嵌入的在网校平台项目中，我在此项目负责APP、后端管理接口开发。该项目主要是为了满足学历相关用户的刷题需求。
@@ -58,9 +70,9 @@ cover: /images/default2.jpg
 
 以下均为我熟练使用的技能
 
-- Web开发：PHP
+- Web开发：PHP GO
 - Web框架：CI/Lavarel/Hyperf/Swoft
-- 前端框架：Vue/Bootstrap
+- 前端框架：Vue
 - 数据存储相关：MySQL/Redis/MemCache
 - 版本管理、文档和自动化部署工具：Git/Svn/Composer
 
