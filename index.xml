@@ -6,7 +6,16 @@
     <description>Recent content on JunJian Feng</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Mon, 10 May 2021 09:03:14 +0800</lastBuildDate><atom:link href="https://fjjreal.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 23 Sep 2021 10:10:02 +0800</lastBuildDate><atom:link href="https://fjjreal.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ubuntu navicate 安装</title>
+      <link>https://fjjreal.github.io/post/ubuntu20.04-navicate-premium15/</link>
+      <pubDate>Thu, 23 Sep 2021 10:10:02 +0800</pubDate>
+      
+      <guid>https://fjjreal.github.io/post/ubuntu20.04-navicate-premium15/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Notebook 4 Advanced Go Programming Book</title>
       <link>https://fjjreal.github.io/post/notebook-4-advanced-go-programming-book/</link>
@@ -105,7 +114,7 @@
       
       <guid>https://fjjreal.github.io/post/learn-grpc-go/</guid>
       <description>&lt;h2 id=&#34;环境&#34;&gt;环境&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;win10
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;win10
 go 1.15 (mod 关闭) go env -w GO111MODULE=off
 &lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
 &lt;li&gt;protoc&lt;/li&gt;

@@ -15,7 +15,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.84.1" />
+<meta name="generator" content="Hugo 0.88.1" />
 
 <link rel="canonical" href="https://fjjreal.github.io/post/notebook-4-advanced-go-programming-book/" />
 
@@ -24,8 +24,8 @@
 <meta property="og:description" content="《GO语言高级编程》 学习笔记" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://fjjreal.github.io/post/notebook-4-advanced-go-programming-book/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2021-05-10T09:03:14&#43;08:00" />
-<meta property="article:modified_time" content="2021-05-10T09:03:14&#43;08:00" />
+<meta property="article:published_time" content="2021-05-10T09:03:14+08:00" />
+<meta property="article:modified_time" content="2021-05-10T09:03:14+08:00" />
 
 
 
@@ -148,7 +148,7 @@
 <blockquote>
 <p>常量以$美元符号为前缀</p>
 </blockquote>
-<pre><code>$1           // 十进制
+<pre tabindex="0"><code>$1           // 十进制
 $0xf4f8fcff  // 十六进制
 $1.5         // 浮点数
 $'a'         // 字符
@@ -160,7 +160,7 @@ $(3&amp;1)&lt;&lt;2    // == $4
 </code></pre><ul>
 <li>string</li>
 </ul>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// main.go
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// main.go
 </span><span style="color:#75715e"></span>
 <span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
@@ -173,13 +173,13 @@ $(3&amp;1)&lt;&lt;2    // == $4
 	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">gs</span>.<span style="color:#a6e22e">Helloworld</span>)
 	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">gs</span>.<span style="color:#a6e22e">Name</span>)
 }
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// gs/gs.go
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// gs/gs.go
 </span><span style="color:#75715e"></span>
 <span style="color:#f92672">package</span> <span style="color:#a6e22e">gs</span>
 
 <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Helloworld</span> <span style="color:#66d9ef">string</span>
 <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Name</span> <span style="color:#66d9ef">string</span>
-</code></pre></div><pre><code>// gs/gs_amd64.s
+</code></pre></div><pre tabindex="0"><code>// gs/gs_amd64.s
 
 #include &quot;textflag.h&quot;
 GLOBL text&lt;&gt;(SB),NOPTR,$16             // &lt;&gt; 当前文件内的私有变量
@@ -196,8 +196,8 @@ DATA ·Name+16(SB)/8,$&quot;gopher&quot;
 </code></pre><ul>
 <li>slice</li>
 </ul>
-<pre><code>var NameByte []byte
-</code></pre><pre><code>GLOBL ·NameType(SB),$24            // var NameType []byte(&quot;Hello World!&quot;)
+<pre tabindex="0"><code>var NameByte []byte
+</code></pre><pre tabindex="0"><code>GLOBL ·NameType(SB),$24            // var NameType []byte(&quot;Hello World!&quot;)
 DATA ·NameType+0(SB)/8,$txt&lt;&gt;(SB)  // StringHeader.Data
 DATA ·NameType+8(SB)/8,$12         // StringHeader.Len
 DATA ·NameType+16(SB)/8,$16        // StringHeader.Cap
@@ -214,10 +214,10 @@ DATA txt&lt;&gt;+8(SB)/8,$&quot;rld!&quot;
 <blockquote>
 <p>map/channel等类型并没有公开的内部结构，它们只是一种未知类型的指针，无法直接初始化</p>
 </blockquote>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">m</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">int</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">m</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">int</span>
 
 <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ch</span> <span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>
-</code></pre></div><pre><code>GLOBL ·m(SB),$8  // var m map[string]int
+</code></pre></div><pre tabindex="0"><code>GLOBL ·m(SB),$8  // var m map[string]int
 DATA  ·m+0(SB)/8,$0
 
 GLOBL ·ch(SB),$8 // var ch chan int
@@ -230,7 +230,7 @@ DATA  ·ch+0(SB)/8,$0
 <p>WRAPPER标志则表示这个是一个包装函数，在panic或runtime.caller等某些处理函数帧的地方不会增加函数帧计数。</p>
 <p>NEEDCTXT表示需要一个上下文参数，一般用于闭包函数</p>
 </blockquote>
-<pre><code>// func Swap(a, b int) (ret0, ret1 int)
+<pre tabindex="0"><code>// func Swap(a, b int) (ret0, ret1 int)
 TEXT ·Swap(SB), NOSPLIT, $0-32
 
 // symbol    =&gt; Swap     // 
@@ -246,7 +246,7 @@ TEXT ·Swap(SB), NOSPLIT, $0-32
 <blockquote>
 <p>Go汇编中引入FP伪寄存器，表示函数当前帧的地址，也就是第一个参数的地址</p>
 <p>通过+0(FP)、+8(FP)、+16(FP)和+24(FP)来分别引用a、b、ret0和ret1四个参数</p>
-<pre><code>TEXT ·Swap(SB), $0
+<pre tabindex="0"><code>TEXT ·Swap(SB), $0
     MOVQ a+0(FP), AX     // AX = a
     MOVQ b+8(FP), BX     // BX = b
     MOVQ BX, ret0+16(FP) // ret0 = BX
@@ -256,7 +256,7 @@ TEXT ·Swap(SB), NOSPLIT, $0-32
 <ul>
 <li>复杂的函数参数和返回值</li>
 </ul>
-<pre><code>func Foo(a bool, b int16) (c []byte)
+<pre tabindex="0"><code>func Foo(a bool, b int16) (c []byte)
 
 ↓		↓		↓
 
@@ -273,7 +273,7 @@ type Foo_returns struct {
 
 func Foo(FP *SomeFunc_args, FP_ret *SomeFunc_returns)
 </code></pre><blockquote>
-<pre><code>TEXT ·Foo(SB), $0
+<pre tabindex="0"><code>TEXT ·Foo(SB), $0
     MOVEQ a+0(FP),       AX // a
     MOVEQ b+2(FP),       BX // b
     MOVEQ c_dat+8*1(FP), CX // c.Data
@@ -286,12 +286,12 @@ func Foo(FP *SomeFunc_args, FP_ret *SomeFunc_returns)
 </ul>
 <blockquote>
 <p>通过伪SP来定位局部变量</p>
-<pre><code>func Foo() {
+<pre tabindex="0"><code>func Foo() {
     var c []byte
     var b int16
     var a bool
 }
-</code></pre><pre><code>TEXT ·Foo(SB), $32-0
+</code></pre><pre tabindex="0"><code>TEXT ·Foo(SB), $32-0
     MOVQ a-32(SP),      AX // a
     MOVQ b-30(SP),      BX // b
     MOVQ c_data-24(SP), CX // c.Data
@@ -421,6 +421,12 @@ func Foo(FP *SomeFunc_args, FP_ret *SomeFunc_returns)
       
       <a class="ui label" href="/tags/micro-service/" title="micro-service">
         micro-service
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/navicate/" title="navicate">
+        navicate
       </a>
     
       
@@ -623,6 +629,12 @@ func Foo(FP *SomeFunc_args, FP_ret *SomeFunc_returns)
           </div>
           <div class="content">
             <div class="ui list">
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/post/ubuntu20.04-navicate-premium15/">ubuntu navicate 安装</a>
+                </div>
+              </div>
             
               <div class="item">
                 <div class="content">

@@ -32,7 +32,7 @@
       
       <guid>https://fjjreal.github.io/post/learn-grpc-go/</guid>
       <description>&lt;h2 id=&#34;环境&#34;&gt;环境&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;win10
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;win10
 go 1.15 (mod 关闭) go env -w GO111MODULE=off
 &lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
 &lt;li&gt;protoc&lt;/li&gt;

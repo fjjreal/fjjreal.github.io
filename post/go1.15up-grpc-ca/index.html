@@ -15,7 +15,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.84.1" />
+<meta name="generator" content="Hugo 0.88.1" />
 
 <link rel="canonical" href="https://fjjreal.github.io/post/go1.15up-grpc-ca/" />
 
@@ -24,8 +24,8 @@
 <meta property="og:description" content="x509: certificate relies on legacy Common Name field, use SANs or&hellip;" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://fjjreal.github.io/post/go1.15up-grpc-ca/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2020-11-26T13:45:33&#43;08:00" />
-<meta property="article:modified_time" content="2020-11-26T13:45:33&#43;08:00" />
+<meta property="article:published_time" content="2020-11-26T13:45:33+08:00" />
+<meta property="article:modified_time" content="2020-11-26T13:45:33+08:00" />
 
 
 
@@ -130,7 +130,7 @@
       </header>
 
       <article class="main"><p>x509: certificate relies on legacy Common Name field, use SANs or&hellip;</p>
-<pre><code>2020/11/26 11:02:58 client.Search err: rpc error: code = Unavailable desc = connection error: 
+<pre tabindex="0"><code>2020/11/26 11:02:58 client.Search err: rpc error: code = Unavailable desc = connection error: 
  desc = &quot;transport: authentication handshake failed: x509: certificate relies on legacy Common Name field,
   use SANs or temporarily enable Common Name matching with GODEBUG=x509ignoreCN=0&quot;
 </code></pre><h1 id="ca">CA</h1>
@@ -138,7 +138,7 @@
 <li>openssl genrsa -out ca.key 2048</li>
 <li>openssl req -new -x509 -days 7200 -key ca.key -out ca.pem</li>
 </ul>
-<pre><code>Country Name (2 letter code) [AU]:cn
+<pre tabindex="0"><code>Country Name (2 letter code) [AU]:cn
 State or Province Name (full name) []:
 Locality Name (eg, city) []:
 Organization Name (eg, company) []:
@@ -153,7 +153,7 @@ Email Address []:
 <li>修改 openssl.cnf [ v3_req ] subjectAltName = @alt_names</li>
 <li>修改 openssl.cnf</li>
 </ul>
-<pre><code>[ alt_names ]
+<pre tabindex="0"><code>[ alt_names ]
 DNS.1 = go-grpc-example
 </code></pre><h1 id="server">Server</h1>
 <ul>
@@ -299,6 +299,12 @@ DNS.1 = go-grpc-example
       
       <a class="ui label" href="/tags/micro-service/" title="micro-service">
         micro-service
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/navicate/" title="navicate">
+        navicate
       </a>
     
       
@@ -501,6 +507,12 @@ DNS.1 = go-grpc-example
           </div>
           <div class="content">
             <div class="ui list">
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/post/ubuntu20.04-navicate-premium15/">ubuntu navicate 安装</a>
+                </div>
+              </div>
             
               <div class="item">
                 <div class="content">

@@ -15,7 +15,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.84.1" />
+<meta name="generator" content="Hugo 0.88.1" />
 
 <link rel="canonical" href="https://fjjreal.github.io/post/autoupdate-svn-on-win10/" />
 
@@ -25,8 +25,8 @@
 tool: - ApacheSubversion命令行工具" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://fjjreal.github.io/post/autoupdate-svn-on-win10/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2020-12-17T10:10:02&#43;08:00" />
-<meta property="article:modified_time" content="2020-12-17T10:10:02&#43;08:00" />
+<meta property="article:published_time" content="2020-12-17T10:10:02+08:00" />
+<meta property="article:modified_time" content="2020-12-17T10:10:02+08:00" />
 
 
 
@@ -156,7 +156,7 @@ tool: - ApacheSubversion命令行工具"/>
 |    |    svn.update.log // svn-update.bat 生成
 </code></pre>
 <h1 id="更新脚本-svn-updatebat">更新脚本 svn-update.bat</h1>
-<pre><code>@echo off
+<pre tabindex="0"><code>@echo off
 set url=SVN服务器端项目地址
 for /f &quot;tokens=2* delims=:&quot; %%i in ('&quot;D:\svn_cmd_tool\bin\svn.exe info %url% | find &quot;Last Changed Rev:&quot;&quot;') do set online=%%i
 set localurl=本地项目地址
@@ -167,7 +167,7 @@ pause
 // 也可以给svn配置环境变量，将D:\svn_cmd_tool\bin\svn.exe替换为svn
 // win7把需要更新时的DATE改为echo %date% %time%
 </code></pre><h1 id="循环进程-callsvnupdatevbs">循环进程 callSVNUpdate.vbs</h1>
-<pre><code>'指定时间间隔调用.bat文件
+<pre tabindex="0"><code>'指定时间间隔调用.bat文件
 '停止脚本请在任务管理器结束wscript.exe
 Set ws=wscript.createobject(&quot;wscript.shell&quot;)
 dim bat
@@ -306,6 +306,12 @@ loop
       
       <a class="ui label" href="/tags/micro-service/" title="micro-service">
         micro-service
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/navicate/" title="navicate">
+        navicate
       </a>
     
       
@@ -508,6 +514,12 @@ loop
           </div>
           <div class="content">
             <div class="ui list">
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/post/ubuntu20.04-navicate-premium15/">ubuntu navicate 安装</a>
+                </div>
+              </div>
             
               <div class="item">
                 <div class="content">

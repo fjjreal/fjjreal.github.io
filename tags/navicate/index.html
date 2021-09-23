@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>leetcode-notebook | JunJian Feng</title>
+    <title>navicate | JunJian Feng</title>
 
     
 
@@ -17,22 +17,20 @@
 
 <meta name="generator" content="Hugo 0.88.1" />
 
-<link rel="canonical" href="https://fjjreal.github.io/post/note/" />
+<link rel="canonical" href="https://fjjreal.github.io/tags/navicate/" />
 
 
-<meta property="og:title" content="leetcode-notebook" />
-<meta property="og:description" content="各种做题笔记" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://fjjreal.github.io/post/note/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2020-03-19T09:25:02+08:00" />
-<meta property="article:modified_time" content="2020-03-19T09:25:02+08:00" />
+<meta property="og:title" content="navicate" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://fjjreal.github.io/tags/navicate/" />
 
 
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="leetcode-notebook"/>
-<meta name="twitter:description" content="各种做题笔记"/>
+<meta name="twitter:title" content="navicate"/>
+<meta name="twitter:description" content=""/>
 
 
 <link rel="stylesheet" href="/css/semantic.min.css" />
@@ -72,13 +70,7 @@
   
 </style>
 
-    
-
-
-
-
-
-
+     
   </head>
 
   <body class="default">
@@ -103,222 +95,7 @@
           <div class="dream-max-width">
             
 <div class="ui centered relaxed grid dream-grid">
-  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single" id="dream-save-post-as-img">
-    
-    <section class="ui top attached segment">
-      <header>
-        <h1 class="ui large header">
-          leetcode-notebook
-          <div class="sub header">
-            @
-            
-              JunJian Feng
-            
-
-            | 
-                星期四，三月 19 日，2020 年
-              
-
-            | 2 分钟阅读
-
-            | 更新于
-              
-                星期四，三月 19 日，2020 年
-              
-          </div>
-        </h1>
-      </header>
-
-      <article class="main"><h1 id="位运算">位运算</h1>
-<ul>
-<li>与 int&amp;1</li>
-</ul>
-<pre tabindex="0"><code>// 4 &amp; 1
-4 ==&gt; 100
-1 ==&gt; 001
-&amp; ==&gt; 000 ==&gt; (int)0
-.......*
-// 3 &amp; 1
-3 ==&gt; 11
-1 ==&gt; 01
-&amp; ==&gt; 01  ==&gt; (int)1
-// 128 &amp; 2
-128 ==&gt; 10000000
-2   ==&gt; 00000010
-&amp;   ==&gt; 00000000  ==&gt; (int)0
-</code></pre><ul>
-<li>&ldquo;10000&rdquo; &amp; &ldquo;1000&rdquo;</li>
-</ul>
-<pre tabindex="0"><code>&quot;10000&quot; &amp; &quot;01000&quot; ==&gt; &quot;00000&quot;
-</code></pre><ul>
-<li>或 (计算优先级低)</li>
-</ul>
-<pre tabindex="0"><code>&quot;10000&quot; | &quot;01000&quot; ==&gt; &quot;11000&quot;
-</code></pre><ul>
-<li>右移 &raquo;</li>
-</ul>
-<pre tabindex="0"><code>26 &gt;&gt; 2 ==&gt; &quot;11010&quot; &gt;&gt; 2 ==&gt; 110 ==&gt; (int)6
-</code></pre><ul>
-<li>左移 &laquo;</li>
-</ul>
-<pre tabindex="0"><code>26 &lt;&lt; 2 ==&gt; &quot;11010&quot; &lt;&lt; 2 ==&gt; 1101000 ==&gt; (int)104
-</code></pre><ul>
-<li>取反 ~ (计算优先级高)</li>
-</ul>
-<blockquote>
-<p>负数是用补码表示的，补码是原码取反<!-- raw HTML omitted -->+1<!-- raw HTML omitted --></p>
-</blockquote>
-<pre tabindex="0"><code>~26 ==&gt; -27
-26  ==&gt; 0.....0 11010 // 32位或64位
-~26 ==&gt; 1.....1 00101 // 32位或64位 补码
-........*             // 补码 第一位0正1符        -
-        1.....1 00100 // 原码取反
-        0.....0 11011 // 原码 bindec(&quot;11011&quot;) ==&gt; 27
-
-~26 ==&gt;                                          -27
-</code></pre><ul>
-<li>异或 ^</li>
-</ul>
-<blockquote>
-<p>一个为 1 另一个为 0 的位设为 1</p>
-</blockquote>
-<pre tabindex="0"><code>26^27
-
-26 ==&gt; 11010            128 ==&gt; 10000000
-27 ==&gt; 11011            127 ==&gt; 01111111
-
-^  ==&gt; 00001            ^   ==&gt; 11111111
-       (int)1                   (int)255
-</code></pre><ul>
-<li>位运算分治</li>
-</ul>
-<blockquote>
-<p>leetcode 190.颠倒给定的32位无符号整数的二进制位</p>
-</blockquote>
-<pre tabindex="0"><code>    $m1 = 0x55555555 // 01010101010101010101010101010101 // 一个一组
-n=26         ==&gt;        00000000000000000000000000011010
-    n&gt;&gt;1     ==&gt;        00000000000000000000000000001101
-(n&gt;&gt;1) &amp; $m1 ==&gt;        00000000000000000000000000000101     5
-
-    n&amp;$m1    ==&gt;        00000000000000000000000000010000     16
-(n&amp;$m1) &lt;&lt; 1 ==&gt;        00000000000000000000000000100000     32
-
-step1                   00000000000000000000000000100101  ==&gt; 37
-</code></pre><pre tabindex="0"><code>    $m2 = 0x33333333 // 00110011001100110011001100110011 // 两两一组
-n=37         ==&gt;        00000000000000000000000000100101
-    n&gt;&gt;2     ==&gt;        00000000000000000000000000001001      10
-(n&gt;&gt;2) &amp; $m2 ==&gt;        00000000000000000000000000000001      1
-
-    n&amp;$m2    ==&gt;        00000000000000000000000000100001      33
-(n&amp;$m2) &lt;&lt; 2 ==&gt;        00000000000000000000000010000100      132
-
-step2        ==&gt;        00000000000000000000000010000101      133
-</code></pre><pre tabindex="0"><code>    $m4 = 0x0f0f0f0f // 00001111000011110000111100001111 // 四个一组
-n=133        ==&gt;        00000000000000000000000010000101
-    n&gt;&gt;4     ==&gt;        00000000000000000000000000001000      8
-(n&gt;&gt;4) &amp; $m4 ==&gt;        00000000000000000000000000001000      8
-
-    n&amp;$m4    ==&gt;        00000000000000000000000000000101      5
-(n&amp;$m4) &lt;&lt; 4 ==&gt;        00000000000000000000000001010000      80
-
-step3        ==&gt;        00000000000000000000000001011000      88
-</code></pre><pre tabindex="0"><code>    $m8 = 0x00ff00ff // 00000000111111110000000011111111 // 八个一组
-n=88        ==&gt;         00000000000000000000000001011000
-    n&gt;&gt;8     ==&gt;        00000000000000000000000000000000
-(n&gt;&gt;8) &amp; $m8 ==&gt;        00000000000000000000000000000000
-
-    n&amp;$m8    ==&gt;        00000000000000000000000001011000      88
-(n&amp;$m8) &lt;&lt; 8 ==&gt;        00000000000000000101100000000000
-
-(n &gt;&gt; 8) &amp; $m8 | (n&amp;$m8) &lt;&lt; 8
-step4        ==&gt;        00000000000000000101100000000000      ==&gt; 22528
-</code></pre><pre tabindex="0"><code>             ==&gt;        00000000000000000000000000000000
-             ==&gt;        01011000000000000000000000000000
-
-step5        ==&gt;        01011000000000000000000000000000      1476395008
-n=26         ==&gt;        00000000000000000000000000011010
-</code></pre><blockquote>
-<p>原理 1234 5678</p>
-</blockquote>
-<pre tabindex="0"><code>1234 5678
-1001 0101
-
-step1
-1234  01            5678 01
-      01                 05
-      20                 60
-      21                 65
-
-        03                 07
-        40                 80
-        43                 87
-
-      2143               6587
-step2
-2143  0011          6587 0011
-      0021               0065
-      4300               8700
-      4321               8765
-step3
-43218765    00001111
-            00004321
-            87650000
-            87654321
-
-8765 4321
-</code></pre><blockquote>
-<p>step1具体:</p>
-</blockquote>
-<pre tabindex="0"><code>12345678
-10010101
-
-12345678 &gt;&gt; 1 ==&gt; 01234567 ==&gt; 01001010 ==&gt; 01001010 &amp; 01010101 ==&gt; 01000000
-12345678 ==&gt; 10010101 &amp; 01010101 ==&gt; 00010101 ==&gt; 00010101 &lt;&lt; 1 ==&gt; 00101010
-
-    01000000
-    00101010
-    01101010  // step1实际结果
-    --------
-    12345678
-    10010101
-    --------
-    21436587
-    01101010  // step1预计
-    --------
-</code></pre></article>
-    </section>
-
-    
-    
-      
-        
-      
-    
-
-    <footer class="ui bottom attached segment dream-tags" data-html2canvas-ignore>
-      
-        
-          <a class="ui label" href="/tags/notebook" title="notebook">notebook</a>
-        
-      
-      <div
-        class="ui label"
-        style="float: right; cursor: pointer;"
-        onclick="savePostAsImg()">
-        <i class="save icon"></i>保存为图片
-      </div>
-    </footer>
-    
-    
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="sixteen wide mobile sixteen wide tablet four wide computer column">
+  <div class="sixteen wide mobile eight wide tablet eight wide computer four wide large screen four wide widescreen column dream-column">
     <article class="dream-header">
   <section class="ui top attached center aligned segment">
     <div class="ui small circular image">
@@ -328,12 +105,12 @@ step3
     </div>
 
     
-    <h1 class="ui medium header">
+    <div class="ui medium header">
     
       JunJian Feng 分享站
       <div class="sub header" style="margin-top: 0.5rem;">voojo</div>
     
-    </h1>
+    </div>
     
 
     <div class="ui horizontal list">
@@ -741,6 +518,56 @@ step3
 </article>
 
   </div>
+
+  
+  
+    <div class="sixteen wide mobile eight wide tablet eight wide computer four wide large screen four wide widescreen column dream-column">
+      <article class="ui attached segment card dream-card">
+  <a class="image" href="https://fjjreal.github.io/post/ubuntu20.04-navicate-premium15/">
+    
+      <img src="/img/default3.jpg" alt="ubuntu navicate 安装" />
+    
+  </a>
+
+  <div class="content">
+    <h2 class="ui medium header">
+      <a href="/post/ubuntu20.04-navicate-premium15/">ubuntu navicate 安装</a>
+    </h2>
+    <div class="meta">
+      <p class="date">
+        
+          星期四，九月 23 日，2021 年
+        
+      </p>
+      <p class="author">
+        @
+        
+          JunJian Feng
+        
+      </p>
+    </div>
+    <div class="description">
+      
+    </div>
+  </div>
+
+  <div class="extra content">
+    <a class="reading-time">
+      <i class="clock icon"></i>
+      1 分钟阅读
+    </a>
+  </div>
+</article>
+
+    </div>
+  
+
+  <div class="sixteen wide mobile eight wide tablet eight wide computer four wide large screen four wide widescreen column dream-column">
+    
+
+
+
+  </div>
 </div>
 
           </div>
@@ -872,11 +699,9 @@ step3
 <script src="/js/theme.js"></script>
 
     
-<script src="/js/html2canvas.min.js"></script>
-<script src="/js/post.js"></script>
-
-
-
+<script src="/js/imagesloaded.pkgd.min.js"></script>
+<script src="/js/masonry.pkgd.min.js"></script>
+<script src="/js/grid.js"></script>
 
 
     

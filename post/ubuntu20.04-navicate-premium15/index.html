@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>leetcode-notebook | JunJian Feng</title>
+    <title>ubuntu navicate 安装 | JunJian Feng</title>
 
     
 
@@ -17,22 +17,22 @@
 
 <meta name="generator" content="Hugo 0.88.1" />
 
-<link rel="canonical" href="https://fjjreal.github.io/post/note/" />
+<link rel="canonical" href="https://fjjreal.github.io/post/ubuntu20.04-navicate-premium15/" />
 
 
-<meta property="og:title" content="leetcode-notebook" />
-<meta property="og:description" content="各种做题笔记" />
+<meta property="og:title" content="ubuntu navicate 安装" />
+<meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://fjjreal.github.io/post/note/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2020-03-19T09:25:02+08:00" />
-<meta property="article:modified_time" content="2020-03-19T09:25:02+08:00" />
+<meta property="og:url" content="https://fjjreal.github.io/post/ubuntu20.04-navicate-premium15/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-09-23T10:10:02+08:00" />
+<meta property="article:modified_time" content="2021-09-23T10:10:02+08:00" />
 
 
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="leetcode-notebook"/>
-<meta name="twitter:description" content="各种做题笔记"/>
+<meta name="twitter:title" content="ubuntu navicate 安装"/>
+<meta name="twitter:description" content=""/>
 
 
 <link rel="stylesheet" href="/css/semantic.min.css" />
@@ -108,7 +108,7 @@
     <section class="ui top attached segment">
       <header>
         <h1 class="ui large header">
-          leetcode-notebook
+          ubuntu navicate 安装
           <div class="sub header">
             @
             
@@ -116,175 +116,128 @@
             
 
             | 
-                星期四，三月 19 日，2020 年
+                星期四，九月 23 日，2021 年
               
 
-            | 2 分钟阅读
+            | 1 分钟阅读
 
             | 更新于
               
-                星期四，三月 19 日，2020 年
+                星期四，九月 23 日，2021 年
               
           </div>
         </h1>
       </header>
 
-      <article class="main"><h1 id="位运算">位运算</h1>
+      <article class="main"><h1 id="软件">软件</h1>
 <ul>
-<li>与 int&amp;1</li>
+<li>
+<p>sudo apt-get install libcapstone-dev</p>
+</li>
+<li>
+<p>sudo apt-get install cmake</p>
+</li>
 </ul>
-<pre tabindex="0"><code>// 4 &amp; 1
-4 ==&gt; 100
-1 ==&gt; 001
-&amp; ==&gt; 000 ==&gt; (int)0
-.......*
-// 3 &amp; 1
-3 ==&gt; 11
-1 ==&gt; 01
-&amp; ==&gt; 01  ==&gt; (int)1
-// 128 &amp; 2
-128 ==&gt; 10000000
-2   ==&gt; 00000010
-&amp;   ==&gt; 00000000  ==&gt; (int)0
+<pre tabindex="0"><code>sudo apt-get install build-essential
+sudo apt-get install gdb
 </code></pre><ul>
-<li>&ldquo;10000&rdquo; &amp; &ldquo;1000&rdquo;</li>
+<li>sudo apt-get install rapidjson-dev</li>
 </ul>
-<pre tabindex="0"><code>&quot;10000&quot; &amp; &quot;01000&quot; ==&gt; &quot;00000&quot;
+<pre tabindex="0"><code>sudo apt-get install openssl
+sudo apt-get install libssl-dev 
 </code></pre><ul>
-<li>或 (计算优先级低)</li>
+<li>
+<p>git clone <a href="https://github.com/keystone-engine/keystone.git">https://github.com/keystone-engine/keystone.git</a></p>
+</li>
+<li>
+<p>cd keystone &amp; mkdir build &amp; cd build</p>
+</li>
+<li>
+<p>../make-share.sh</p>
+</li>
+<li>
+<p>sudo make install</p>
+</li>
+<li>
+<p>sudo ldconfig</p>
+</li>
 </ul>
-<pre tabindex="0"><code>&quot;10000&quot; | &quot;01000&quot; ==&gt; &quot;11000&quot;
+<h1 id="挂载解压image-下载httpsnavicatcomcndownloadnavicat-premium">挂载解压image <a href="https://navicat.com.cn/download/navicat-premium">下载</a></h1>
+<ul>
+<li>
+<p>mkdir your-path/navicate15</p>
+</li>
+<li>
+<p>sudo mount -o loop navicat15-premium-cs.AppImage your-path/navicate15</p>
+</li>
+<li>
+<p>mkdir your-path/navicate15-patcher</p>
+</li>
+<li>
+<p>cp -r your-path/navicate15/* your-path/navicate15-patcher</p>
+</li>
+<li>
+<p>sudo umount your-path/navicate15</p>
+</li>
+<li>
+<p>sudo rm -rf your-path/navicate15</p>
+</li>
+</ul>
+<h1 id="navicate-keygen-tools">navicate keygen tools</h1>
+<ul>
+<li>git clone git://github.com/HeQuanX/navicat-keygen-tools.git</li>
+</ul>
+<pre tabindex="0"><code>// linux 直接下一步make all
+// mac | windows 切换分支
 </code></pre><ul>
-<li>右移 &raquo;</li>
+<li>cd navicat-keygen-tools &amp; make all</li>
 </ul>
-<pre tabindex="0"><code>26 &gt;&gt; 2 ==&gt; &quot;11010&quot; &gt;&gt; 2 ==&gt; 110 ==&gt; (int)6
+<pre tabindex="0"><code>// navicat-keygen-tools/bin 下生成 navicat-keygen  navicat-patcher 
+// navicat-patcher // 生成 RegPrivateKey.pem 用
+// navicat-keygen  // 生成 序列号&amp;激活码 用
 </code></pre><ul>
-<li>左移 &laquo;</li>
+<li>navicat-keygen-tools/bin/navicat-patcher your-path/navicate15-patcher</li>
 </ul>
-<pre tabindex="0"><code>26 &lt;&lt; 2 ==&gt; &quot;11010&quot; &lt;&lt; 2 ==&gt; 1101000 ==&gt; (int)104
+<pre tabindex="0"><code>// 会在navicat-keygen-tools/bin生成RegPrivateKey.pem
+// 注意：
+// your-path/navicate15-patcher
+// libcc.so 找不到等问题
+// your-path/navicate15-patcher目录下有usr文件夹 icon desktop等
+</code></pre><h1 id="打包文件">打包文件</h1>
+<ul>
+<li>
+<p>wget &lsquo;<a href="https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage'">https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage'</a></p>
+</li>
+<li>
+<p>chmod +x appimagetool-x86_64.AppImage</p>
+</li>
+<li>
+<p>./appimagetool-x86_64.AppImage your-path/navicate15-patcher your-path/navicate-patched.AppImage</p>
+</li>
+</ul>
+<pre tabindex="0"><code>// 生成换过公钥的AppImage
 </code></pre><ul>
-<li>取反 ~ (计算优先级高)</li>
+<li>chmod +x your-path/navicate-patched.AppImage</li>
 </ul>
-<blockquote>
-<p>负数是用补码表示的，补码是原码取反<!-- raw HTML omitted -->+1<!-- raw HTML omitted --></p>
-</blockquote>
-<pre tabindex="0"><code>~26 ==&gt; -27
-26  ==&gt; 0.....0 11010 // 32位或64位
-~26 ==&gt; 1.....1 00101 // 32位或64位 补码
-........*             // 补码 第一位0正1符        -
-        1.....1 00100 // 原码取反
-        0.....0 11011 // 原码 bindec(&quot;11011&quot;) ==&gt; 27
-
-~26 ==&gt;                                          -27
-</code></pre><ul>
-<li>异或 ^</li>
+<h1 id="激活">激活</h1>
+<ul>
+<li>
+<p>./your-path/navicate-patched.AppImage</p>
+</li>
+<li>
+<p>点注册 &amp; 命令行： sudo ifconfig 你的网卡 down</p>
+</li>
+<li>
+<p>navicat-keygen-tools/navicat-keygen &ndash;text navicat-keygen-tools/RegPrivateKey.pem</p>
+</li>
 </ul>
-<blockquote>
-<p>一个为 1 另一个为 0 的位设为 1</p>
-</blockquote>
-<pre tabindex="0"><code>26^27
-
-26 ==&gt; 11010            128 ==&gt; 10000000
-27 ==&gt; 11011            127 ==&gt; 01111111
-
-^  ==&gt; 00001            ^   ==&gt; 11111111
-       (int)1                   (int)255
-</code></pre><ul>
-<li>位运算分治</li>
-</ul>
-<blockquote>
-<p>leetcode 190.颠倒给定的32位无符号整数的二进制位</p>
-</blockquote>
-<pre tabindex="0"><code>    $m1 = 0x55555555 // 01010101010101010101010101010101 // 一个一组
-n=26         ==&gt;        00000000000000000000000000011010
-    n&gt;&gt;1     ==&gt;        00000000000000000000000000001101
-(n&gt;&gt;1) &amp; $m1 ==&gt;        00000000000000000000000000000101     5
-
-    n&amp;$m1    ==&gt;        00000000000000000000000000010000     16
-(n&amp;$m1) &lt;&lt; 1 ==&gt;        00000000000000000000000000100000     32
-
-step1                   00000000000000000000000000100101  ==&gt; 37
-</code></pre><pre tabindex="0"><code>    $m2 = 0x33333333 // 00110011001100110011001100110011 // 两两一组
-n=37         ==&gt;        00000000000000000000000000100101
-    n&gt;&gt;2     ==&gt;        00000000000000000000000000001001      10
-(n&gt;&gt;2) &amp; $m2 ==&gt;        00000000000000000000000000000001      1
-
-    n&amp;$m2    ==&gt;        00000000000000000000000000100001      33
-(n&amp;$m2) &lt;&lt; 2 ==&gt;        00000000000000000000000010000100      132
-
-step2        ==&gt;        00000000000000000000000010000101      133
-</code></pre><pre tabindex="0"><code>    $m4 = 0x0f0f0f0f // 00001111000011110000111100001111 // 四个一组
-n=133        ==&gt;        00000000000000000000000010000101
-    n&gt;&gt;4     ==&gt;        00000000000000000000000000001000      8
-(n&gt;&gt;4) &amp; $m4 ==&gt;        00000000000000000000000000001000      8
-
-    n&amp;$m4    ==&gt;        00000000000000000000000000000101      5
-(n&amp;$m4) &lt;&lt; 4 ==&gt;        00000000000000000000000001010000      80
-
-step3        ==&gt;        00000000000000000000000001011000      88
-</code></pre><pre tabindex="0"><code>    $m8 = 0x00ff00ff // 00000000111111110000000011111111 // 八个一组
-n=88        ==&gt;         00000000000000000000000001011000
-    n&gt;&gt;8     ==&gt;        00000000000000000000000000000000
-(n&gt;&gt;8) &amp; $m8 ==&gt;        00000000000000000000000000000000
-
-    n&amp;$m8    ==&gt;        00000000000000000000000001011000      88
-(n&amp;$m8) &lt;&lt; 8 ==&gt;        00000000000000000101100000000000
-
-(n &gt;&gt; 8) &amp; $m8 | (n&amp;$m8) &lt;&lt; 8
-step4        ==&gt;        00000000000000000101100000000000      ==&gt; 22528
-</code></pre><pre tabindex="0"><code>             ==&gt;        00000000000000000000000000000000
-             ==&gt;        01011000000000000000000000000000
-
-step5        ==&gt;        01011000000000000000000000000000      1476395008
-n=26         ==&gt;        00000000000000000000000000011010
-</code></pre><blockquote>
-<p>原理 1234 5678</p>
-</blockquote>
-<pre tabindex="0"><code>1234 5678
-1001 0101
-
-step1
-1234  01            5678 01
-      01                 05
-      20                 60
-      21                 65
-
-        03                 07
-        40                 80
-        43                 87
-
-      2143               6587
-step2
-2143  0011          6587 0011
-      0021               0065
-      4300               8700
-      4321               8765
-step3
-43218765    00001111
-            00004321
-            87650000
-            87654321
-
-8765 4321
-</code></pre><blockquote>
-<p>step1具体:</p>
-</blockquote>
-<pre tabindex="0"><code>12345678
-10010101
-
-12345678 &gt;&gt; 1 ==&gt; 01234567 ==&gt; 01001010 ==&gt; 01001010 &amp; 01010101 ==&gt; 01000000
-12345678 ==&gt; 10010101 &amp; 01010101 ==&gt; 00010101 ==&gt; 00010101 &lt;&lt; 1 ==&gt; 00101010
-
-    01000000
-    00101010
-    01101010  // step1实际结果
-    --------
-    12345678
-    10010101
-    --------
-    21436587
-    01101010  // step1预计
-    --------
+<pre tabindex="0"><code>// 1.选 premium 
+// 2.选 simple chinese
+// 3.版本填 15,名称组织名称随便填 (填完Enter后,别直接按两下Enter,不要关闭命令行AA,需要填入请求码的)
+// 4.0有一个 16位秘钥
+// 4.1填入软件注册界面 永久许可证 &amp; 点激活,提示激活服务器找不到,点手动激活
+// 4.2复制 手动激活 请求码 黏贴到命令行AA,按两下Enter,出现Activation Code
+// 4.3复制base64的激活码 黏贴到注册界面,点击激活
 </code></pre></article>
     </section>
 
@@ -298,7 +251,7 @@ step3
     <footer class="ui bottom attached segment dream-tags" data-html2canvas-ignore>
       
         
-          <a class="ui label" href="/tags/notebook" title="notebook">notebook</a>
+          <a class="ui label" href="/tags/navicate" title="navicate">navicate</a>
         
       
       <div

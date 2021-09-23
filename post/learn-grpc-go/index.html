@@ -15,7 +15,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.84.1" />
+<meta name="generator" content="Hugo 0.88.1" />
 
 <link rel="canonical" href="https://fjjreal.github.io/post/learn-grpc-go/" />
 
@@ -24,8 +24,8 @@
 <meta property="og:description" content="gRpc 入门" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://fjjreal.github.io/post/learn-grpc-go/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2020-11-23T15:40:02&#43;08:00" />
-<meta property="article:modified_time" content="2020-11-23T15:40:02&#43;08:00" />
+<meta property="article:published_time" content="2020-11-23T15:40:02+08:00" />
+<meta property="article:modified_time" content="2020-11-23T15:40:02+08:00" />
 
 
 
@@ -130,7 +130,7 @@
       </header>
 
       <article class="main"><h2 id="环境">环境</h2>
-<pre><code>win10
+<pre tabindex="0"><code>win10
 go 1.15 (mod 关闭) go env -w GO111MODULE=off
 </code></pre><ul>
 <li>protoc</li>
@@ -141,15 +141,15 @@ go 1.15 (mod 关闭) go env -w GO111MODULE=off
 <li>启动client 调用 server</li>
 </ul>
 <h2 id="protoc">protoc</h2>
-<pre><code>https://github.com/protocolbuffers/protobuf/releases
+<pre tabindex="0"><code>https://github.com/protocolbuffers/protobuf/releases
 随便下载一个win版本的zip压缩包,解压将bin文件夹的protoc.exe放入GROOT的bin文件夹（或者其他地方，需要配置环境变量）
 打开 cmd 输入 protoc --version正常显示版本信息即可
 </code></pre><p>编译安装 <a href="https://segmentfault.com/a/1190000013339403">《Grpc+Grpc Gateway实践一 介绍与环境安装》</a></p>
 <h2 id="grpc包">grpc包</h2>
-<pre><code>{{GOPATH}} : go env (GOPATH=C:\Users\***\go)
+<pre tabindex="0"><code>{{GOPATH}} : go env (GOPATH=C:\Users\***\go)
 git clone https://github.com/grpc/grpc-go.git {{GOPATH}}/src/google.golang.org/grpc
 </code></pre><h2 id="protoc-gen-go-font-colorff000--proto3-2020-11-24font">protoc-gen-go <!-- raw HTML omitted --># proto3 2020-11-24<!-- raw HTML omitted --></h2>
-<pre><code>git clone https://github.com/golang/protobuf.git  {{GOPATH}}/src/github.com/golang/protobuf
+<pre tabindex="0"><code>git clone https://github.com/golang/protobuf.git  {{GOPATH}}/src/github.com/golang/protobuf
 go install github.com/golang/protobuf/protoc-gen-go
 如果报 找不到包错误 就 git reset --hard d23c5127
 
@@ -162,7 +162,7 @@ go install
 
 </code></pre><h2 id="protoc生成go代码-font-colorff000--proto3-2020-11-24font">protoc生成go代码 <!-- raw HTML omitted --># proto3 2020-11-24<!-- raw HTML omitted --></h2>
 <p>在{{GOPATH}}/src 下新建grpc-learn项目,在其下新建helloworld文件夹里面放 helloworld.proto（{{GOPATH}}\src\google.golang.org\grpc\examples\helloworld\helloworld）</p>
-<pre><code>protoc --go_out=plubins=grpc:. helloworld.proto
+<pre tabindex="0"><code>protoc --go_out=plubins=grpc:. helloworld.proto
 helloworld 文件夹下生成 helloworld.pb.go
 </code></pre><ul>
 <li>生成 proto4 代码 <!-- raw HTML omitted --># 2020-11-24<!-- raw HTML omitted --></li>
@@ -173,7 +173,7 @@ helloworld 文件夹下生成 helloworld.pb.go
 <li><a href="https://github.com/protocolbuffers/protobuf-go">https://github.com/protocolbuffers/protobuf-go</a></li>
 <li><a href="https://e.coding.net/robinqiwei/googleprotobuf.git">https://e.coding.net/robinqiwei/googleprotobuf.git</a></li>
 </ul>
-<pre><code>clone google.golang.org/protobuf 到 {{GOPATH}}/src/google.golang.org/protobuf
+<pre tabindex="0"><code>clone google.golang.org/protobuf 到 {{GOPATH}}/src/google.golang.org/protobuf
 cd cmd/protoc-gen-go
 go install // 重新生成{{GOPATH}}/bin/protoc-gen-go.exe
 
@@ -182,7 +182,7 @@ helloworld.proto 的 proto3 改为 proto4
 
 </code></pre><h2 id="启动server">启动server</h2>
 <p>将 {{GOPATH}}\src\google.golang.org\grpc\examples\helloworld中greeter_server\main.go重命名server.go放入grpc-learn（与helloworld文件夹同级）。import 中的pb需要修改为grpc-learn/helloworld</p>
-<pre><code>// 包不存在先下载
+<pre tabindex="0"><code>// 包不存在先下载
 git clone https://github.com/golang/net.git {{GOPATH}}/src/golang.org/x/net
 git clone https://github.com/golang/text.git {{GOPATH}}/src/golang.org/x/text
 git clone https://github.com/google/go-genproto.git {{GOPATH}}/src/google.golang.org/genproto
@@ -193,7 +193,7 @@ git run server.go
 </ul>
 <p><a href="https://gitee.com/mirrors/go-genproto/commits/master/googleapis/rpc/status/status.pb.go">gitee的genproto日志</a></p>
 <p><img src="/images/genproto_error.png" alt="genproto"></p>
-<pre><code>...google.golang.org\genproto\googleapis\rpc\status\status.pb.go:42:11: undefined: &quot;github.com/golang/protobuf/proto&quot;.ProtoPack
+<pre tabindex="0"><code>...google.golang.org\genproto\googleapis\rpc\status\status.pb.go:42:11: undefined: &quot;github.com/golang/protobuf/proto&quot;.ProtoPack
 ageIsVersion4
 
 git reset --hard 3f1135a 
@@ -202,12 +202,12 @@ git reset --hard 3f1135a
 <li>grpc ProtoPackageIsVersion4 error 2020-11-24 注：</li>
 </ul>
 <p>查到资料说 ProtoPackageIsVersion4 在 v1.26.x 后面版本才支持，切换分支为 v1.26.x 即可</p>
-<pre><code>...google.golang.org\grpc\binarylog\grpc_binarylog_v1\binarylog.pb.go:46:11: undefined: &quot;github.com/golang/protobuf/proto&quot;.Prot
+<pre tabindex="0"><code>...google.golang.org\grpc\binarylog\grpc_binarylog_v1\binarylog.pb.go:46:11: undefined: &quot;github.com/golang/protobuf/proto&quot;.Prot
    oPackageIsVersion4
 
 </code></pre><h2 id="启动client">启动client</h2>
 <p>将 {{GOPATH}}\src\google.golang.org\grpc\examples\helloworld中greeter_client\main.go重命名client.go放入grpc-learn（与helloworld文件夹同级）。import 中的pb需要修改为grpc-learn/helloworld</p>
-<pre><code>go run client // 正常打印 hello world // server端显示receive world
+<pre tabindex="0"><code>go run client // 正常打印 hello world // server端显示receive world
 go run client &quot;hello_value&quot; // hello hello_value // server端显示receive hello_value
 </code></pre><h2 id="膜拜大佬">膜拜大佬</h2>
 <ul>
@@ -340,6 +340,12 @@ go run client &quot;hello_value&quot; // hello hello_value // server端显示rec
       
       <a class="ui label" href="/tags/micro-service/" title="micro-service">
         micro-service
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/navicate/" title="navicate">
+        navicate
       </a>
     
       
@@ -542,6 +548,12 @@ go run client &quot;hello_value&quot; // hello hello_value // server端显示rec
           </div>
           <div class="content">
             <div class="ui list">
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/post/ubuntu20.04-navicate-premium15/">ubuntu navicate 安装</a>
+                </div>
+              </div>
             
               <div class="item">
                 <div class="content">
