@@ -317,10 +317,13 @@ $tpl<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setLinkV
 </span></code></pre></div></li>
 <li>
 <ul>
-<li>
-<p>例子:</p>
+<li>例子:</li>
+</ul>
+</li>
+</ul>
 <p><img src="/images/phpword_table_temp.png" alt="phpword表格中插入超链"></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">$links <span style="color:#f92672">=</span> [];
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">
+$links <span style="color:#f92672">=</span> [];
 $cols <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;area&#39;</span>,<span style="color:#e6db74">&#39;link_languages&#39;</span>];
 $rows <span style="color:#f92672">=</span> [
     [
@@ -329,8 +332,8 @@ $rows <span style="color:#f92672">=</span> [
             <span style="color:#e6db74">&#39;en&#39;</span><span style="color:#f92672">=&gt;</span>[<span style="color:#e6db74">&#39;name&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;英语&#39;</span>,<span style="color:#e6db74">&#39;url&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;https://baidu.com/s?wd=en&#39;</span>],
             <span style="color:#e6db74">&#39;zh_CN&#39;</span><span style="color:#f92672">=&gt;</span>[<span style="color:#e6db74">&#39;name&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;中文&#39;</span>,<span style="color:#e6db74">&#39;url&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;https://baidu.com/s?wd=zh_CN&#39;</span>],
         ],
-        <span style="color:#e6db74">&#39;link_a&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;https://baidu.com/s?wd=a&#39;</span>
-        <span style="color:#e6db74">&#39;name_link_a&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;超链A&#39;</span>
+        <span style="color:#e6db74">&#39;link_a&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;https://baidu.com/s?wd=a&#39;</span>,
+        <span style="color:#e6db74">&#39;name_link_a&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;超链A&#39;</span>,
     ],
     [
         <span style="color:#e6db74">&#39;area&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;2&#39;</span>,
@@ -338,8 +341,8 @@ $rows <span style="color:#f92672">=</span> [
             <span style="color:#e6db74">&#39;en&#39;</span><span style="color:#f92672">=&gt;</span>[<span style="color:#e6db74">&#39;name&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;英语&#39;</span>,<span style="color:#e6db74">&#39;url&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;https://baidu.com/s?wd=en&#39;</span>],
             <span style="color:#e6db74">&#39;zh_CN&#39;</span><span style="color:#f92672">=&gt;</span>[<span style="color:#e6db74">&#39;name&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;中文&#39;</span>,<span style="color:#e6db74">&#39;url&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;https://baidu.com/s?wd=zh_CN&#39;</span>],
         ],
-        <span style="color:#e6db74">&#39;link_a&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;https://baidu.com/s?wd=b&#39;</span>
-        <span style="color:#e6db74">&#39;name_link_a&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;超链B&#39;</span>
+        <span style="color:#e6db74">&#39;link_a&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;https://baidu.com/s?wd=b&#39;</span>,
+        <span style="color:#e6db74">&#39;name_link_a&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;超链B&#39;</span>,
     ],
 ];
 $table_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;aa&#34;</span>;
@@ -386,11 +389,7 @@ $table <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</spa
     $tpl<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setLinkValue</span>($t,$link);
 }
 
-</code></pre></div></li>
-</ul>
-</li>
-</ul>
-<h1 id="phpword文档">PHPWord文档</h1>
+</code></pre></div><h1 id="phpword文档">PHPWord文档</h1>
 <ul>
 <li><a href="https://phpword.readthedocs.io/">官方文档</a></li>
 <li><a href="https://phpword-zh.readthedocs.io/zh_CN/latest/index.html">中文</a></li>
