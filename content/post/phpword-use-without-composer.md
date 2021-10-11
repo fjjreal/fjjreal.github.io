@@ -202,76 +202,77 @@ categories: [
 
 - * 例子:
 
-    ![phpword表格中插入超链](/images/phpword_table_temp.png)
+![phpword表格中插入超链](/images/phpword_table_temp.png)
 
-    ```php
-    $links = [];
-    $cols = ['area','link_languages'];
-    $rows = [
-        [
-            'area' => '1',
-            'link_languages' => [
-                'en'=>['name'=>'英语','url'=>'https://baidu.com/s?wd=en'],
-                'zh_CN'=>['name'=>'中文','url'=>'https://baidu.com/s?wd=zh_CN'],
-            ],
-            'link_a' => 'https://baidu.com/s?wd=a'
-            'name_link_a' => '超链A'
+```php
+
+$links = [];
+$cols = ['area','link_languages'];
+$rows = [
+    [
+        'area' => '1',
+        'link_languages' => [
+            'en'=>['name'=>'英语','url'=>'https://baidu.com/s?wd=en'],
+            'zh_CN'=>['name'=>'中文','url'=>'https://baidu.com/s?wd=zh_CN'],
         ],
-        [
-            'area' => '2',
-            'link_languages' => [
-                'en'=>['name'=>'英语','url'=>'https://baidu.com/s?wd=en'],
-                'zh_CN'=>['name'=>'中文','url'=>'https://baidu.com/s?wd=zh_CN'],
-            ],
-            'link_a' => 'https://baidu.com/s?wd=b'
-            'name_link_a' => '超链B'
+        'link_a' => 'https://baidu.com/s?wd=a',
+        'name_link_a' => '超链A',
+    ],
+    [
+        'area' => '2',
+        'link_languages' => [
+            'en'=>['name'=>'英语','url'=>'https://baidu.com/s?wd=en'],
+            'zh_CN'=>['name'=>'中文','url'=>'https://baidu.com/s?wd=zh_CN'],
         ],
-    ];
-    $table_name = "aa";
-    $table = new PhpOffice\PhpWord\Element\Table($styles);
-    //header
-    //content
-    foreach ($rows as $row){
-        $table->addRow();
-        foreach ($cols as $col){
-            if(substr($col,0,4) == "link"){
-                $cell = $table->addCell()->addTextRun();
-                // 处理链接
-                if(is_array($row[$col])){
-                    foreach($row[$col] as $index=>$lk){
-                        $t = '${'.$table_name .'_'. $col . '_' . $index . '}';
-                        // 1.
-                        $cell->addText($t.',');
-                        // 2.
-                        $links[$t] = [
-                            'name' => $lk['name'],
-                            'url' => $lk['url']
-                        ];
-                    }
-                }else{
-                    $t = '${'.$table_name .'_'. $col . '}';
+        'link_a' => 'https://baidu.com/s?wd=b',
+        'name_link_a' => '超链B',
+    ],
+];
+$table_name = "aa";
+$table = new PhpOffice\PhpWord\Element\Table($styles);
+//header
+//content
+foreach ($rows as $row){
+    $table->addRow();
+    foreach ($cols as $col){
+        if(substr($col,0,4) == "link"){
+            $cell = $table->addCell()->addTextRun();
+            // 处理链接
+            if(is_array($row[$col])){
+                foreach($row[$col] as $index=>$lk){
+                    $t = '${'.$table_name .'_'. $col . '_' . $index . '}';
                     // 1.
-                    $cell->addText($t);
+                    $cell->addText($t.',');
                     // 2.
                     $links[$t] = [
-                        'name' => $row['name_'.$col],
-                        'url' => $row[$col]
+                        'name' => $lk['name'],
+                        'url' => $lk['url']
                     ];
                 }
             }else{
-                // 处理普通文本
+                $t = '${'.$table_name .'_'. $col . '}';
+                // 1.
+                $cell->addText($t);
+                // 2.
+                $links[$t] = [
+                    'name' => $row['name_'.$col],
+                    'url' => $row[$col]
+                ];
             }
+        }else{
+            // 处理普通文本
         }
     }
-    // 先把table添加上去
-    $tpl->setComplexBlock('aa_table',$table);
-    // 3.
-    foreach($links as $t=>$lk){
-        $link = new PhpOffice\PhpWord\Element\Link($lk['url'],$lk['name'],array('color'=>self::BLUE),null,false);
-        $tpl->setLinkValue($t,$link);
-    }
+}
+// 先把table添加上去
+$tpl->setComplexBlock('aa_table',$table);
+// 3.
+foreach($links as $t=>$lk){
+    $link = new PhpOffice\PhpWord\Element\Link($lk['url'],$lk['name'],array('color'=>self::BLUE),null,false);
+    $tpl->setLinkValue($t,$link);
+}
 
-    ```
+```
 
 
 # PHPWord文档
