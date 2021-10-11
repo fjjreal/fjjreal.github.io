@@ -6,7 +6,16 @@
     <description>Recent content in Categories on JunJian Feng</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Thu, 23 Sep 2021 10:10:02 +0800</lastBuildDate><atom:link href="https://fjjreal.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Oct 2021 10:10:02 +0800</lastBuildDate><atom:link href="https://fjjreal.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>notebook</title>
+      <link>https://fjjreal.github.io/categories/notebook/</link>
+      <pubDate>Mon, 11 Oct 2021 10:10:02 +0800</pubDate>
+      
+      <guid>https://fjjreal.github.io/categories/notebook/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>soft</title>
       <link>https://fjjreal.github.io/categories/soft/</link>
@@ -22,15 +31,6 @@
       <pubDate>Mon, 10 May 2021 09:03:14 +0800</pubDate>
       
       <guid>https://fjjreal.github.io/categories/go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>notebook</title>
-      <link>https://fjjreal.github.io/categories/notebook/</link>
-      <pubDate>Mon, 10 May 2021 09:03:14 +0800</pubDate>
-      
-      <guid>https://fjjreal.github.io/categories/notebook/</guid>
       <description></description>
     </item>
     

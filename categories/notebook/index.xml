@@ -6,7 +6,20 @@
     <description>Recent content in notebook on JunJian Feng</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Mon, 10 May 2021 09:03:14 +0800</lastBuildDate><atom:link href="https://fjjreal.github.io/categories/notebook/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Oct 2021 10:10:02 +0800</lastBuildDate><atom:link href="https://fjjreal.github.io/categories/notebook/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>phpword使用</title>
+      <link>https://fjjreal.github.io/post/phpword-use-without-composer/</link>
+      <pubDate>Mon, 11 Oct 2021 10:10:02 +0800</pubDate>
+      
+      <guid>https://fjjreal.github.io/post/phpword-use-without-composer/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;php5.6&lt;/li&gt;
+&lt;li&gt;yii1.1&lt;/li&gt;
+&lt;li&gt;phpword master v0.18 TemplateProcessor中无setLinkValue方法&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
     <item>
       <title>Notebook 4 Advanced Go Programming Book</title>
       <link>https://fjjreal.github.io/post/notebook-4-advanced-go-programming-book/</link>

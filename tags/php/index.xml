@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>php on JunJian Feng</title>
+    <link>https://fjjreal.github.io/tags/php/</link>
+    <description>Recent content in php on JunJian Feng</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Mon, 11 Oct 2021 10:10:02 +0800</lastBuildDate><atom:link href="https://fjjreal.github.io/tags/php/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>phpword使用</title>
+      <link>https://fjjreal.github.io/post/phpword-use-without-composer/</link>
+      <pubDate>Mon, 11 Oct 2021 10:10:02 +0800</pubDate>
+      
+      <guid>https://fjjreal.github.io/post/phpword-use-without-composer/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;php5.6&lt;/li&gt;
+&lt;li&gt;yii1.1&lt;/li&gt;
+&lt;li&gt;phpword master v0.18 TemplateProcessor中无setLinkValue方法&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

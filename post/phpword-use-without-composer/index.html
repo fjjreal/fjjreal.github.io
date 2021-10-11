@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>phpword使用 | JunJian Feng</title>
+
+    
+
+
+
+<meta name="author" content="JunJian Feng" />
+<meta name="description" content="" />
+
+
+
+<meta name="generator" content="Hugo 0.88.1" />
+
+<link rel="canonical" href="https://fjjreal.github.io/post/phpword-use-without-composer/" />
+
+
+<meta property="og:title" content="phpword使用" />
+<meta property="og:description" content="
+php5.6
+yii1.1
+phpword master v0.18 TemplateProcessor中无setLinkValue方法
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fjjreal.github.io/post/phpword-use-without-composer/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-10-11T10:10:02+08:00" />
+<meta property="article:modified_time" content="2021-10-11T10:10:02+08:00" />
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="phpword使用"/>
+<meta name="twitter:description" content="
+php5.6
+yii1.1
+phpword master v0.18 TemplateProcessor中无setLinkValue方法
+"/>
+
+
+<link rel="stylesheet" href="/css/semantic.min.css" />
+<link rel="stylesheet" href="/css/icomoon.css" />
+<link rel="stylesheet" href="/css/OverlayScrollbars.min.css" />
+<link rel="stylesheet" href="/css/github-markdown.css" />
+<link rel="stylesheet" href="/css/site.css" />
+
+<style>
+  a:hover {
+    text-decoration: underline; 
+  }
+
+  
+  a {
+    color: seagreen !important;
+  }
+  
+
+  
+  .inverted a,
+  .inverted a:hover {
+     color: darkseagreen !important;
+  }
+  
+
+  
+  body.default {
+    
+    background-color: black;
+    
+
+    
+  }
+  
+
+  
+</style>
+
+    
+
+
+
+
+
+
+  </head>
+
+  <body class="default">
+    
+<nav class="ui secondary inverted menu dream-menu">
+
+  <div class="item">
+    <i class="large link bullseye icon dream-flip-toggle" title="翻转！"></i>
+  </div>
+  <div class="item">
+    <i class="large link home icon" title="首页" onclick="window.location.href = 'https:\/\/fjjreal.github.io'"></i>
+  </div>
+  <div class="item">
+    <i class="large link icon theme-switch" onclick="themeSwitch()"></i>
+  </div>
+  
+</nav>
+
+    <div class="flip-container">
+      <div class="flipper">
+        <section class="front">
+          <div class="dream-max-width">
+            
+<div class="ui centered relaxed grid dream-grid">
+  <div class="sixteen wide mobile sixteen wide tablet twelve wide computer column markdown-body dream-single" id="dream-save-post-as-img">
+    
+    <section class="ui top attached segment">
+      <header>
+        <h1 class="ui large header">
+          phpword使用
+          <div class="sub header">
+            @
+            
+              JunJian Feng
+            
+
+            | 
+                星期一，十月 11 日，2021 年
+              
+
+            | 3 分钟阅读
+
+            | 更新于
+              
+                星期一，十月 11 日，2021 年
+              
+          </div>
+        </h1>
+      </header>
+
+      <article class="main"><ul>
+<li>php5.6</li>
+<li>yii1.1</li>
+<li>phpword master v0.18 TemplateProcessor中无setLinkValue方法</li>
+</ul>
+<h1 id="文件-protectedextensionsphpword">文件 protected/extensions/phpword</h1>
+<ul>
+<li>
+<p>src/Phpword中的文件放入vendor</p>
+<pre tabindex="0"><code>├── vendor
+│   ├── Autoloader.php // 后面加入
+│   ├── Collection
+│   ├── ComplexType
+│   ├── Element
+│   ├── Escaper
+│   ├── Exception
+│   ├── IOFactory.php
+│   ├── Media.php
+│   ├── Metadata
+│   ├── PhpWord.php
+│   ├── Reader
+│   ├── resources
+│   ├── Settings.php
+│   ├── Shared
+│   ├── SimpleType
+│   ├── Style
+│   ├── Style.php
+│   ├── Template.php
+│   ├── TemplateProcessor.php
+│   └── Writer
+└── XPHPWord.php // 后面加入
+</code></pre></li>
+</ul>
+<h1 id="引入">引入</h1>
+<ul>
+<li>
+<p><a href="https://gitee.com/nbnat/phpoffice/blob/master/phpoffice/common/Autoloader.php">vendor/Autoloader.php</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">
+<span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">PhpOffice\PhpWord</span>;
+
+<span style="color:#e6db74">/**
+</span><span style="color:#e6db74"> * Autoloader
+</span><span style="color:#e6db74"> */</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Autoloader</span>
+{
+    <span style="color:#e6db74">/** @const string */</span>
+    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">NAMESPACE_PREFIX</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;PhpOffice\\PhpWord\\&#39;</span>;
+
+    <span style="color:#e6db74">/**
+</span><span style="color:#e6db74">     * Register
+</span><span style="color:#e6db74">     *
+</span><span style="color:#e6db74">     * @return void
+</span><span style="color:#e6db74">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">register</span>()
+    {
+        <span style="color:#a6e22e">spl_autoload_register</span>(<span style="color:#66d9ef">array</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">self</span>, <span style="color:#e6db74">&#39;autoload&#39;</span>));
+    }
+
+    <span style="color:#e6db74">/**
+</span><span style="color:#e6db74">     * Autoload
+</span><span style="color:#e6db74">     *
+</span><span style="color:#e6db74">     * @param string $class
+</span><span style="color:#e6db74">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">autoload</span>($class)
+    {
+        $prefixLength <span style="color:#f92672">=</span> <span style="color:#a6e22e">strlen</span>(<span style="color:#a6e22e">self</span><span style="color:#f92672">::</span><span style="color:#a6e22e">NAMESPACE_PREFIX</span>);
+        <span style="color:#66d9ef">if</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">strncmp</span>(<span style="color:#a6e22e">self</span><span style="color:#f92672">::</span><span style="color:#a6e22e">NAMESPACE_PREFIX</span>, $class, $prefixLength)) {
+            $file <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace</span>(<span style="color:#e6db74">&#39;\\&#39;</span>, <span style="color:#a6e22e">DIRECTORY_SEPARATOR</span>, <span style="color:#a6e22e">substr</span>($class, $prefixLength));
+            $file <span style="color:#f92672">=</span> <span style="color:#a6e22e">realpath</span>(<span style="color:#66d9ef">__DIR__</span> <span style="color:#f92672">.</span> (<span style="color:#66d9ef">empty</span>($file) <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;&#39;</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">DIRECTORY_SEPARATOR</span>) <span style="color:#f92672">.</span> $file <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;.php&#39;</span>);
+            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">file_exists</span>($file)) {
+                <span style="color:#e6db74">/** @noinspection PhpIncludeInspection Dynamic includes */</span>
+                <span style="color:#66d9ef">require_once</span> $file;
+            }
+        }
+    }
+}
+
+</code></pre></div></li>
+<li>
+<p><a href="https://github.com/socialmind/yii-phpword/blob/master/XPHPWord.php">XPHPWord</a> 引入phpword</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">
+<span style="color:#a6e22e">spl_autoload_register</span>(<span style="color:#66d9ef">function</span> ($class) {
+    $class <span style="color:#f92672">=</span> <span style="color:#a6e22e">ltrim</span>($class, <span style="color:#e6db74">&#39;\\&#39;</span>);
+    $prefix <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;PhpOffice\PhpWord&#39;</span>;
+    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">strpos</span>($class, $prefix) <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>) {
+        $class <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace</span>(<span style="color:#e6db74">&#39;\\&#39;</span>, <span style="color:#a6e22e">DIRECTORY_SEPARATOR</span>, $class);
+        $class <span style="color:#f92672">=</span> <span style="color:#a6e22e">implode</span>(<span style="color:#a6e22e">DIRECTORY_SEPARATOR</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;phpword&#39;</span>,<span style="color:#e6db74">&#39;PhpWord&#39;</span>)) <span style="color:#f92672">.</span> <span style="color:#a6e22e">substr</span>($class, <span style="color:#a6e22e">strlen</span>($prefix));
+        $file <span style="color:#f92672">=</span> <span style="color:#66d9ef">__DIR__</span> <span style="color:#f92672">.</span> <span style="color:#a6e22e">DIRECTORY_SEPARATOR</span> <span style="color:#f92672">.</span> $class <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;.php&#39;</span>;
+        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">file_exists</span>($file)) {
+            <span style="color:#66d9ef">require_once</span> $file;
+        }
+    }
+});
+
+<span style="color:#66d9ef">require_once</span> <span style="color:#66d9ef">__DIR__</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;/vendor/Autoloader.php&#34;</span>;
+<span style="color:#a6e22e">\PhpOffice\PhpWord\Autoloader</span><span style="color:#f92672">::</span><span style="color:#a6e22e">register</span>();
+
+<span style="color:#e6db74">/**
+</span><span style="color:#e6db74"> * Wrapper for the PHPWord library.
+</span><span style="color:#e6db74"> * @see README.md
+</span><span style="color:#e6db74"> */</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">XPHPWord</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">CComponent</span>
+{
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> $_isInitialized <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+
+    <span style="color:#e6db74">/**
+</span><span style="color:#e6db74">     * Register autoloader.
+</span><span style="color:#e6db74">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">init</span>()
+    {
+        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">self</span><span style="color:#f92672">::</span>$_isInitialized) {
+            <span style="color:#a6e22e">spl_autoload_unregister</span>(<span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;YiiBase&#39;</span>, <span style="color:#e6db74">&#39;autoload&#39;</span>));
+            <span style="color:#66d9ef">require</span>(<span style="color:#a6e22e">dirname</span>(<span style="color:#66d9ef">__FILE__</span>) <span style="color:#f92672">.</span> <span style="color:#a6e22e">DIRECTORY_SEPARATOR</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;vendor&#39;</span> <span style="color:#f92672">.</span> <span style="color:#a6e22e">DIRECTORY_SEPARATOR</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;PhpWord.php&#39;</span>);
+            <span style="color:#a6e22e">spl_autoload_register</span>(<span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;YiiBase&#39;</span>, <span style="color:#e6db74">&#39;autoload&#39;</span>));
+            <span style="color:#a6e22e">self</span><span style="color:#f92672">::</span>$_isInitialized <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+        }
+    }
+
+    <span style="color:#e6db74">/**
+</span><span style="color:#e6db74">     * Returns new PHPWord object. Automatically registers autoloader.
+</span><span style="color:#e6db74">     * @return PhpWord
+</span><span style="color:#e6db74">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createPHPWord</span>()
+    {
+        <span style="color:#a6e22e">self</span><span style="color:#f92672">::</span><span style="color:#a6e22e">init</span>();
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PhpWord</span>();
+    }
+}
+</code></pre></div></li>
+</ul>
+<h1 id="使用">使用</h1>
+<ul>
+<li>
+<p>yii</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">    <span style="color:#a6e22e">Yii</span><span style="color:#f92672">::</span><span style="color:#a6e22e">import</span>(<span style="color:#e6db74">&#39;application.extensions.phpword.XPHPWord&#39;</span>);
+    <span style="color:#a6e22e">XPHPWord</span><span style="color:#f92672">::</span><span style="color:#a6e22e">init</span>();
+
+    $tpl <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PhpOffice\PhpWord\TemplateProcessor</span>($tpl_path);
+    <span style="color:#75715e">// code
+</span></code></pre></div></li>
+<li>
+<p>图表</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">//曲线图
+</span><span style="color:#75715e"></span>$line_chart <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PhpOffice\PhpWord\Element\Chart</span>(
+                <span style="color:#e6db74">&#39;line&#39;</span>,
+                $categories, <span style="color:#75715e">// X轴值
+</span><span style="color:#75715e"></span>                $series1,    <span style="color:#75715e">// Y轴值1
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">array</span>(
+                    <span style="color:#e6db74">&#39;width&#39;</span>  <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">\PhpOffice\PhpWord\Shared\Converter</span><span style="color:#f92672">::</span><span style="color:#a6e22e">cmToEmu</span>(<span style="color:#ae81ff">15</span>),
+                    <span style="color:#e6db74">&#39;height&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">\PhpOffice\PhpWord\Shared\Converter</span><span style="color:#f92672">::</span><span style="color:#a6e22e">cmToEmu</span>(<span style="color:#ae81ff">12</span>),
+                    <span style="color:#e6db74">&#39;categoryAxisTitle&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;日期&#39;</span>,       <span style="color:#75715e">// X轴 - 备注
+</span><span style="color:#75715e"></span>                    <span style="color:#e6db74">&#39;valueAxisTitle&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;平台数|次数&#39;</span>, <span style="color:#75715e">// Y轴 - 备注
+</span><span style="color:#75715e"></span>                    <span style="color:#e6db74">&#39;showAxisLabels&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">true</span>,
+                    <span style="color:#e6db74">&#39;showLegend&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">true</span>,
+                    <span style="color:#e6db74">&#39;3d&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">false</span>
+                ),<span style="color:#e6db74">&#39;平台数&#39;</span>    <span style="color:#75715e">// Y轴值1 - 名称
+</span><span style="color:#75715e"></span>            );
+$line_chart<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getStyle</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setLegendPosition</span>(<span style="color:#e6db74">&#39;b&#39;</span>);
+$line_chart<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getStyle</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setDataLabelOptions</span>(<span style="color:#66d9ef">array</span>(
+    <span style="color:#e6db74">&#39;showCatName&#39;</span>      <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">false</span>, <span style="color:#75715e">// category name
+</span><span style="color:#75715e"></span>));
+$line_chart<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addSeries</span>(
+    $categories, <span style="color:#75715e">// X轴值
+</span><span style="color:#75715e"></span>    $series2,    <span style="color:#75715e">// Y轴值2
+</span><span style="color:#75715e"></span>    <span style="color:#e6db74">&#39;次数&#39;</span>        <span style="color:#75715e">// Y轴值2 - 名称
+</span><span style="color:#75715e"></span>);
+$tpl<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setChart</span>(<span style="color:#e6db74">&#39;aa_chart&#39;</span>,$line_chart);
+</code></pre></div></li>
+<li>
+<p><a href="https://github.com/PHPOffice/PHPWord/pull/1887">超链</a> develop分支应该已有</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">// 单个
+</span><span style="color:#75715e"></span>$link <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PhpOffice\PhpWord\Element\Link</span>($url,$name,<span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;color&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#a6e22e">self</span><span style="color:#f92672">::</span><span style="color:#a6e22e">BLUE</span>),<span style="color:#66d9ef">null</span>,<span style="color:#66d9ef">false</span>);
+$tpl<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setLinkValue</span>(<span style="color:#e6db74">&#39;${need_replace_link_str}&#39;</span>,$link);
+<span style="color:#75715e">// 动态个数做法
+</span><span style="color:#75715e">// 1.先添加等待替换的字符
+</span><span style="color:#75715e">// 2.保存到对象中 [&#39;等待替换的字符&#39;=&gt;[&#39;name&#39;=&gt;&#39;&#39;,&#39;url&#39;=&gt;&#39;&#39;],...]
+</span><span style="color:#75715e">// 3.文件保存前，循环 setLinkValue 等待替换的字符
+</span></code></pre></div></li>
+<li>
+<ul>
+<li>
+<p>例子:</p>
+<p><img src="/images/phpword_table_temp.png" alt="phpword表格中插入超链"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">$links <span style="color:#f92672">=</span> [];
+$cols <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;area&#39;</span>,<span style="color:#e6db74">&#39;link_languages&#39;</span>];
+$rows <span style="color:#f92672">=</span> [
+    [
+        <span style="color:#e6db74">&#39;area&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1&#39;</span>,
+        <span style="color:#e6db74">&#39;link_languages&#39;</span> <span style="color:#f92672">=&gt;</span> [
+            <span style="color:#e6db74">&#39;en&#39;</span><span style="color:#f92672">=&gt;</span>[<span style="color:#e6db74">&#39;name&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;英语&#39;</span>,<span style="color:#e6db74">&#39;url&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;https://baidu.com/s?wd=en&#39;</span>],
+            <span style="color:#e6db74">&#39;zh_CN&#39;</span><span style="color:#f92672">=&gt;</span>[<span style="color:#e6db74">&#39;name&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;中文&#39;</span>,<span style="color:#e6db74">&#39;url&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;https://baidu.com/s?wd=zh_CN&#39;</span>],
+        ],
+        <span style="color:#e6db74">&#39;link_a&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;https://baidu.com/s?wd=a&#39;</span>
+        <span style="color:#e6db74">&#39;name_link_a&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;超链A&#39;</span>
+    ],
+    [
+        <span style="color:#e6db74">&#39;area&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;2&#39;</span>,
+        <span style="color:#e6db74">&#39;link_languages&#39;</span> <span style="color:#f92672">=&gt;</span> [
+            <span style="color:#e6db74">&#39;en&#39;</span><span style="color:#f92672">=&gt;</span>[<span style="color:#e6db74">&#39;name&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;英语&#39;</span>,<span style="color:#e6db74">&#39;url&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;https://baidu.com/s?wd=en&#39;</span>],
+            <span style="color:#e6db74">&#39;zh_CN&#39;</span><span style="color:#f92672">=&gt;</span>[<span style="color:#e6db74">&#39;name&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;中文&#39;</span>,<span style="color:#e6db74">&#39;url&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;https://baidu.com/s?wd=zh_CN&#39;</span>],
+        ],
+        <span style="color:#e6db74">&#39;link_a&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;https://baidu.com/s?wd=b&#39;</span>
+        <span style="color:#e6db74">&#39;name_link_a&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;超链B&#39;</span>
+    ],
+];
+$table_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;aa&#34;</span>;
+$table <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PhpOffice\PhpWord\Element\Table</span>($styles);
+<span style="color:#75715e">//header
+</span><span style="color:#75715e">//content
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">foreach</span> ($rows <span style="color:#66d9ef">as</span> $row){
+    $table<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addRow</span>();
+    <span style="color:#66d9ef">foreach</span> ($cols <span style="color:#66d9ef">as</span> $col){
+        <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">substr</span>($col,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">4</span>) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;link&#34;</span>){
+            $cell <span style="color:#f92672">=</span> $table<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addCell</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addTextRun</span>();
+            <span style="color:#75715e">// 处理链接
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">is_array</span>($row[$col])){
+                <span style="color:#66d9ef">foreach</span>($row[$col] <span style="color:#66d9ef">as</span> $index<span style="color:#f92672">=&gt;</span>$lk){
+                    $t <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;${&#39;</span><span style="color:#f92672">.</span>$table_name <span style="color:#f92672">.</span><span style="color:#e6db74">&#39;_&#39;</span><span style="color:#f92672">.</span> $col <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;_&#39;</span> <span style="color:#f92672">.</span> $index <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;}&#39;</span>;
+                    <span style="color:#75715e">// 1.
+</span><span style="color:#75715e"></span>                    $cell<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addText</span>($t<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;,&#39;</span>);
+                    <span style="color:#75715e">// 2.
+</span><span style="color:#75715e"></span>                    $links[$t] <span style="color:#f92672">=</span> [
+                        <span style="color:#e6db74">&#39;name&#39;</span> <span style="color:#f92672">=&gt;</span> $lk[<span style="color:#e6db74">&#39;name&#39;</span>],
+                        <span style="color:#e6db74">&#39;url&#39;</span> <span style="color:#f92672">=&gt;</span> $lk[<span style="color:#e6db74">&#39;url&#39;</span>]
+                    ];
+                }
+            }<span style="color:#66d9ef">else</span>{
+                $t <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;${&#39;</span><span style="color:#f92672">.</span>$table_name <span style="color:#f92672">.</span><span style="color:#e6db74">&#39;_&#39;</span><span style="color:#f92672">.</span> $col <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;}&#39;</span>;
+                <span style="color:#75715e">// 1.
+</span><span style="color:#75715e"></span>                $cell<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addText</span>($t);
+                <span style="color:#75715e">// 2.
+</span><span style="color:#75715e"></span>                $links[$t] <span style="color:#f92672">=</span> [
+                    <span style="color:#e6db74">&#39;name&#39;</span> <span style="color:#f92672">=&gt;</span> $row[<span style="color:#e6db74">&#39;name_&#39;</span><span style="color:#f92672">.</span>$col],
+                    <span style="color:#e6db74">&#39;url&#39;</span> <span style="color:#f92672">=&gt;</span> $row[$col]
+                ];
+            }
+        }<span style="color:#66d9ef">else</span>{
+            <span style="color:#75715e">// 处理普通文本
+</span><span style="color:#75715e"></span>        }
+    }
+}
+<span style="color:#75715e">// 先把table添加上去
+</span><span style="color:#75715e"></span>$tpl<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setComplexBlock</span>(<span style="color:#e6db74">&#39;aa_table&#39;</span>,$table);
+<span style="color:#75715e">// 3.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">foreach</span>($links <span style="color:#66d9ef">as</span> $t<span style="color:#f92672">=&gt;</span>$lk){
+    $link <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PhpOffice\PhpWord\Element\Link</span>($lk[<span style="color:#e6db74">&#39;url&#39;</span>],$lk[<span style="color:#e6db74">&#39;name&#39;</span>],<span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;color&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#a6e22e">self</span><span style="color:#f92672">::</span><span style="color:#a6e22e">BLUE</span>),<span style="color:#66d9ef">null</span>,<span style="color:#66d9ef">false</span>);
+    $tpl<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setLinkValue</span>($t,$link);
+}
+
+</code></pre></div></li>
+</ul>
+</li>
+</ul>
+<h1 id="phpword文档">PHPWord文档</h1>
+<ul>
+<li><a href="https://phpword.readthedocs.io/">官方文档</a></li>
+<li><a href="https://phpword-zh.readthedocs.io/zh_CN/latest/index.html">中文</a></li>
+<li><a href="https://segmentfault.com/a/1190000019479817?utm_source=tag-newest">PHPWord中文手册整理</a></li>
+<li><a href="https://segmentfault.com/a/1190000007847203">使用PHPWord对Word文件做模板替换</a></li>
+</ul></article>
+    </section>
+
+    
+    
+      
+        
+      
+    
+
+    <footer class="ui bottom attached segment dream-tags" data-html2canvas-ignore>
+      
+        
+          <a class="ui label" href="/tags/phpword" title="phpword">phpword</a>
+        
+          <a class="ui label" href="/tags/php" title="php">php</a>
+        
+      
+      <div
+        class="ui label"
+        style="float: right; cursor: pointer;"
+        onclick="savePostAsImg()">
+        <i class="save icon"></i>保存为图片
+      </div>
+    </footer>
+    
+    
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="sixteen wide mobile sixteen wide tablet four wide computer column">
+    <article class="dream-header">
+  <section class="ui top attached center aligned segment">
+    <div class="ui small circular image">
+      
+        <img src="/img/avatar.jpeg">
+      
+    </div>
+
+    
+    <h1 class="ui medium header">
+    
+      JunJian Feng 分享站
+      <div class="sub header" style="margin-top: 0.5rem;">voojo</div>
+    
+    </h1>
+    
+
+    <div class="ui horizontal list">
+      
+      <a class="item" href="/tags">
+        <i class="tags icon" title="所有标签"></i>
+      </a>
+      <a class="item" href="/categories">
+        <i class="th list icon" title="所有分类"></i>
+      </a>
+    </div>
+  </section>
+
+  
+  <section class="ui attached center aligned segment dream-tags">
+    
+      
+      
+      <a class="ui label" href="/tags/ca/" title="ca">
+        ca
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/command/" title="command">
+        command
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/github-actions/" title="github-actions">
+        github-actions
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/github-pages/" title="github-pages">
+        github-pages
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/go/" title="go">
+        go
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/go1.15&#43;/" title="go1.15&#43;">
+        go1.15&#43;
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/grpc/" title="grpc">
+        grpc
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/hugo/" title="hugo">
+        hugo
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/intro/" title="intro">
+        intro
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/micro-service/" title="micro-service">
+        micro-service
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/navicate/" title="navicate">
+        navicate
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/notebook/" title="notebook">
+        notebook
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/openssl/" title="openssl">
+        openssl
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/php/" title="php">
+        php
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/phpword/" title="phpword">
+        phpword
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/puppeteer/" title="puppeteer">
+        puppeteer
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/svn/" title="svn">
+        svn
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/test/" title="test">
+        test
+      </a>
+    
+      
+      
+      <a class="ui label" href="/tags/vscode/" title="vscode">
+        vscode
+      </a>
+    
+  </section>
+  
+
+  
+  <section class="ui attached segment dream-categories">
+    <div class="ui accordion">
+      
+      
+      
+      
+      
+
+      
+        
+
+        
+          <div class="title">
+            <i class="dropdown icon"></i>
+            
+            
+            <a class="item" href="/categories/cmd/" title="Cmd">
+              Cmd
+            </a>
+          </div>
+          <div class="content">
+            <div class="ui list">
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/post/ubuntu-cmd/">Ubuntu Cmd</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/post/git-cmd/">Git Cmd</a>
+                </div>
+              </div>
+            
+            </div>
+          </div>
+        
+      
+        
+
+        
+          <div class="title">
+            <i class="dropdown icon"></i>
+            
+            
+            <a class="item" href="/categories/daily/" title="Daily">
+              Daily
+            </a>
+          </div>
+          <div class="content">
+            <div class="ui list">
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/contact/">Contact</a>
+                </div>
+              </div>
+            
+            </div>
+          </div>
+        
+      
+        
+
+        
+          <div class="title">
+            <i class="dropdown icon"></i>
+            
+            
+            <a class="item" href="/categories/go/" title="Go">
+              Go
+            </a>
+          </div>
+          <div class="content">
+            <div class="ui list">
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/post/notebook-4-advanced-go-programming-book/">Notebook 4 Advanced Go Programming Book</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/post/go1.15up-grpc-ca/">go 1.15&#43; GRPC 自签CA</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/post/learn-grpc-go/">gRpc 入门</a>
+                </div>
+              </div>
+            
+            </div>
+          </div>
+        
+      
+        
+
+        
+          <div class="title">
+            <i class="dropdown icon"></i>
+            
+            
+            <a class="item" href="/categories/notebook/" title="Notebook">
+              Notebook
+            </a>
+          </div>
+          <div class="content">
+            <div class="ui list">
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/post/phpword-use-without-composer/">phpword使用</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/post/notebook-4-advanced-go-programming-book/">Notebook 4 Advanced Go Programming Book</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/post/hyperf-micro-service-with-consul/">Hyperf Micro Service With Consul</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/post/laravel/">laravel use</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/post/note/">leetcode-notebook</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/post/tips/">notebook</a>
+                </div>
+              </div>
+            
+            </div>
+          </div>
+        
+      
+        
+
+        
+          <div class="title">
+            <i class="dropdown icon"></i>
+            
+            
+            <a class="item" href="/categories/soft/" title="Soft">
+              Soft
+            </a>
+          </div>
+          <div class="content">
+            <div class="ui list">
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/post/ubuntu20.04-navicate-premium15/">ubuntu navicate 安装</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/post/visual-studio-code-multi-env/">VS code 配置环境</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/post/puppeteer-simple-use-pdf/">Puppeteer Simple Use Pdf</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/post/autoupdate-svn-on-win10/">win10下自动更新svn脚本</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/post/hugo-github_pages-github_actions/">Hugo github-Pages github-Actions</a>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="content">
+                  <a class="item" href="/post/first/">Hugo 使用</a>
+                </div>
+              </div>
+            
+            </div>
+          </div>
+        
+      
+
+      
+    </div>
+  </section>
+  
+
+  <section class="ui attached segment header-socials">
+    <nav class="ui secondary menu dream-menu dream-socials">
+  
+    <div class="item">
+      <a href="/index.xml">
+        <i class=" rss square icon" title="RSS"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://github.com/fjjreal" target="_blank">
+        <i class=" github icon" title="GitHub"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="/contact/" >
+        <i class=" qq icon" title="328957143"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="/contact/" >
+        <i class=" wechat icon" title="code1024996"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="mailto:328957143@qq.com">
+        <i class=" mail icon" title="Email"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+
+  
+
+
+
+</nav>
+
+  </section>
+
+  <footer class="ui bottom attached center aligned segment" data-html2canvas-ignore>
+    
+      <p>© 2020 - 2021 JunJian Feng</p>
+    
+
+    <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
+
+    
+
+  </footer>
+
+</article>
+
+  </div>
+</div>
+
+          </div>
+        </section>
+        <section class="back">
+          <div class="dream-max-width">
+            <div class="ui centered relaxed grid dream-grid dream-back">
+  
+  
+  
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    <article>
+      <div class="ui top attached segment">
+        <h3 class="ui header">社交链接</h3>
+      </div>
+      <div class="ui bottom attached segment">
+        <nav class="ui secondary menu dream-menu dream-socials">
+  
+    <div class="item">
+      <a href="/index.xml">
+        <i class="large rss square icon" title="RSS"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="https://github.com/fjjreal" target="_blank">
+        <i class="large github icon" title="GitHub"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="/contact/" >
+        <i class="large qq icon" title="328957143"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="/contact/" >
+        <i class="large wechat icon" title="code1024996"></i>
+      </a>
+    </div>
+  
+
+  
+    <div class="item">
+      <a href="mailto:328957143@qq.com">
+        <i class="large mail icon" title="Email"></i>
+      </a>
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+
+  
+
+
+
+</nav>
+
+      </div>
+    </article>
+  </section>
+
+  <section class="sixteen wide mobile eight wide tablet four wide computer column dream-column">
+    
+  </section>
+
+  
+    
+  
+</div>
+
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+  window.backgroundDark =  null 
+  window.backgroundImageDark =  null 
+  window.darkNav =  true 
+  window.hasTwitterEmbed =  null 
+
+  if (window.hasTwitterEmbed) {
+    
+    window.twttr = (function (d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {}
+      if (d.getElementById(id)) return t
+      js = d.createElement(s)
+      js.id = id
+      js.src = 'https://platform.twitter.com/widgets.js'
+      fjs.parentNode.insertBefore(js, fjs)
+
+      t._e = []
+      t.ready = function (f) {
+        t._e.push(f)
+      }
+
+      return t
+    })(document, 'script', 'twitter-wjs')
+  }
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/semantic.min.js"></script>
+<script src="/js/jquery.overlayScrollbars.min.js"></script>
+<script src="/js/header.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/theme.js"></script>
+
+    
+<script src="/js/html2canvas.min.js"></script>
+<script src="/js/post.js"></script>
+
+
+
+
+
+    
+
+    
+  </body>
+</html>
