@@ -15,7 +15,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.88.1" />
+<meta name="generator" content="Hugo 0.90.1" />
 
 <link rel="canonical" href="https://fjjreal.github.io/post/phpword-use-without-composer/" />
 
@@ -389,6 +389,19 @@ $table <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</spa
     $tpl<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setLinkValue</span>($t,$link);
 }
 
+</code></pre></div><ul>
+<li>打开文件时更新目录</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">
+$tpl<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setUpdateFields</span>(<span style="color:#66d9ef">true</span>); <span style="color:#75715e">// 只有 office 起效
+</span><span style="color:#75715e"></span>
+</code></pre></div><ul>
+<li>
+<p>转义字符</p>
+<p><a href="https://github.com/PHPOffice/PHPWord/issues/2088">issue</a></p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">$content <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace</span>(<span style="color:#e6db74">&#39;&amp;&#39;</span>, <span style="color:#e6db74">&#39;&amp;amp;&#39;</span>, $content);
 </code></pre></div><h1 id="phpword文档">PHPWord文档</h1>
 <ul>
 <li><a href="https://phpword.readthedocs.io/">官方文档</a></li>
