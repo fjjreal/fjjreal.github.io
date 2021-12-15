@@ -274,6 +274,21 @@ foreach($links as $t=>$lk){
 
 ```
 
+- 打开文件时更新目录
+
+```php
+
+$tpl->setUpdateFields(true); // 只有 office 起效
+
+```
+
+- 转义字符
+
+    [issue](https://github.com/PHPOffice/PHPWord/issues/2088)
+
+```php
+$content = str_replace('&', '&amp;', $content);
+```
 
 # PHPWord文档
 
