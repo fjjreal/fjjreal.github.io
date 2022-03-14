@@ -15,7 +15,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.90.1" />
+<meta name="generator" content="Hugo 0.94.2" />
 
 <link rel="canonical" href="https://fjjreal.github.io/post/first/" />
 
@@ -148,15 +148,15 @@ go:1.13
 hugo new file_path/file_name.md
 </code></pre><h4 id="文件">文件</h4>
 <pre tabindex="0"><code>---
-title: &quot;&quot;                       # 文章标题
+title: &#34;&#34;                       # 文章标题
 date: 2020-11-19T09:25:02+08:00 # 文件时间
-description: &quot;第一次使用hugo&quot;    # 关于此文件简单描述
+description: &#34;第一次使用hugo&#34;    # 关于此文件简单描述
 cover: /img/default2.jpg        # 封面
 tags: [                         # 标签
-    &quot;test&quot;,
+    &#34;test&#34;,
 ]
 categories: [                   # 文章类目
-    &quot;daily&quot;,
+    &#34;daily&#34;,
 ]
 ---
 
@@ -164,7 +164,6 @@ categories: [                   # 文章类目
 &lt;!--more--&gt;                     # 预览结束标记
 
 ### 文章正文
-
 </code></pre><ul>
 <li>使用他人主题 <a href="https://themes.gohugo.io/">https://themes.gohugo.io/</a></li>
 </ul>
@@ -175,13 +174,13 @@ hugo server --theme=***** --buildDrafts
 
 // 部署 github page等
 1.新建github项目:github用户名称.github.io
-2.生成静态资源 hugo --theme=***** --baseUrl=&quot;https://github用户名称.github.io/&quot;
+2.生成静态资源 hugo --theme=***** --baseUrl=&#34;https://github用户名称.github.io/&#34;
 3.上传
 	cd public
-	echo &quot;# github用户名称.github.io&quot; &gt;&gt; README.md
+	echo &#34;# github用户名称.github.io&#34; &gt;&gt; README.md
 	git init
 	git add README.md
-	git commit -m &quot;first commit&quot;
+	git commit -m &#34;first commit&#34;
 	git branch -M main
 	git remote add origin https://github.com/0000/0000.git
 	git push -u origin main
@@ -647,7 +646,7 @@ hugo server --theme=***** --buildDrafts
 
   <footer class="ui bottom attached center aligned segment" data-html2canvas-ignore>
     
-      <p>© 2020 - 2021 JunJian Feng</p>
+      <p>© 2020 - 2022 JunJian Feng</p>
     
 
     <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>

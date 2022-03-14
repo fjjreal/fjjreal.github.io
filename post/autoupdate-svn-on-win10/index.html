@@ -15,7 +15,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.90.1" />
+<meta name="generator" content="Hugo 0.94.2" />
 
 <link rel="canonical" href="https://fjjreal.github.io/post/autoupdate-svn-on-win10/" />
 
@@ -158,25 +158,25 @@ tool: - ApacheSubversion命令行工具"/>
 <h1 id="更新脚本-svn-updatebat">更新脚本 svn-update.bat</h1>
 <pre tabindex="0"><code>@echo off
 set url=SVN服务器端项目地址
-for /f &quot;tokens=2* delims=:&quot; %%i in ('&quot;D:\svn_cmd_tool\bin\svn.exe info %url% | find &quot;Last Changed Rev:&quot;&quot;') do set online=%%i
+for /f &#34;tokens=2* delims=:&#34; %%i in (&#39;&#34;D:\svn_cmd_tool\bin\svn.exe info %url% | find &#34;Last Changed Rev:&#34;&#34;&#39;) do set online=%%i
 set localurl=本地项目地址
-for /f &quot;tokens=2* delims=:&quot; %%i in ('&quot;D:\svn_cmd_tool\bin\svn.exe info %localurl% | find &quot;Revision:&quot;&quot;') do set local=%%i
-if &quot;%online%&quot; equ &quot;%local%&quot; (echo &quot;not need svn update&quot;) else (DATE &gt;&gt; svn.update.log &amp; D:\svn_cmd_tool\bin\svn.exe update 本地项目地址 &gt;&gt; svn.update.log)
+for /f &#34;tokens=2* delims=:&#34; %%i in (&#39;&#34;D:\svn_cmd_tool\bin\svn.exe info %localurl% | find &#34;Revision:&#34;&#34;&#39;) do set local=%%i
+if &#34;%online%&#34; equ &#34;%local%&#34; (echo &#34;not need svn update&#34;) else (DATE &gt;&gt; svn.update.log &amp; D:\svn_cmd_tool\bin\svn.exe update 本地项目地址 &gt;&gt; svn.update.log)
 pause
 
 // 也可以给svn配置环境变量，将D:\svn_cmd_tool\bin\svn.exe替换为svn
 // win7把需要更新时的DATE改为echo %date% %time%
 </code></pre><h1 id="循环进程-callsvnupdatevbs">循环进程 callSVNUpdate.vbs</h1>
-<pre tabindex="0"><code>'指定时间间隔调用.bat文件
-'停止脚本请在任务管理器结束wscript.exe
-Set ws=wscript.createobject(&quot;wscript.shell&quot;)
+<pre tabindex="0"><code>&#39;指定时间间隔调用.bat文件
+&#39;停止脚本请在任务管理器结束wscript.exe
+Set ws=wscript.createobject(&#34;wscript.shell&#34;)
 dim bat
-'需运行的文件
-bat=&quot;cmd.exe /c svn-update.bat&quot;
+&#39;需运行的文件
+bat=&#34;cmd.exe /c svn-update.bat&#34;
 do
-'0表示不显示窗口，1显示，调试用
+&#39;0表示不显示窗口，1显示，调试用
 ws.run bat,0
-'每5分钟运行一次
+&#39;每5分钟运行一次
 wscript.sleep 300000
 loop
 </code></pre><h1 id="加入开机自启计划任务">加入开机自启计划任务</h1>
@@ -645,7 +645,7 @@ loop
 
   <footer class="ui bottom attached center aligned segment" data-html2canvas-ignore>
     
-      <p>© 2020 - 2021 JunJian Feng</p>
+      <p>© 2020 - 2022 JunJian Feng</p>
     
 
     <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>

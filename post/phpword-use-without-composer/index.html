@@ -15,7 +15,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.90.1" />
+<meta name="generator" content="Hugo 0.94.2" />
 
 <link rel="canonical" href="https://fjjreal.github.io/post/phpword-use-without-composer/" />
 
@@ -174,147 +174,146 @@ phpword master v0.18 TemplateProcessor中无setLinkValue方法
 <ul>
 <li>
 <p><a href="https://gitee.com/nbnat/phpoffice/blob/master/phpoffice/common/Autoloader.php">vendor/Autoloader.php</a></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">
-<span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">PhpOffice\PhpWord</span>;
-
-<span style="color:#e6db74">/**
-</span><span style="color:#e6db74"> * Autoloader
-</span><span style="color:#e6db74"> */</span>
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Autoloader</span>
-{
-    <span style="color:#e6db74">/** @const string */</span>
-    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">NAMESPACE_PREFIX</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;PhpOffice\\PhpWord\\&#39;</span>;
-
-    <span style="color:#e6db74">/**
-</span><span style="color:#e6db74">     * Register
-</span><span style="color:#e6db74">     *
-</span><span style="color:#e6db74">     * @return void
-</span><span style="color:#e6db74">     */</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">register</span>()
-    {
-        <span style="color:#a6e22e">spl_autoload_register</span>(<span style="color:#66d9ef">array</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">self</span>, <span style="color:#e6db74">&#39;autoload&#39;</span>));
-    }
-
-    <span style="color:#e6db74">/**
-</span><span style="color:#e6db74">     * Autoload
-</span><span style="color:#e6db74">     *
-</span><span style="color:#e6db74">     * @param string $class
-</span><span style="color:#e6db74">     */</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">autoload</span>($class)
-    {
-        $prefixLength <span style="color:#f92672">=</span> <span style="color:#a6e22e">strlen</span>(<span style="color:#a6e22e">self</span><span style="color:#f92672">::</span><span style="color:#a6e22e">NAMESPACE_PREFIX</span>);
-        <span style="color:#66d9ef">if</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">strncmp</span>(<span style="color:#a6e22e">self</span><span style="color:#f92672">::</span><span style="color:#a6e22e">NAMESPACE_PREFIX</span>, $class, $prefixLength)) {
-            $file <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace</span>(<span style="color:#e6db74">&#39;\\&#39;</span>, <span style="color:#a6e22e">DIRECTORY_SEPARATOR</span>, <span style="color:#a6e22e">substr</span>($class, $prefixLength));
-            $file <span style="color:#f92672">=</span> <span style="color:#a6e22e">realpath</span>(<span style="color:#66d9ef">__DIR__</span> <span style="color:#f92672">.</span> (<span style="color:#66d9ef">empty</span>($file) <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;&#39;</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">DIRECTORY_SEPARATOR</span>) <span style="color:#f92672">.</span> $file <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;.php&#39;</span>);
-            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">file_exists</span>($file)) {
-                <span style="color:#e6db74">/** @noinspection PhpIncludeInspection Dynamic includes */</span>
-                <span style="color:#66d9ef">require_once</span> $file;
-            }
-        }
-    }
-}
-
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">PhpOffice\PhpWord</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * Autoloader
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Autoloader</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/** @const string */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">NAMESPACE_PREFIX</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;PhpOffice\\PhpWord\\&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * Register
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @return void
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">register</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">spl_autoload_register</span>(<span style="color:#66d9ef">array</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">self</span>, <span style="color:#e6db74">&#39;autoload&#39;</span>));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * Autoload
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @param string $class
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">autoload</span>($class)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $prefixLength <span style="color:#f92672">=</span> <span style="color:#a6e22e">strlen</span>(<span style="color:#a6e22e">self</span><span style="color:#f92672">::</span><span style="color:#a6e22e">NAMESPACE_PREFIX</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">strncmp</span>(<span style="color:#a6e22e">self</span><span style="color:#f92672">::</span><span style="color:#a6e22e">NAMESPACE_PREFIX</span>, $class, $prefixLength)) {
+</span></span><span style="display:flex;"><span>            $file <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace</span>(<span style="color:#e6db74">&#39;\\&#39;</span>, <span style="color:#a6e22e">DIRECTORY_SEPARATOR</span>, <span style="color:#a6e22e">substr</span>($class, $prefixLength));
+</span></span><span style="display:flex;"><span>            $file <span style="color:#f92672">=</span> <span style="color:#a6e22e">realpath</span>(<span style="color:#66d9ef">__DIR__</span> <span style="color:#f92672">.</span> (<span style="color:#66d9ef">empty</span>($file) <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;&#39;</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">DIRECTORY_SEPARATOR</span>) <span style="color:#f92672">.</span> $file <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;.php&#39;</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">file_exists</span>($file)) {
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">/** @noinspection PhpIncludeInspection Dynamic includes */</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">require_once</span> $file;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
 <li>
 <p><a href="https://github.com/socialmind/yii-phpword/blob/master/XPHPWord.php">XPHPWord</a> 引入phpword</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">
-<span style="color:#a6e22e">spl_autoload_register</span>(<span style="color:#66d9ef">function</span> ($class) {
-    $class <span style="color:#f92672">=</span> <span style="color:#a6e22e">ltrim</span>($class, <span style="color:#e6db74">&#39;\\&#39;</span>);
-    $prefix <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;PhpOffice\PhpWord&#39;</span>;
-    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">strpos</span>($class, $prefix) <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>) {
-        $class <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace</span>(<span style="color:#e6db74">&#39;\\&#39;</span>, <span style="color:#a6e22e">DIRECTORY_SEPARATOR</span>, $class);
-        $class <span style="color:#f92672">=</span> <span style="color:#a6e22e">implode</span>(<span style="color:#a6e22e">DIRECTORY_SEPARATOR</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;phpword&#39;</span>,<span style="color:#e6db74">&#39;PhpWord&#39;</span>)) <span style="color:#f92672">.</span> <span style="color:#a6e22e">substr</span>($class, <span style="color:#a6e22e">strlen</span>($prefix));
-        $file <span style="color:#f92672">=</span> <span style="color:#66d9ef">__DIR__</span> <span style="color:#f92672">.</span> <span style="color:#a6e22e">DIRECTORY_SEPARATOR</span> <span style="color:#f92672">.</span> $class <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;.php&#39;</span>;
-        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">file_exists</span>($file)) {
-            <span style="color:#66d9ef">require_once</span> $file;
-        }
-    }
-});
-
-<span style="color:#66d9ef">require_once</span> <span style="color:#66d9ef">__DIR__</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;/vendor/Autoloader.php&#34;</span>;
-<span style="color:#a6e22e">\PhpOffice\PhpWord\Autoloader</span><span style="color:#f92672">::</span><span style="color:#a6e22e">register</span>();
-
-<span style="color:#e6db74">/**
-</span><span style="color:#e6db74"> * Wrapper for the PHPWord library.
-</span><span style="color:#e6db74"> * @see README.md
-</span><span style="color:#e6db74"> */</span>
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">XPHPWord</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">CComponent</span>
-{
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> $_isInitialized <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
-
-    <span style="color:#e6db74">/**
-</span><span style="color:#e6db74">     * Register autoloader.
-</span><span style="color:#e6db74">     */</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">init</span>()
-    {
-        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">self</span><span style="color:#f92672">::</span>$_isInitialized) {
-            <span style="color:#a6e22e">spl_autoload_unregister</span>(<span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;YiiBase&#39;</span>, <span style="color:#e6db74">&#39;autoload&#39;</span>));
-            <span style="color:#66d9ef">require</span>(<span style="color:#a6e22e">dirname</span>(<span style="color:#66d9ef">__FILE__</span>) <span style="color:#f92672">.</span> <span style="color:#a6e22e">DIRECTORY_SEPARATOR</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;vendor&#39;</span> <span style="color:#f92672">.</span> <span style="color:#a6e22e">DIRECTORY_SEPARATOR</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;PhpWord.php&#39;</span>);
-            <span style="color:#a6e22e">spl_autoload_register</span>(<span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;YiiBase&#39;</span>, <span style="color:#e6db74">&#39;autoload&#39;</span>));
-            <span style="color:#a6e22e">self</span><span style="color:#f92672">::</span>$_isInitialized <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
-        }
-    }
-
-    <span style="color:#e6db74">/**
-</span><span style="color:#e6db74">     * Returns new PHPWord object. Automatically registers autoloader.
-</span><span style="color:#e6db74">     * @return PhpWord
-</span><span style="color:#e6db74">     */</span>
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createPHPWord</span>()
-    {
-        <span style="color:#a6e22e">self</span><span style="color:#f92672">::</span><span style="color:#a6e22e">init</span>();
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PhpWord</span>();
-    }
-}
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">spl_autoload_register</span>(<span style="color:#66d9ef">function</span> ($class) {
+</span></span><span style="display:flex;"><span>    $class <span style="color:#f92672">=</span> <span style="color:#a6e22e">ltrim</span>($class, <span style="color:#e6db74">&#39;\\&#39;</span>);
+</span></span><span style="display:flex;"><span>    $prefix <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;PhpOffice\PhpWord&#39;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">strpos</span>($class, $prefix) <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        $class <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace</span>(<span style="color:#e6db74">&#39;\\&#39;</span>, <span style="color:#a6e22e">DIRECTORY_SEPARATOR</span>, $class);
+</span></span><span style="display:flex;"><span>        $class <span style="color:#f92672">=</span> <span style="color:#a6e22e">implode</span>(<span style="color:#a6e22e">DIRECTORY_SEPARATOR</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;phpword&#39;</span>,<span style="color:#e6db74">&#39;PhpWord&#39;</span>)) <span style="color:#f92672">.</span> <span style="color:#a6e22e">substr</span>($class, <span style="color:#a6e22e">strlen</span>($prefix));
+</span></span><span style="display:flex;"><span>        $file <span style="color:#f92672">=</span> <span style="color:#66d9ef">__DIR__</span> <span style="color:#f92672">.</span> <span style="color:#a6e22e">DIRECTORY_SEPARATOR</span> <span style="color:#f92672">.</span> $class <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;.php&#39;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">file_exists</span>($file)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">require_once</span> $file;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">require_once</span> <span style="color:#66d9ef">__DIR__</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;/vendor/Autoloader.php&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">\PhpOffice\PhpWord\Autoloader</span><span style="color:#f92672">::</span><span style="color:#a6e22e">register</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * Wrapper for the PHPWord library.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * @see README.md
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">XPHPWord</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">CComponent</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> $_isInitialized <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * Register autoloader.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">init</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">self</span><span style="color:#f92672">::</span>$_isInitialized) {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">spl_autoload_unregister</span>(<span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;YiiBase&#39;</span>, <span style="color:#e6db74">&#39;autoload&#39;</span>));
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">require</span>(<span style="color:#a6e22e">dirname</span>(<span style="color:#66d9ef">__FILE__</span>) <span style="color:#f92672">.</span> <span style="color:#a6e22e">DIRECTORY_SEPARATOR</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;vendor&#39;</span> <span style="color:#f92672">.</span> <span style="color:#a6e22e">DIRECTORY_SEPARATOR</span> <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;PhpWord.php&#39;</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">spl_autoload_register</span>(<span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;YiiBase&#39;</span>, <span style="color:#e6db74">&#39;autoload&#39;</span>));
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">self</span><span style="color:#f92672">::</span>$_isInitialized <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * Returns new PHPWord object. Automatically registers autoloader.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     * @return PhpWord
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createPHPWord</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">self</span><span style="color:#f92672">::</span><span style="color:#a6e22e">init</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PhpWord</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
 </ul>
 <h1 id="使用">使用</h1>
 <ul>
 <li>
 <p>yii</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">    <span style="color:#a6e22e">Yii</span><span style="color:#f92672">::</span><span style="color:#a6e22e">import</span>(<span style="color:#e6db74">&#39;application.extensions.phpword.XPHPWord&#39;</span>);
-    <span style="color:#a6e22e">XPHPWord</span><span style="color:#f92672">::</span><span style="color:#a6e22e">init</span>();
-
-    $tpl <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PhpOffice\PhpWord\TemplateProcessor</span>($tpl_path);
-    <span style="color:#75715e">// code
-</span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>    <span style="color:#a6e22e">Yii</span><span style="color:#f92672">::</span><span style="color:#a6e22e">import</span>(<span style="color:#e6db74">&#39;application.extensions.phpword.XPHPWord&#39;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">XPHPWord</span><span style="color:#f92672">::</span><span style="color:#a6e22e">init</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $tpl <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PhpOffice\PhpWord\TemplateProcessor</span>($tpl_path);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// code
+</span></span></span></code></pre></div></li>
 <li>
 <p>图表</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">//曲线图
-</span><span style="color:#75715e"></span>$line_chart <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PhpOffice\PhpWord\Element\Chart</span>(
-                <span style="color:#e6db74">&#39;line&#39;</span>,
-                $categories, <span style="color:#75715e">// X轴值
-</span><span style="color:#75715e"></span>                $series1,    <span style="color:#75715e">// Y轴值1
-</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">array</span>(
-                    <span style="color:#e6db74">&#39;width&#39;</span>  <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">\PhpOffice\PhpWord\Shared\Converter</span><span style="color:#f92672">::</span><span style="color:#a6e22e">cmToEmu</span>(<span style="color:#ae81ff">15</span>),
-                    <span style="color:#e6db74">&#39;height&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">\PhpOffice\PhpWord\Shared\Converter</span><span style="color:#f92672">::</span><span style="color:#a6e22e">cmToEmu</span>(<span style="color:#ae81ff">12</span>),
-                    <span style="color:#e6db74">&#39;categoryAxisTitle&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;日期&#39;</span>,       <span style="color:#75715e">// X轴 - 备注
-</span><span style="color:#75715e"></span>                    <span style="color:#e6db74">&#39;valueAxisTitle&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;平台数|次数&#39;</span>, <span style="color:#75715e">// Y轴 - 备注
-</span><span style="color:#75715e"></span>                    <span style="color:#e6db74">&#39;showAxisLabels&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">true</span>,
-                    <span style="color:#e6db74">&#39;showLegend&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">true</span>,
-                    <span style="color:#e6db74">&#39;3d&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">false</span>
-                ),<span style="color:#e6db74">&#39;平台数&#39;</span>    <span style="color:#75715e">// Y轴值1 - 名称
-</span><span style="color:#75715e"></span>            );
-$line_chart<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getStyle</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setLegendPosition</span>(<span style="color:#e6db74">&#39;b&#39;</span>);
-$line_chart<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getStyle</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setDataLabelOptions</span>(<span style="color:#66d9ef">array</span>(
-    <span style="color:#e6db74">&#39;showCatName&#39;</span>      <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">false</span>, <span style="color:#75715e">// category name
-</span><span style="color:#75715e"></span>));
-$line_chart<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addSeries</span>(
-    $categories, <span style="color:#75715e">// X轴值
-</span><span style="color:#75715e"></span>    $series2,    <span style="color:#75715e">// Y轴值2
-</span><span style="color:#75715e"></span>    <span style="color:#e6db74">&#39;次数&#39;</span>        <span style="color:#75715e">// Y轴值2 - 名称
-</span><span style="color:#75715e"></span>);
-$tpl<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setChart</span>(<span style="color:#e6db74">&#39;aa_chart&#39;</span>,$line_chart);
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#75715e">//曲线图
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>$line_chart <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PhpOffice\PhpWord\Element\Chart</span>(
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;line&#39;</span>,
+</span></span><span style="display:flex;"><span>                $categories, <span style="color:#75715e">// X轴值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                $series1,    <span style="color:#75715e">// Y轴值1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#66d9ef">array</span>(
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;width&#39;</span>  <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">\PhpOffice\PhpWord\Shared\Converter</span><span style="color:#f92672">::</span><span style="color:#a6e22e">cmToEmu</span>(<span style="color:#ae81ff">15</span>),
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;height&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">\PhpOffice\PhpWord\Shared\Converter</span><span style="color:#f92672">::</span><span style="color:#a6e22e">cmToEmu</span>(<span style="color:#ae81ff">12</span>),
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;categoryAxisTitle&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;日期&#39;</span>,       <span style="color:#75715e">// X轴 - 备注
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                    <span style="color:#e6db74">&#39;valueAxisTitle&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;平台数|次数&#39;</span>, <span style="color:#75715e">// Y轴 - 备注
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                    <span style="color:#e6db74">&#39;showAxisLabels&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;showLegend&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;3d&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>                ),<span style="color:#e6db74">&#39;平台数&#39;</span>    <span style="color:#75715e">// Y轴值1 - 名称
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            );
+</span></span><span style="display:flex;"><span>$line_chart<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getStyle</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setLegendPosition</span>(<span style="color:#e6db74">&#39;b&#39;</span>);
+</span></span><span style="display:flex;"><span>$line_chart<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getStyle</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setDataLabelOptions</span>(<span style="color:#66d9ef">array</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;showCatName&#39;</span>      <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">false</span>, <span style="color:#75715e">// category name
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>));
+</span></span><span style="display:flex;"><span>$line_chart<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addSeries</span>(
+</span></span><span style="display:flex;"><span>    $categories, <span style="color:#75715e">// X轴值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    $series2,    <span style="color:#75715e">// Y轴值2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#e6db74">&#39;次数&#39;</span>        <span style="color:#75715e">// Y轴值2 - 名称
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span><span style="display:flex;"><span>$tpl<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setChart</span>(<span style="color:#e6db74">&#39;aa_chart&#39;</span>,$line_chart);
+</span></span></code></pre></div></li>
 <li>
 <p><a href="https://github.com/PHPOffice/PHPWord/pull/1887">超链</a> develop分支应该已有</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">// 单个
-</span><span style="color:#75715e"></span>$link <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PhpOffice\PhpWord\Element\Link</span>($url,$name,<span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;color&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#a6e22e">self</span><span style="color:#f92672">::</span><span style="color:#a6e22e">BLUE</span>),<span style="color:#66d9ef">null</span>,<span style="color:#66d9ef">false</span>);
-$tpl<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setLinkValue</span>(<span style="color:#e6db74">&#39;${need_replace_link_str}&#39;</span>,$link);
-<span style="color:#75715e">// 动态个数做法
-</span><span style="color:#75715e">// 1.先添加等待替换的字符
-</span><span style="color:#75715e">// 2.保存到对象中 [&#39;等待替换的字符&#39;=&gt;[&#39;name&#39;=&gt;&#39;&#39;,&#39;url&#39;=&gt;&#39;&#39;],...]
-</span><span style="color:#75715e">// 3.文件保存前，循环 setLinkValue 等待替换的字符
-</span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#75715e">// 单个
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>$link <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PhpOffice\PhpWord\Element\Link</span>($url,$name,<span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;color&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#a6e22e">self</span><span style="color:#f92672">::</span><span style="color:#a6e22e">BLUE</span>),<span style="color:#66d9ef">null</span>,<span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span>$tpl<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setLinkValue</span>(<span style="color:#e6db74">&#39;${need_replace_link_str}&#39;</span>,$link);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 动态个数做法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 1.先添加等待替换的字符
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 2.保存到对象中 [&#39;等待替换的字符&#39;=&gt;[&#39;name&#39;=&gt;&#39;&#39;,&#39;url&#39;=&gt;&#39;&#39;],...]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 3.文件保存前，循环 setLinkValue 等待替换的字符
+</span></span></span></code></pre></div></li>
 <li>
 <ul>
 <li>例子:</li>
@@ -322,87 +321,85 @@ $tpl<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setLinkV
 </li>
 </ul>
 <p><img src="/images/phpword_table_temp.png" alt="phpword表格中插入超链"></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">
-$links <span style="color:#f92672">=</span> [];
-$cols <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;area&#39;</span>,<span style="color:#e6db74">&#39;link_languages&#39;</span>];
-$rows <span style="color:#f92672">=</span> [
-    [
-        <span style="color:#e6db74">&#39;area&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1&#39;</span>,
-        <span style="color:#e6db74">&#39;link_languages&#39;</span> <span style="color:#f92672">=&gt;</span> [
-            <span style="color:#e6db74">&#39;en&#39;</span><span style="color:#f92672">=&gt;</span>[<span style="color:#e6db74">&#39;name&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;英语&#39;</span>,<span style="color:#e6db74">&#39;url&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;https://baidu.com/s?wd=en&#39;</span>],
-            <span style="color:#e6db74">&#39;zh_CN&#39;</span><span style="color:#f92672">=&gt;</span>[<span style="color:#e6db74">&#39;name&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;中文&#39;</span>,<span style="color:#e6db74">&#39;url&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;https://baidu.com/s?wd=zh_CN&#39;</span>],
-        ],
-        <span style="color:#e6db74">&#39;link_a&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;https://baidu.com/s?wd=a&#39;</span>,
-        <span style="color:#e6db74">&#39;name_link_a&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;超链A&#39;</span>,
-    ],
-    [
-        <span style="color:#e6db74">&#39;area&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;2&#39;</span>,
-        <span style="color:#e6db74">&#39;link_languages&#39;</span> <span style="color:#f92672">=&gt;</span> [
-            <span style="color:#e6db74">&#39;en&#39;</span><span style="color:#f92672">=&gt;</span>[<span style="color:#e6db74">&#39;name&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;英语&#39;</span>,<span style="color:#e6db74">&#39;url&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;https://baidu.com/s?wd=en&#39;</span>],
-            <span style="color:#e6db74">&#39;zh_CN&#39;</span><span style="color:#f92672">=&gt;</span>[<span style="color:#e6db74">&#39;name&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;中文&#39;</span>,<span style="color:#e6db74">&#39;url&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;https://baidu.com/s?wd=zh_CN&#39;</span>],
-        ],
-        <span style="color:#e6db74">&#39;link_a&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;https://baidu.com/s?wd=b&#39;</span>,
-        <span style="color:#e6db74">&#39;name_link_a&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;超链B&#39;</span>,
-    ],
-];
-$table_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;aa&#34;</span>;
-$table <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PhpOffice\PhpWord\Element\Table</span>($styles);
-<span style="color:#75715e">//header
-</span><span style="color:#75715e">//content
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">foreach</span> ($rows <span style="color:#66d9ef">as</span> $row){
-    $table<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addRow</span>();
-    <span style="color:#66d9ef">foreach</span> ($cols <span style="color:#66d9ef">as</span> $col){
-        <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">substr</span>($col,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">4</span>) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;link&#34;</span>){
-            $cell <span style="color:#f92672">=</span> $table<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addCell</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addTextRun</span>();
-            <span style="color:#75715e">// 处理链接
-</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">is_array</span>($row[$col])){
-                <span style="color:#66d9ef">foreach</span>($row[$col] <span style="color:#66d9ef">as</span> $index<span style="color:#f92672">=&gt;</span>$lk){
-                    $t <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;${&#39;</span><span style="color:#f92672">.</span>$table_name <span style="color:#f92672">.</span><span style="color:#e6db74">&#39;_&#39;</span><span style="color:#f92672">.</span> $col <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;_&#39;</span> <span style="color:#f92672">.</span> $index <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;}&#39;</span>;
-                    <span style="color:#75715e">// 1.
-</span><span style="color:#75715e"></span>                    $cell<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addText</span>($t<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;,&#39;</span>);
-                    <span style="color:#75715e">// 2.
-</span><span style="color:#75715e"></span>                    $links[$t] <span style="color:#f92672">=</span> [
-                        <span style="color:#e6db74">&#39;name&#39;</span> <span style="color:#f92672">=&gt;</span> $lk[<span style="color:#e6db74">&#39;name&#39;</span>],
-                        <span style="color:#e6db74">&#39;url&#39;</span> <span style="color:#f92672">=&gt;</span> $lk[<span style="color:#e6db74">&#39;url&#39;</span>]
-                    ];
-                }
-            }<span style="color:#66d9ef">else</span>{
-                $t <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;${&#39;</span><span style="color:#f92672">.</span>$table_name <span style="color:#f92672">.</span><span style="color:#e6db74">&#39;_&#39;</span><span style="color:#f92672">.</span> $col <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;}&#39;</span>;
-                <span style="color:#75715e">// 1.
-</span><span style="color:#75715e"></span>                $cell<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addText</span>($t);
-                <span style="color:#75715e">// 2.
-</span><span style="color:#75715e"></span>                $links[$t] <span style="color:#f92672">=</span> [
-                    <span style="color:#e6db74">&#39;name&#39;</span> <span style="color:#f92672">=&gt;</span> $row[<span style="color:#e6db74">&#39;name_&#39;</span><span style="color:#f92672">.</span>$col],
-                    <span style="color:#e6db74">&#39;url&#39;</span> <span style="color:#f92672">=&gt;</span> $row[$col]
-                ];
-            }
-        }<span style="color:#66d9ef">else</span>{
-            <span style="color:#75715e">// 处理普通文本
-</span><span style="color:#75715e"></span>        }
-    }
-}
-<span style="color:#75715e">// 先把table添加上去
-</span><span style="color:#75715e"></span>$tpl<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setComplexBlock</span>(<span style="color:#e6db74">&#39;aa_table&#39;</span>,$table);
-<span style="color:#75715e">// 3.
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">foreach</span>($links <span style="color:#66d9ef">as</span> $t<span style="color:#f92672">=&gt;</span>$lk){
-    $link <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PhpOffice\PhpWord\Element\Link</span>($lk[<span style="color:#e6db74">&#39;url&#39;</span>],$lk[<span style="color:#e6db74">&#39;name&#39;</span>],<span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;color&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#a6e22e">self</span><span style="color:#f92672">::</span><span style="color:#a6e22e">BLUE</span>),<span style="color:#66d9ef">null</span>,<span style="color:#66d9ef">false</span>);
-    $tpl<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setLinkValue</span>($t,$link);
-}
-
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$links <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>$cols <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;area&#39;</span>,<span style="color:#e6db74">&#39;link_languages&#39;</span>];
+</span></span><span style="display:flex;"><span>$rows <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;area&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;link_languages&#39;</span> <span style="color:#f92672">=&gt;</span> [
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;en&#39;</span><span style="color:#f92672">=&gt;</span>[<span style="color:#e6db74">&#39;name&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;英语&#39;</span>,<span style="color:#e6db74">&#39;url&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;https://baidu.com/s?wd=en&#39;</span>],
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;zh_CN&#39;</span><span style="color:#f92672">=&gt;</span>[<span style="color:#e6db74">&#39;name&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;中文&#39;</span>,<span style="color:#e6db74">&#39;url&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;https://baidu.com/s?wd=zh_CN&#39;</span>],
+</span></span><span style="display:flex;"><span>        ],
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;link_a&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;https://baidu.com/s?wd=a&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;name_link_a&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;超链A&#39;</span>,
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;area&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;2&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;link_languages&#39;</span> <span style="color:#f92672">=&gt;</span> [
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;en&#39;</span><span style="color:#f92672">=&gt;</span>[<span style="color:#e6db74">&#39;name&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;英语&#39;</span>,<span style="color:#e6db74">&#39;url&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;https://baidu.com/s?wd=en&#39;</span>],
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;zh_CN&#39;</span><span style="color:#f92672">=&gt;</span>[<span style="color:#e6db74">&#39;name&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;中文&#39;</span>,<span style="color:#e6db74">&#39;url&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#e6db74">&#39;https://baidu.com/s?wd=zh_CN&#39;</span>],
+</span></span><span style="display:flex;"><span>        ],
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;link_a&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;https://baidu.com/s?wd=b&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;name_link_a&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;超链B&#39;</span>,
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>];
+</span></span><span style="display:flex;"><span>$table_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;aa&#34;</span>;
+</span></span><span style="display:flex;"><span>$table <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PhpOffice\PhpWord\Element\Table</span>($styles);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//header
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//content
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">foreach</span> ($rows <span style="color:#66d9ef">as</span> $row){
+</span></span><span style="display:flex;"><span>    $table<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addRow</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">foreach</span> ($cols <span style="color:#66d9ef">as</span> $col){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">substr</span>($col,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">4</span>) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;link&#34;</span>){
+</span></span><span style="display:flex;"><span>            $cell <span style="color:#f92672">=</span> $table<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addCell</span>()<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addTextRun</span>();
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 处理链接
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">is_array</span>($row[$col])){
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">foreach</span>($row[$col] <span style="color:#66d9ef">as</span> $index<span style="color:#f92672">=&gt;</span>$lk){
+</span></span><span style="display:flex;"><span>                    $t <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;${&#39;</span><span style="color:#f92672">.</span>$table_name <span style="color:#f92672">.</span><span style="color:#e6db74">&#39;_&#39;</span><span style="color:#f92672">.</span> $col <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;_&#39;</span> <span style="color:#f92672">.</span> $index <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;}&#39;</span>;
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// 1.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                    $cell<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addText</span>($t<span style="color:#f92672">.</span><span style="color:#e6db74">&#39;,&#39;</span>);
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// 2.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                    $links[$t] <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>                        <span style="color:#e6db74">&#39;name&#39;</span> <span style="color:#f92672">=&gt;</span> $lk[<span style="color:#e6db74">&#39;name&#39;</span>],
+</span></span><span style="display:flex;"><span>                        <span style="color:#e6db74">&#39;url&#39;</span> <span style="color:#f92672">=&gt;</span> $lk[<span style="color:#e6db74">&#39;url&#39;</span>]
+</span></span><span style="display:flex;"><span>                    ];
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>                $t <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;${&#39;</span><span style="color:#f92672">.</span>$table_name <span style="color:#f92672">.</span><span style="color:#e6db74">&#39;_&#39;</span><span style="color:#f92672">.</span> $col <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;}&#39;</span>;
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 1.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                $cell<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">addText</span>($t);
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 2.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                $links[$t] <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;name&#39;</span> <span style="color:#f92672">=&gt;</span> $row[<span style="color:#e6db74">&#39;name_&#39;</span><span style="color:#f92672">.</span>$col],
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;url&#39;</span> <span style="color:#f92672">=&gt;</span> $row[$col]
+</span></span><span style="display:flex;"><span>                ];
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 处理普通文本
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 先把table添加上去
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>$tpl<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setComplexBlock</span>(<span style="color:#e6db74">&#39;aa_table&#39;</span>,$table);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 3.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">foreach</span>($links <span style="color:#66d9ef">as</span> $t<span style="color:#f92672">=&gt;</span>$lk){
+</span></span><span style="display:flex;"><span>    $link <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PhpOffice\PhpWord\Element\Link</span>($lk[<span style="color:#e6db74">&#39;url&#39;</span>],$lk[<span style="color:#e6db74">&#39;name&#39;</span>],<span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;color&#39;</span><span style="color:#f92672">=&gt;</span><span style="color:#a6e22e">self</span><span style="color:#f92672">::</span><span style="color:#a6e22e">BLUE</span>),<span style="color:#66d9ef">null</span>,<span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span>    $tpl<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setLinkValue</span>($t,$link);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
 <li>打开文件时更新目录</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">
-$tpl<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setUpdateFields</span>(<span style="color:#66d9ef">true</span>); <span style="color:#75715e">// 只有 office 起效
-</span><span style="color:#75715e"></span>
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$tpl<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setUpdateFields</span>(<span style="color:#66d9ef">true</span>); <span style="color:#75715e">// 只有 office 起效
+</span></span></span></code></pre></div><ul>
 <li>
 <p>转义字符</p>
 <p><a href="https://github.com/PHPOffice/PHPWord/issues/2088">issue</a></p>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php">$content <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace</span>(<span style="color:#e6db74">&#39;&amp;&#39;</span>, <span style="color:#e6db74">&#39;&amp;amp;&#39;</span>, $content);
-</code></pre></div><h1 id="phpword文档">PHPWord文档</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>$content <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace</span>(<span style="color:#e6db74">&#39;&amp;&#39;</span>, <span style="color:#e6db74">&#39;&amp;amp;&#39;</span>, $content);
+</span></span></code></pre></div><h1 id="phpword文档">PHPWord文档</h1>
 <ul>
 <li><a href="https://phpword.readthedocs.io/">官方文档</a></li>
 <li><a href="https://phpword-zh.readthedocs.io/zh_CN/latest/index.html">中文</a></li>
@@ -872,7 +869,7 @@ $tpl<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">setUpdat
 
   <footer class="ui bottom attached center aligned segment" data-html2canvas-ignore>
     
-      <p>© 2020 - 2021 JunJian Feng</p>
+      <p>© 2020 - 2022 JunJian Feng</p>
     
 
     <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>

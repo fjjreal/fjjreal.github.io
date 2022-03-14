@@ -15,7 +15,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.90.1" />
+<meta name="generator" content="Hugo 0.94.2" />
 
 <link rel="canonical" href="https://fjjreal.github.io/post/hyperf-micro-service-with-consul/" />
 
@@ -161,53 +161,50 @@
 </li>
 </ul>
 <pre tabindex="0"><code>	[
-        'name' =&gt; 'jsonrpc-http',
-        'type' =&gt; Server::SERVER_HTTP,
-        'host' =&gt; '0.0.0.0',
-        'port' =&gt; 9504,
-        'sock_type' =&gt; SWOOLE_SOCK_TCP,
-        'callbacks' =&gt; [
-            Event::ON_REQUEST =&gt; [\Hyperf\JsonRpc\HttpServer::class, 'onRequest'],
+        &#39;name&#39; =&gt; &#39;jsonrpc-http&#39;,
+        &#39;type&#39; =&gt; Server::SERVER_HTTP,
+        &#39;host&#39; =&gt; &#39;0.0.0.0&#39;,
+        &#39;port&#39; =&gt; 9504,
+        &#39;sock_type&#39; =&gt; SWOOLE_SOCK_TCP,
+        &#39;callbacks&#39; =&gt; [
+            Event::ON_REQUEST =&gt; [\Hyperf\JsonRpc\HttpServer::class, &#39;onRequest&#39;],
         ],
     ],
 </code></pre><ul>
 <li>服务类</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
-<span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App\JsonRpc</span>;
-
-<span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CalculatorServiceInterface</span>{
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">int</span> $a, <span style="color:#a6e22e">int</span> $b) <span style="color:#f92672">:</span><span style="color:#a6e22e">int</span>;
-}
-
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
-<span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App\JsonRpc</span>;
-<span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Hyperf\RpcServer\Annotation\RpcService</span>;
-
-<span style="color:#e6db74">/**
-</span><span style="color:#e6db74"> * 注意，如希望通过服务中心来管理服务，需在注解内增加 publishTo 属性
-</span><span style="color:#e6db74"> * @RpcService(name=&#34;CalculatorService&#34;, protocol=&#34;jsonrpc-http&#34;, server=&#34;jsonrpc-http&#34;, publishTo=&#34;consul&#34;)
-</span><span style="color:#e6db74"> */</span>
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CalculatorService</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">CalculatorServiceInterface</span>
-{
-    <span style="color:#75715e">// 实现一个加法方法，这里简单的认为参数都是 int 类型
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">int</span> $a, <span style="color:#a6e22e">int</span> $b)<span style="color:#f92672">:</span> <span style="color:#a6e22e">int</span>
-    {
-        <span style="color:#75715e">// 这里是服务方法的具体实现
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> $a <span style="color:#f92672">+</span> $b;
-    }
-}
-
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App\JsonRpc</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CalculatorServiceInterface</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">int</span> $a, <span style="color:#a6e22e">int</span> $b) <span style="color:#f92672">:</span><span style="color:#a6e22e">int</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App\JsonRpc</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#a6e22e">Hyperf\RpcServer\Annotation\RpcService</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * 注意，如希望通过服务中心来管理服务，需在注解内增加 publishTo 属性
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> * @RpcService(name=&#34;CalculatorService&#34;, protocol=&#34;jsonrpc-http&#34;, server=&#34;jsonrpc-http&#34;, publishTo=&#34;consul&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CalculatorService</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">CalculatorServiceInterface</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 实现一个加法方法，这里简单的认为参数都是 int 类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">int</span> $a, <span style="color:#a6e22e">int</span> $b)<span style="color:#f92672">:</span> <span style="color:#a6e22e">int</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 这里是服务方法的具体实现
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> $a <span style="color:#f92672">+</span> $b;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
 <li>consul 配置 config/autoload/consul.php</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
-
-<span style="color:#66d9ef">return</span> [
-    <span style="color:#e6db74">&#39;uri&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;http://127.0.0.1:8500&#39;</span>,
-];
-
-</code></pre></div><h2 id="消费者">消费者</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;uri&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;http://127.0.0.1:8500&#39;</span>,
+</span></span><span style="display:flex;"><span>];
+</span></span></code></pre></div><h2 id="消费者">消费者</h2>
 <ul>
 <li>
 <p>composer require hyperf/json-rpc</p>
@@ -222,83 +219,81 @@
 <p>服务类</p>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
-<span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App\JsonRpc</span>;
-
-<span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CalculatorServiceInterface</span>{
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">int</span> $a, <span style="color:#a6e22e">int</span> $b) <span style="color:#f92672">:</span><span style="color:#a6e22e">int</span>;
-}
-
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">namespace</span> <span style="color:#a6e22e">App\JsonRpc</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CalculatorServiceInterface</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">int</span> $a, <span style="color:#a6e22e">int</span> $b) <span style="color:#f92672">:</span><span style="color:#a6e22e">int</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
 <li>自动获取服务</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
-
-<span style="color:#66d9ef">return</span> [
-    <span style="color:#e6db74">&#39;consumers&#39;</span> <span style="color:#f92672">=&gt;</span> [
-        [
-            <span style="color:#75715e">// name 需与服务提供者的 name 属性相同
-</span><span style="color:#75715e"></span>            <span style="color:#e6db74">&#39;name&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;CalculatorService&#39;</span>,
-            <span style="color:#75715e">// 服务接口名，可选，默认值等于 name 配置的值，如果 name 直接定义为接口类则可忽略此行配置，如 name 为字符串则需要配置 service 对应到接口类
-</span><span style="color:#75715e"></span>            <span style="color:#e6db74">&#39;service&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">\App\JsonRpc\CalculatorServiceInterface</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>,
-            <span style="color:#75715e">// 对应容器对象 ID，可选，默认值等于 service 配置的值，用来定义依赖注入的 key
-</span><span style="color:#75715e"></span>            <span style="color:#e6db74">&#39;id&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">\App\JsonRpc\CalculatorServiceInterface</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>,
-            <span style="color:#75715e">// 服务提供者的服务协议，可选，默认值为 jsonrpc-http
-</span><span style="color:#75715e"></span>            <span style="color:#75715e">// 可选 jsonrpc-http jsonrpc jsonrpc-tcp-length-check
-</span><span style="color:#75715e"></span>            <span style="color:#e6db74">&#39;protocol&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;jsonrpc-http&#39;</span>,
-            <span style="color:#75715e">// 负载均衡算法，可选，默认值为 random
-</span><span style="color:#75715e"></span>            <span style="color:#e6db74">&#39;load_balancer&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;random&#39;</span>,
-            <span style="color:#75715e">// 这个消费者要从哪个服务中心获取节点信息，如不配置则不会从服务中心获取节点信息
-</span><span style="color:#75715e"></span>            <span style="color:#e6db74">&#39;registry&#39;</span> <span style="color:#f92672">=&gt;</span> [
-                <span style="color:#e6db74">&#39;protocol&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;consul&#39;</span>,
-                <span style="color:#e6db74">&#39;address&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;http://127.0.0.1:8500&#39;</span>,
-            ],
-            <span style="color:#75715e">// 如果没有指定上面的 registry 配置，即为直接对指定的节点进行消费，通过下面的 nodes 参数来配置服务提供者的节点信息
-</span><span style="color:#75715e"></span>            <span style="color:#75715e">// &#39;nodes&#39; =&gt; [
-</span><span style="color:#75715e"></span>            <span style="color:#75715e">//     [&#39;host&#39; =&gt; &#39;127.0.0.1&#39;, &#39;port&#39; =&gt; 9504],
-</span><span style="color:#75715e"></span>            <span style="color:#75715e">// ],
-</span><span style="color:#75715e"></span>            <span style="color:#75715e">// 配置项，会影响到 Packer 和 Transporter
-</span><span style="color:#75715e"></span>            <span style="color:#e6db74">&#39;options&#39;</span> <span style="color:#f92672">=&gt;</span> [
-                <span style="color:#e6db74">&#39;connect_timeout&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5.0</span>,
-                <span style="color:#e6db74">&#39;recv_timeout&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5.0</span>,
-                <span style="color:#e6db74">&#39;settings&#39;</span> <span style="color:#f92672">=&gt;</span> [
-                    <span style="color:#75715e">// 根据协议不同，区分配置
-</span><span style="color:#75715e"></span>                    <span style="color:#e6db74">&#39;open_eof_split&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">true</span>,
-                    <span style="color:#e6db74">&#39;package_eof&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>,
-                    <span style="color:#75715e">// &#39;open_length_check&#39; =&gt; true,
-</span><span style="color:#75715e"></span>                    <span style="color:#75715e">// &#39;package_length_type&#39; =&gt; &#39;N&#39;,
-</span><span style="color:#75715e"></span>                    <span style="color:#75715e">// &#39;package_length_offset&#39; =&gt; 0,
-</span><span style="color:#75715e"></span>                    <span style="color:#75715e">// &#39;package_body_offset&#39; =&gt; 4,
-</span><span style="color:#75715e"></span>                ],
-                <span style="color:#75715e">// 重试次数，默认值为 2，收包超时不进行重试。暂只支持 JsonRpcPoolTransporter
-</span><span style="color:#75715e"></span>                <span style="color:#e6db74">&#39;retry_count&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
-                <span style="color:#75715e">// 重试间隔，毫秒
-</span><span style="color:#75715e"></span>                <span style="color:#e6db74">&#39;retry_interval&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">100</span>,
-                <span style="color:#75715e">// 当使用 JsonRpcPoolTransporter 时会用到以下配置
-</span><span style="color:#75715e"></span>                <span style="color:#e6db74">&#39;pool&#39;</span> <span style="color:#f92672">=&gt;</span> [
-                    <span style="color:#e6db74">&#39;min_connections&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
-                    <span style="color:#e6db74">&#39;max_connections&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">32</span>,
-                    <span style="color:#e6db74">&#39;connect_timeout&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10.0</span>,
-                    <span style="color:#e6db74">&#39;wait_timeout&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3.0</span>,
-                    <span style="color:#e6db74">&#39;heartbeat&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,
-                    <span style="color:#e6db74">&#39;max_idle_time&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">60.0</span>,
-                ],
-            ],
-        ]
-    ],
-];
-
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;consumers&#39;</span> <span style="color:#f92672">=&gt;</span> [
+</span></span><span style="display:flex;"><span>        [
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// name 需与服务提供者的 name 属性相同
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#e6db74">&#39;name&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;CalculatorService&#39;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 服务接口名，可选，默认值等于 name 配置的值，如果 name 直接定义为接口类则可忽略此行配置，如 name 为字符串则需要配置 service 对应到接口类
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#e6db74">&#39;service&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">\App\JsonRpc\CalculatorServiceInterface</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 对应容器对象 ID，可选，默认值等于 service 配置的值，用来定义依赖注入的 key
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#e6db74">&#39;id&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">\App\JsonRpc\CalculatorServiceInterface</span><span style="color:#f92672">::</span><span style="color:#a6e22e">class</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 服务提供者的服务协议，可选，默认值为 jsonrpc-http
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#75715e">// 可选 jsonrpc-http jsonrpc jsonrpc-tcp-length-check
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#e6db74">&#39;protocol&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;jsonrpc-http&#39;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 负载均衡算法，可选，默认值为 random
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#e6db74">&#39;load_balancer&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;random&#39;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 这个消费者要从哪个服务中心获取节点信息，如不配置则不会从服务中心获取节点信息
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#e6db74">&#39;registry&#39;</span> <span style="color:#f92672">=&gt;</span> [
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;protocol&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;consul&#39;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;address&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;http://127.0.0.1:8500&#39;</span>,
+</span></span><span style="display:flex;"><span>            ],
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 如果没有指定上面的 registry 配置，即为直接对指定的节点进行消费，通过下面的 nodes 参数来配置服务提供者的节点信息
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#75715e">// &#39;nodes&#39; =&gt; [
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#75715e">//     [&#39;host&#39; =&gt; &#39;127.0.0.1&#39;, &#39;port&#39; =&gt; 9504],
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#75715e">// ],
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#75715e">// 配置项，会影响到 Packer 和 Transporter
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#e6db74">&#39;options&#39;</span> <span style="color:#f92672">=&gt;</span> [
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;connect_timeout&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5.0</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;recv_timeout&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5.0</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#39;settings&#39;</span> <span style="color:#f92672">=&gt;</span> [
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// 根据协议不同，区分配置
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                    <span style="color:#e6db74">&#39;open_eof_split&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;package_eof&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// &#39;open_length_check&#39; =&gt; true,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                    <span style="color:#75715e">// &#39;package_length_type&#39; =&gt; &#39;N&#39;,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                    <span style="color:#75715e">// &#39;package_length_offset&#39; =&gt; 0,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                    <span style="color:#75715e">// &#39;package_body_offset&#39; =&gt; 4,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                ],
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 重试次数，默认值为 2，收包超时不进行重试。暂只支持 JsonRpcPoolTransporter
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#e6db74">&#39;retry_count&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 重试间隔，毫秒
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#e6db74">&#39;retry_interval&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">100</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 当使用 JsonRpcPoolTransporter 时会用到以下配置
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#e6db74">&#39;pool&#39;</span> <span style="color:#f92672">=&gt;</span> [
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;min_connections&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;max_connections&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">32</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;connect_timeout&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">10.0</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;wait_timeout&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3.0</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;heartbeat&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;max_idle_time&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">60.0</span>,
+</span></span><span style="display:flex;"><span>                ],
+</span></span><span style="display:flex;"><span>            ],
+</span></span><span style="display:flex;"><span>        ]
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>];
+</span></span></code></pre></div><ul>
 <li>控制器</li>
 </ul>
 <pre tabindex="0"><code>$client = ApplicationContext::getContainer()-&gt;get(CalculatorServiceInterface::class);
 return [
-    'sum' =&gt; $client-&gt;add(4,5)
+    &#39;sum&#39; =&gt; $client-&gt;add(4,5)
 ];
 </code></pre><ul>
 <li>路由</li>
 </ul>
-<pre tabindex="0"><code>Router::addRoute(['GET', 'POST', 'HEAD'], '/testService', 'App\Controller\IndexController@testService');
+<pre tabindex="0"><code>Router::addRoute([&#39;GET&#39;, &#39;POST&#39;, &#39;HEAD&#39;], &#39;/testService&#39;, &#39;App\Controller\IndexController@testService&#39;);
 </code></pre><h1 id="consul-集群">consul 集群</h1>
 <blockquote>
 <p><a href="https://www.jianshu.com/p/b12037fa3249">docker 安装集群consul</a></p>
@@ -307,8 +302,7 @@ return [
 <li>注意join的ip</li>
 </ul>
 <pre tabindex="0"><code>	// ip
-	docker inspect --format '{{ .NetworkSettings.IPAddress }}' join目标consul名称
-
+	docker inspect --format &#39;{{ .NetworkSettings.IPAddress }}&#39; join目标consul名称
 </code></pre></article>
     </section>
 
@@ -771,7 +765,7 @@ return [
 
   <footer class="ui bottom attached center aligned segment" data-html2canvas-ignore>
     
-      <p>© 2020 - 2021 JunJian Feng</p>
+      <p>© 2020 - 2022 JunJian Feng</p>
     
 
     <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>

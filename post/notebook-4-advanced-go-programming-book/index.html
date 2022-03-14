@@ -15,7 +15,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.90.1" />
+<meta name="generator" content="Hugo 0.94.2" />
 
 <link rel="canonical" href="https://fjjreal.github.io/post/notebook-4-advanced-go-programming-book/" />
 
@@ -151,8 +151,8 @@
 <pre tabindex="0"><code>$1           // 十进制
 $0xf4f8fcff  // 十六进制
 $1.5         // 浮点数
-$'a'         // 字符
-$&quot;abcd&quot;      // 字符串
+$&#39;a&#39;         // 字符
+$&#34;abcd&#34;      // 字符串
 
 $2+2         // 常量表达式
 $3&amp;1&lt;&lt;2      // == $4
@@ -160,31 +160,31 @@ $(3&amp;1)&lt;&lt;2    // == $4
 </code></pre><ul>
 <li>string</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// main.go
-</span><span style="color:#75715e"></span>
-<span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// main.go
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;....../gs&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span> ()  {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">gs</span>.<span style="color:#a6e22e">Helloworld</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">gs</span>.<span style="color:#a6e22e">Name</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// gs/gs.go
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">gs</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Helloworld</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Name</span> <span style="color:#66d9ef">string</span>
+</span></span></code></pre></div><pre tabindex="0"><code>// gs/gs_amd64.s
 
-<span style="color:#f92672">import</span> (
-	<span style="color:#e6db74">&#34;fmt&#34;</span>
-	<span style="color:#e6db74">&#34;....../gs&#34;</span>
-)
-
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span> ()  {
-	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">gs</span>.<span style="color:#a6e22e">Helloworld</span>)
-	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">gs</span>.<span style="color:#a6e22e">Name</span>)
-}
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// gs/gs.go
-</span><span style="color:#75715e"></span>
-<span style="color:#f92672">package</span> <span style="color:#a6e22e">gs</span>
-
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Helloworld</span> <span style="color:#66d9ef">string</span>
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Name</span> <span style="color:#66d9ef">string</span>
-</code></pre></div><pre tabindex="0"><code>// gs/gs_amd64.s
-
-#include &quot;textflag.h&quot;
+#include &#34;textflag.h&#34;
 GLOBL text&lt;&gt;(SB),NOPTR,$16             // &lt;&gt; 当前文件内的私有变量
-DATA text&lt;&gt;+0(SB)/8,$&quot;Hello Wo&quot;
-DATA text&lt;&gt;+8(SB)/8,$&quot;rld!&quot;
+DATA text&lt;&gt;+0(SB)/8,$&#34;Hello Wo&#34;
+DATA text&lt;&gt;+8(SB)/8,$&#34;rld!&#34;
 GLOBL ·Helloworld(SB),RODATA,$16
 DATA ·Helloworld+0(SB)/8,$text&lt;&gt;(SB)
 DATA ·Helloworld+8(SB)/8,$12
@@ -192,19 +192,19 @@ DATA ·Helloworld+8(SB)/8,$12
 GLOBL ·Name(SB),RODATA,$24
 DATA ·Name+0(SB)/8,$·Name+16(SB)
 DATA ·Name+8(SB)/8,$6
-DATA ·Name+16(SB)/8,$&quot;gopher&quot;
+DATA ·Name+16(SB)/8,$&#34;gopher&#34;
 </code></pre><ul>
 <li>slice</li>
 </ul>
 <pre tabindex="0"><code>var NameByte []byte
-</code></pre><pre tabindex="0"><code>GLOBL ·NameType(SB),$24            // var NameType []byte(&quot;Hello World!&quot;)
+</code></pre><pre tabindex="0"><code>GLOBL ·NameType(SB),$24            // var NameType []byte(&#34;Hello World!&#34;)
 DATA ·NameType+0(SB)/8,$txt&lt;&gt;(SB)  // StringHeader.Data
 DATA ·NameType+8(SB)/8,$12         // StringHeader.Len
 DATA ·NameType+16(SB)/8,$16        // StringHeader.Cap
 
 GLOBL txt&lt;&gt;(SB),NOPTR,$16
-DATA txt&lt;&gt;+0(SB)/8,$&quot;Hello Wo&quot;
-DATA txt&lt;&gt;+8(SB)/8,$&quot;rld!&quot;
+DATA txt&lt;&gt;+0(SB)/8,$&#34;Hello Wo&#34;
+DATA txt&lt;&gt;+8(SB)/8,$&#34;rld!&#34;
 </code></pre><h4 id="注调用时为什么是空切片">注：调用时为什么是空切片。。。</h4>
 <p><img src="/images/call-go-asm-slice.png" alt="call asm slice">
 <img src="/images/go-asm-slice.png" alt="asm slice error"></p>
@@ -214,10 +214,10 @@ DATA txt&lt;&gt;+8(SB)/8,$&quot;rld!&quot;
 <blockquote>
 <p>map/channel等类型并没有公开的内部结构，它们只是一种未知类型的指针，无法直接初始化</p>
 </blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">m</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">int</span>
-
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ch</span> <span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>
-</code></pre></div><pre tabindex="0"><code>GLOBL ·m(SB),$8  // var m map[string]int
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">m</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ch</span> <span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>
+</span></span></code></pre></div><pre tabindex="0"><code>GLOBL ·m(SB),$8  // var m map[string]int
 DATA  ·m+0(SB)/8,$0
 
 GLOBL ·ch(SB),$8 // var ch chan int
@@ -760,7 +760,7 @@ func Foo(FP *SomeFunc_args, FP_ret *SomeFunc_returns)
 
   <footer class="ui bottom attached center aligned segment" data-html2canvas-ignore>
     
-      <p>© 2020 - 2021 JunJian Feng</p>
+      <p>© 2020 - 2022 JunJian Feng</p>
     
 
     <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> with theme <a href="https://github.com/g1eny0ung/hugo-theme-dream" target="_blank">Dream</a>.</p>
