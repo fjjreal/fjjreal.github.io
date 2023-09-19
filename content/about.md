@@ -16,7 +16,7 @@ cover: /images/default2.jpg
 
  - 本科/宁波大红鹰学院软件工程系 2018
 
- - 工作年限：4年
+ - 工作年限：5年
 
  - 技术博客：[githubPage](https://fjjreal.github.io) / [个人网站](https://fjjreal.cn)
  
@@ -26,7 +26,7 @@ cover: /images/default2.jpg
 
  - 期望职位：PHP开发工程师、GO开发工程师
 
- - 期望薪资：15k
+ - 期望薪资：12~15k
 
  - 期望城市：宁波
 
@@ -41,6 +41,22 @@ cover: /images/default2.jpg
 
 
 # 工作经历
+
+## 宁波乐歌智联科技有限公司鄞州分公司 （ 2022年4月 ~ 2023年9月 ）
+
+### 海外电商独立站Magento2的功能模块开发
+
+### 独立站站点的资源优化，提升站点的谷歌评分
+
+### 部分站点的服务器运维工作
+
+### 额外产出：
+
+ - Magento项目编译脚本的站点化更新
+
+ - Magento组件开发代码生成器
+
+ - 站点图片存活检测
 
 ## 宁波全贸信息技术有限公司 （ 2021年9月 ~ 2022年3月 ）
 
@@ -121,7 +137,7 @@ cover: /images/default2.jpg
 
 - 语言：PHP GO
 
-- Web框架：Yii/CI/Laravel/Hyperf/gin
+- Web框架：Magento2/Yii/CI/Laravel/Hyperf/gin
 
 - 数据存储相关：MySQL/Redis
 
@@ -129,7 +145,7 @@ cover: /images/default2.jpg
 
 - 版本管理：Git/Svn
 
-- 容器：docker，k8s（学习ing...）
+- 容器：docker
 
 - 消息队列：rabbitMq
 
@@ -141,7 +157,7 @@ cover: /images/default2.jpg
 
 - 我的优势：热爱技术、自学能力强,有良好的自我认知。
 
-- 期望：希望找一份15k左右、有挑战性的后端开发工作。
+- 期望：希望找一份12~15k左右、有挑战性的后端开发工作。
 
 # 致谢
 
